@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "ncc build src/server.ts -o build",
-    "start:dev": "ncc run src/server.ts",
+    "start:dev": "NODE_ENV=development ncc run src/server.ts",
     "postinstall": "husky install",
     "prepare": "husky install"
   },
