@@ -1,8 +1,6 @@
 name: Build, push, and deploy app to dev
 
 on: [workflow_dispatch]
-env:
-  IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
 
 permissions:
   contents: "read"
@@ -32,6 +30,8 @@ jobs:
           team: tilleggsstonader
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+    outputs:
+      image: ${{ steps.docker-push.outputs.image }}
   deploy:
     name: Deploy to NAIS
     needs: build
@@ -42,3 +42,4 @@ jobs:
         env:
           CLUSTER: dev-gcp
           RESOURCE: .nais/naiserator/dev.yaml
+          IMAGE: ${{ needs.build.outputs.image }}
