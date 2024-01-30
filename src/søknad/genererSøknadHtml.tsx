@@ -76,6 +76,6 @@ const genererSøknadHtml = async (data: Søknad): Promise<string> => {
         </html>
     );
 
-    return await renderToStaticMarkup(asyncHtml());
+    return renderToStaticMarkup(asyncHtml());
 };
 export default genererSøknadHtml;
