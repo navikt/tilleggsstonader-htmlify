@@ -1,0 +1,44 @@
+name: Build, push, and deploy app to dev
+
+on: [workflow_dispatch]
+env:
+  IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
+
+permissions:
+  contents: "read"
+  id-token: "write"
+  packages: "write"
+
+jobs:
+  build:
+    name: Build and push Docker container
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: yarn
+          registry-url: "https://npm.pkg.github.com"
+      - name: Yarn install
+        run: yarn --prefer-offline --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: Yarn build
+        run: yarn build
+      - uses: nais/docker-build-push@v0
+        id: docker-push
+        with:
+          team: tilleggsstonader
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+  deploy:
+    name: Deploy to NAIS
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/naiserator/dev.yaml
