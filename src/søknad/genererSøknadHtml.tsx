@@ -37,14 +37,14 @@ const mapFelter = (felt: HtmlFelt, nivå: number = 1) => {
             );
         case 'AVSNITT':
             return (
-                <>
+                <div>
                     {header(felt, nivå, nivåClassName)}
-                    {felt.verdier.map((verdi) => (
-                        <div className={nivåClassName}>
+                    {felt.verdier.map((verdi, index) => (
+                        <div className={nivåClassName} key={index}>
                             {mapFelter(verdi, Math.min(nivå + 1, 4))}
                         </div>
                     ))}
-                </>
+                </div>
             );
         case 'LINJE':
             return <hr />;
@@ -58,7 +58,7 @@ const genererSøknadHtml = async (data: Søknad): Promise<string> => {
         <html lang={HtmlLang.NB}>
             <head>
                 <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
-                <style type="text/css">{soknadCss}</style>
+                <style type="text/css" dangerouslySetInnerHTML={{ __html: soknadCss }} />
                 <title>{tittelStønadstype(data.type)}</title>
             </head>
             <body className={'body'}>
@@ -69,8 +69,8 @@ const genererSøknadHtml = async (data: Søknad): Promise<string> => {
                     </div>
                     <div className={'stonad-tittel'}>
                         <h1>{tittelStønadstype(data.type)}</h1>
-                        {mapFelter(data.avsnitt)}
                     </div>
+                    {mapFelter(data.avsnitt)}
                 </div>
             </body>
         </html>
