@@ -49,7 +49,7 @@ const mapFelter = (felt: HtmlFelt, nivå: number = 1) => {
         case 'LINJE':
             return <hr />;
         default:
-            throw `Kan ikke mappe ${JSON.stringify(felt)}`;
+            throw Error(`Kan ikke mappe ${JSON.stringify(felt)}`);
     }
 };
 

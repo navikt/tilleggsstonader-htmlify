@@ -9,7 +9,7 @@ const stønadstypeTittel: Record<Stønadstype, string> = {
 export const tittelStønadstype = (stønadstype: Stønadstype): string => {
     const tittel = stønadstypeTittel[stønadstype];
     if (!tittel) {
-        throw `Finner ikke stønadstype=${stønadstype}`;
+        throw Error(`Finner ikke stønadstype=${stønadstype}`);
     }
     return tittel;
 };
