@@ -14,12 +14,12 @@ router.post('/soknad', async (req: Request, res: Response) => {
     const data: Søknad = req.body as Søknad;
     try {
         const html = await genererSøknadHtml(data);
-        res.setHeader('Content-Type', 'application/html');
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
         res.end(html);
     } catch (feil) {
         const error = feil as Error;
         logError(`Generering av dokument (pdf) feilet: Sjekk secure-logs`, req);
-        logSecureInfo(`Feilet håndtering av ${data}`, req, feil);
+        logSecureInfo(`Feilet håndtering av ${JSON.stringify(data)}`, req, feil);
 
         return res.status(500).send(`Generering av søknad feilet: ${error.message}`);
     }
