@@ -2,6 +2,8 @@ import express from 'express';
 import type { Request, Response } from 'express';
 
 import { logError, logSecureInfo } from './felles/logger';
+import genererInterntVedtakHtml from './internt-vedtak/genererInterntVedtakHtml';
+import { InterntVedtak } from './internt-vedtak/typer/interntVedtak';
 import genererSøknadHtml from './søknad/genererSøknadHtml';
 import { Søknad } from './søknad/typer';
 
@@ -22,6 +24,21 @@ router.post('/soknad', async (req: Request, res: Response) => {
         logSecureInfo(`Feilet håndtering av ${JSON.stringify(data)}`, req, feil);
 
         return res.status(500).send(`Generering av søknad feilet: ${error.message}`);
+    }
+});
+
+router.post('/internt-vedtak', async (req: Request, res: Response) => {
+    const data: InterntVedtak = req.body as InterntVedtak;
+    try {
+        const html = await genererInterntVedtakHtml(data);
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.end(html);
+    } catch (feil) {
+        const error = feil as Error;
+        logError(`Generering av internt-vedtak feilet: Sjekk secure-logs`, req);
+        logSecureInfo(`Feilet håndtering av ${JSON.stringify(data)}`, req, feil);
+
+        return res.status(500).send(`Generering av internt-vedtak feilet: ${error.message}`);
     }
 });
 

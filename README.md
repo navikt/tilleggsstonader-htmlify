@@ -2,7 +2,7 @@
 
 App for å generere html ut fra json som skal brukes for å generere pdf.
  - Søknad - pdf
- - Sak - blankett
+ - Sak - internt vedtak
 
 ### Kjøre app lokalt
 `yarn start:dev`
