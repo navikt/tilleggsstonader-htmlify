@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import soknadCss from './soknadCss';
 import { Avsnitt, HtmlFelt, Søknad, Verdi } from './typer';
-import { formatterNorskDato } from '../felles/datoFormat';
+import { formaterNorskDato } from '../felles/datoFormat';
 import { HtmlLang } from '../felles/HtmlLang';
 import { NavSvg } from '../felles/nav_svg';
 import { tittelStønadstype } from '../felles/stønadstype';
@@ -65,7 +65,7 @@ const genererSøknadHtml = async (data: Søknad): Promise<string> => {
                 <div className={'header'}>
                     <div className={'ikon-og-dato'}>
                         {NavSvg}
-                        <p>{formatterNorskDato(data.mottattTidspunkt)}</p>
+                        <p>{formaterNorskDato(data.mottattTidspunkt)}</p>
                     </div>
                     <div className={'stonad-tittel'}>
                         <h1>{tittelStønadstype(data.type)}</h1>
