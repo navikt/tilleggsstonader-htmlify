@@ -34,9 +34,10 @@ const Vurdering: React.FC<{ navn: string; vurdering?: VurderingVilkårperiode }>
     if (!vurdering) return null;
     return (
         <NonBreakingDiv>
-            <h4>{navn}</h4>
+            <div>
+                <strong>{navn}</strong> ({vurdering.resultat})
+            </div>
             <div>Svar: {vurdering.svar}</div>
-            <div>Resultat: {vurdering.resultat}</div>
             <Begrunnelse data={vurdering} />
         </NonBreakingDiv>
     );
@@ -45,16 +46,21 @@ const VilkårperiodeRad: React.FC<{ periode: Vilkårperiode }> = ({ periode }) =
     return (
         <NonBreakingDiv className={'vilkaarperiode-rad'}>
             <div className={'vilkaarperiode-type'}>
-                {periode.type}{' '}
+                <strong>{periode.type}</strong>
                 <div className={'vilkaarperiode-resultat'}>{resultatIkon(periode.resultat)}</div>
             </div>
-            <div>Periode: {formaterPeriode(periode)}</div>
-            <div>Kilde: {periode.kilde}</div>
-            <Begrunnelse data={periode} />
-            <KommentarSlettet data={periode} />
-            <Vurdering navn={'Medlemskap'} vurdering={periode.delvilkår.medlemskap} />
-            <Vurdering navn={'Lønnet'} vurdering={periode.delvilkår.lønnet} />
-            <Vurdering navn={'Mottar sykepenger'} vurdering={periode.delvilkår.mottarSykepenger} />
+            <div className={'vilkaarperiode-rad-content'}>
+                <div>Periode: {formaterPeriode(periode)}</div>
+                <div>Kilde: {periode.kilde}</div>
+                <Begrunnelse data={periode} />
+                <KommentarSlettet data={periode} />
+                <Vurdering navn={'Medlemskap'} vurdering={periode.delvilkår.medlemskap} />
+                <Vurdering navn={'Lønnet'} vurdering={periode.delvilkår.lønnet} />
+                <Vurdering
+                    navn={'Mottar sykepenger'}
+                    vurdering={periode.delvilkår.mottarSykepenger}
+                />
+            </div>
         </NonBreakingDiv>
     );
 };

@@ -8,9 +8,10 @@ export const NonBreakingDiv: React.FC<{ children: React.ReactNode; className?: s
 export const Begrunnelse: React.FC<{ data: { begrunnelse?: string } }> = ({ data }) => {
     return (
         data.begrunnelse && (
-            <div>
-                Begrunnelse: <p style={{ whiteSpace: 'pre-wrap' }}>{data.begrunnelse}</p>
-            </div>
+            <p style={{ whiteSpace: 'pre-wrap' }}>
+                Begrunnelse: <br />
+                {data.begrunnelse}
+            </p>
         )
     );
 };
@@ -18,9 +19,10 @@ export const Begrunnelse: React.FC<{ data: { begrunnelse?: string } }> = ({ data
 export const KommentarSlettet: React.FC<{ data: { slettetKommentar?: string } }> = ({ data }) => {
     return (
         data.slettetKommentar && (
-            <div>
-                Kommentar slettet: <p style={{ whiteSpace: 'pre-wrap' }}>{data.slettetKommentar}</p>
-            </div>
+            <p style={{ whiteSpace: 'pre-wrap' }}>
+                Kommentar slettet: <br />
+                {data.slettetKommentar}
+            </p>
         )
     );
 };

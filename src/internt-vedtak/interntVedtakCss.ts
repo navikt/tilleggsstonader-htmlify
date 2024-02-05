@@ -38,6 +38,10 @@ body {
 
 .vilkaarperiode-rad {
     margin-top: 20px;
+}
+
+.vilkaarperiode-rad-content {
+    margin-top: 5px;
     margin-left: 5px;
     padding-left: 10px;
     border-left: 2px solid grey;
@@ -56,6 +60,17 @@ body {
     height: 24px;
     position: relative;
     top: 5px;
+    margin-left: 5px;
+}
+
+.stonadsperioder table, td, th {
+    border: 1px solid;
+    border-collapse:collapse;
+}
+
+.stonadsperioder td,th {
+    text-align: left;
+    padding: 3px 10px;
 }
 
 @page {
@@ -81,12 +96,12 @@ h1 {
 }
 
 h2 {
-    font-size: 18px;
+    font-size: 24px;
     margin-top: 18px;
 }
 
 h3 {
-    font-size: 16px;
+    font-size: 20px;
     margin-top: 5px;
 }
 
