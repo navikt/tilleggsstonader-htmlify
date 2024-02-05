@@ -4,9 +4,18 @@ export interface Vilkårperiode extends Periode {
     type: string;
     delvilkår: DelvilkårVilkårperiode;
     kilde: string;
-    resultat: string;
+    resultat: ResultatVilkårperiode;
     begrunnelse?: string;
+    slettetKommentar?: string;
 }
+
+export enum ResultatVilkårperiode {
+    OPPFYLT = 'OPPFYLT',
+    IKKE_OPPFYLT = 'IKKE_OPPFYLT',
+    IKKE_VURDERT = 'IKKE_VURDERT',
+    SLETTET = 'SLETTET',
+}
+
 export interface DelvilkårVilkårperiode {
     medlemskap?: VurderingVilkårperiode;
     lønnet?: VurderingVilkårperiode;

@@ -36,6 +36,28 @@ body {
     margin-top: 140px;
 }
 
+.vilkaarperiode-rad {
+    margin-top: 20px;
+    margin-left: 5px;
+    padding-left: 10px;
+    border-left: 2px solid grey;
+}
+
+.vilkaarperiode > .vilkaarperiode-rad:first-of-type {
+    margin-top: 0;
+}
+
+.vilkaarperiode-type {
+    margin-bottom: 2px;
+}
+
+.vilkaarperiode-resultat {
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    top: 5px;
+}
+
 @page {
     @bottom-right {
         content: 'Side ' counter(page) ' av ' counter(pages);

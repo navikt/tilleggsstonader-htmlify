@@ -10,15 +10,20 @@ const Behandling: React.FC<{ behandling: Behandlinginfo }> = ({ behandling }) =>
         <NonBreakingDiv>
             <div className={'behandling'}>
                 <h1>{tittelInterntVedtak(behandling.stønadstype)}</h1>
+                <div>Ident: {behandling.ident}</div>
+
                 <div>Fagsak: {behandling.eksternFagsakId}</div>
                 <div>Behandling: {behandling.behandlingId}</div>
-                <div>Årsak: {behandling.årsak}</div>
-                <div>Ident: {behandling.ident}</div>
+
                 <div>Opprettet: {formaterNorskDatoTid(behandling.opprettetTidspunkt)}</div>
-                <div>Resultat: {behandling.resultat}</div>
-                <div>Vedtatt: {formaterNorskDatoTid(behandling.vedtakstidspunkt)}</div>
-                <div>Saksbehandler: {behandling.saksbehandler}</div>
-                {behandling.beslutter && <div>Beslutter: {behandling.beslutter}</div>}
+                <div>Årsak: {behandling.årsak}</div>
+
+                <div style={{ marginTop: '10px' }}>
+                    <div>Saksbehandler: {behandling.saksbehandler}</div>
+                    {behandling.beslutter && <div>Beslutter: {behandling.beslutter}</div>}
+                    <div>Resultat: {behandling.resultat}</div>
+                    <div>Vedtakstidspunkt: {formaterNorskDatoTid(behandling.vedtakstidspunkt)}</div>
+                </div>
             </div>
         </NonBreakingDiv>
     );
