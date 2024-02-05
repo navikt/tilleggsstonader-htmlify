@@ -7,9 +7,15 @@ import { formaterPeriode } from '../felles/datoFormat';
 const StønadsperiodeRad: React.FC<{ periode: Stønadsperiode }> = ({ periode }) => {
     return (
         <NonBreakingDiv>
-            <span>{periode.målgruppe}</span>
-            <span>{periode.aktivitet}</span>
-            <span>{formaterPeriode(periode)}</span>
+            <div>
+                <strong>Målgruppe:</strong>
+                {periode.målgruppe}
+            </div>
+            <div>
+                <strong>Aktivitet:</strong>
+                {periode.aktivitet}
+            </div>
+            <div>{formaterPeriode(periode)}</div>
         </NonBreakingDiv>
     );
 };
@@ -19,9 +25,12 @@ const StønadsperioderContent: React.FC<{
 }> = ({ perioder }) => {
     return (
         <NonBreakingDiv>
-            <h1>Stønadsperioder</h1>
+            <h2>Stønadsperioder</h2>
             {perioder.map((periode, index) => (
-                <StønadsperiodeRad key={index} periode={periode} />
+                <React.Fragment key={index}>
+                    {index > 0 && <hr />}
+                    <StønadsperiodeRad periode={periode} />
+                </React.Fragment>
             ))}
         </NonBreakingDiv>
     );

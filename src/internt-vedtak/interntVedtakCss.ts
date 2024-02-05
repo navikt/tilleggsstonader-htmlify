@@ -32,6 +32,10 @@ body {
     margin-bottom: 20px;
 }
 
+.behandling {
+    margin-top: 140px;
+}
+
 @page {
     @bottom-right {
         content: 'Side ' counter(page) ' av ' counter(pages);
@@ -46,7 +50,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 
 h1 {

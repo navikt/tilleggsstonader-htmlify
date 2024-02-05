@@ -8,4 +8,4 @@ export const formaterNorskDatoTid = (dato: string): string => {
 };
 
 export const formaterPeriode = (periode: Periode) =>
-    `${formaterNorskDato(periode.fom)} - ${formaterNorskDato(periode.tom)}}`;
+    `${formaterNorskDato(periode.fom)} - ${formaterNorskDato(periode.tom)}`;

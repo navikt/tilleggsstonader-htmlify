@@ -12,8 +12,8 @@ const Vurdering: React.FC<{ navn: string; vurdering?: VurderingVilkårperiode }>
     return (
         <NonBreakingDiv>
             <h4>{navn}</h4>
-            <span>Svar: {vurdering.svar}</span>
-            <span>Resultat: {vurdering.resultat}</span>
+            <div>Svar: {vurdering.svar}</div>
+            <div>Resultat: {vurdering.resultat}</div>
             <Begrunnelse data={vurdering} />
         </NonBreakingDiv>
     );
@@ -21,11 +21,11 @@ const Vurdering: React.FC<{ navn: string; vurdering?: VurderingVilkårperiode }>
 const VilkårperiodeRad: React.FC<{ periode: Vilkårperiode }> = ({ periode }) => {
     return (
         <NonBreakingDiv>
-            <span>
+            <div>
                 {periode.type} {periode.resultat}
-            </span>
-            <span>{formaterPeriode(periode)}</span>
-            <span>Kilde: {periode.kilde}</span>
+            </div>
+            <div>{formaterPeriode(periode)}</div>
+            <div>Kilde: {periode.kilde}</div>
             <Begrunnelse data={periode} />
             <Vurdering navn={'Medlemskap'} vurdering={periode.delvilkår.medlemskap} />
             <Vurdering navn={'Lønnet'} vurdering={periode.delvilkår.lønnet} />
@@ -40,9 +40,12 @@ const VilkårperioderContent: React.FC<{
 }> = ({ navn, perioder }) => {
     return (
         <NonBreakingDiv>
-            <h1>{navn}</h1>
+            <h2>{navn}</h2>
             {perioder.map((periode, index) => (
-                <VilkårperiodeRad key={index} periode={periode} />
+                <React.Fragment key={index}>
+                    {index > 0 && <hr />}
+                    <VilkårperiodeRad periode={periode} />
+                </React.Fragment>
             ))}
         </NonBreakingDiv>
     );

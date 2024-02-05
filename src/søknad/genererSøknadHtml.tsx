@@ -5,7 +5,7 @@ import { Avsnitt, HtmlFelt, Søknad, Verdi } from './typer';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { HtmlLang } from '../felles/HtmlLang';
 import { NavSvg } from '../felles/nav_svg';
-import { tittelStønadstype } from '../felles/stønadstype';
+import { tittelSøknad } from '../felles/stønadstype';
 
 const alternativer = (verdi: Verdi) => {
     return (
@@ -59,7 +59,7 @@ const genererSøknadHtml = async (data: Søknad): Promise<string> => {
             <head>
                 <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
                 <style type="text/css" dangerouslySetInnerHTML={{ __html: soknadCss }} />
-                <title>{tittelStønadstype(data.type)}</title>
+                <title>{tittelSøknad(data.type)}</title>
             </head>
             <body className={'body'}>
                 <div className={'header'}>
@@ -68,7 +68,7 @@ const genererSøknadHtml = async (data: Søknad): Promise<string> => {
                         <p>{formaterNorskDato(data.mottattTidspunkt)}</p>
                     </div>
                     <div className={'stonad-tittel'}>
-                        <h1>{tittelStønadstype(data.type)}</h1>
+                        <h1>{tittelSøknad(data.type)}</h1>
                     </div>
                     {mapFelter(data.avsnitt)}
                 </div>

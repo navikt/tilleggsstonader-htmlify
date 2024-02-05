@@ -2,6 +2,7 @@ import React from 'react';
 
 import { NonBreakingDiv } from './felles';
 import { Søknad } from './typer/søknad';
+import { formaterNorskDatoTid } from '../felles/datoFormat';
 
 const Søknadsinformasjon: React.FC<{
     søknad?: Søknad;
@@ -9,8 +10,8 @@ const Søknadsinformasjon: React.FC<{
     if (!søknad) return null;
     return (
         <NonBreakingDiv>
-            <h1>Søknad</h1>
-            <span>{søknad.mottattTidspunkt}</span>
+            <h2>Søknad</h2>
+            <div>Mottatt tidspunkt: {formaterNorskDatoTid(søknad.mottattTidspunkt)}</div>
         </NonBreakingDiv>
     );
 };
