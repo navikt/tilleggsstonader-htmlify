@@ -63,16 +63,6 @@ body {
     margin-left: 5px;
 }
 
-.stonadsperioder table, td, th {
-    border: 1px solid;
-    border-collapse:collapse;
-}
-
-.stonadsperioder td,th {
-    text-align: left;
-    padding: 3px 10px;
-}
-
 @page {
     @bottom-right {
         content: 'Side ' counter(page) ' av ' counter(pages);
@@ -126,5 +116,15 @@ h4 {
 .alternativer {
     font-style: italic;
     font-size: 75%;
+}
+
+table, td, th {
+    border: 1px solid;
+    border-collapse:collapse;
+}
+
+td, th {
+    text-align: left;
+    padding: 3px 10px;
 }
 `;
