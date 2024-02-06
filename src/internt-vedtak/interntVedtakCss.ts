@@ -63,16 +63,6 @@ body {
     margin-left: 5px;
 }
 
-.stonadsperioder table, td, th {
-    border: 1px solid;
-    border-collapse:collapse;
-}
-
-.stonadsperioder td,th {
-    text-align: left;
-    padding: 3px 10px;
-}
-
 @page {
     @bottom-right {
         content: 'Side ' counter(page) ' av ' counter(pages);
@@ -86,13 +76,14 @@ body {
     width: 85%
 }
 
-h1, h2, h3, h4 {
+h2, h3, h4 {
     margin-bottom: 10px;
 }
 
 h1 {
     font-size: 36px;
     margin-top: 30px
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -125,5 +116,15 @@ h4 {
 .alternativer {
     font-style: italic;
     font-size: 75%;
+}
+
+table, td, th {
+    border: 1px solid;
+    border-collapse:collapse;
+}
+
+td, th {
+    text-align: left;
+    padding: 3px 10px;
 }
 `;

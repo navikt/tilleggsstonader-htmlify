@@ -10,9 +10,49 @@ const Behandling: React.FC<{ behandling: Behandlinginfo }> = ({ behandling }) =>
         <NonBreakingDiv>
             <div className={'behandling'}>
                 <h1>{tittelInterntVedtak(behandling.stønadstype)}</h1>
-                <div>Ident: {behandling.ident}</div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Ident</th>
+                            <td>{behandling.ident}</td>
+                        </tr>
+                        <tr>
+                            <th>Fagsak</th>
+                            <td>{behandling.eksternFagsakId}</td>
+                        </tr>
 
-                <div>Fagsak: {behandling.eksternFagsakId}</div>
+                        <tr>
+                            <th>Behandling</th>
+                            <td>{behandling.behandlingId}</td>
+                        </tr>
+                        <tr>
+                            <th>Opprettet</th>
+                            <td>{formaterNorskDatoTid(behandling.opprettetTidspunkt)}</td>
+                        </tr>
+                        <tr>
+                            <th>Årsak</th>
+                            <td>{behandling.årsak}</td>
+                        </tr>
+                        <tr>
+                            <th>Saksbehandler</th>
+                            <td>{behandling.saksbehandler}</td>
+                        </tr>
+                        <tr>
+                            <th>Beslutter</th>
+                            <td>{behandling.beslutter}</td>
+                        </tr>
+                        <tr>
+                            <th>Resultat</th>
+                            <td>{behandling.resultat}</td>
+                        </tr>
+                        <tr>
+                            <th>Vedtakstidspunkt</th>
+                            <td>{formaterNorskDatoTid(behandling.vedtakstidspunkt)}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                {/* <div>Fagsak: {behandling.eksternFagsakId}</div>
                 <div>Behandling: {behandling.behandlingId}</div>
 
                 <div>Opprettet: {formaterNorskDatoTid(behandling.opprettetTidspunkt)}</div>
@@ -23,7 +63,7 @@ const Behandling: React.FC<{ behandling: Behandlinginfo }> = ({ behandling }) =>
                     {behandling.beslutter && <div>Beslutter: {behandling.beslutter}</div>}
                     <div>Resultat: {behandling.resultat}</div>
                     <div>Vedtakstidspunkt: {formaterNorskDatoTid(behandling.vedtakstidspunkt)}</div>
-                </div>
+                </div> */}
             </div>
         </NonBreakingDiv>
     );
