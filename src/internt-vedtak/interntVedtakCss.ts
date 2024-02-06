@@ -86,13 +86,14 @@ body {
     width: 85%
 }
 
-h1, h2, h3, h4 {
+h2, h3, h4 {
     margin-bottom: 10px;
 }
 
 h1 {
     font-size: 36px;
     margin-top: 30px
+    margin-bottom: 20px;
 }
 
 h2 {
