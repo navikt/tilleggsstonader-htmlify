@@ -82,7 +82,7 @@ h2, h3, h4 {
 
 h1 {
     font-size: 36px;
-    margin-top: 30px
+    margin-top: 30px;
     margin-bottom: 20px;
 }
 
