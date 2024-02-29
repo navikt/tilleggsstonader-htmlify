@@ -66,15 +66,15 @@ h4 {
 }
 
 .level-2 {
-    margin-left: 20px
+    margin-left: 10px
 }
 
 .level-3 {
-    margin-left: 40px
+    margin-left: 20px
 }
 
 .level-4 {
-    margin-left: 50px
+    margin-left: 30px
 }
 
 .alternativer {

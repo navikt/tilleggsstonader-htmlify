@@ -10,6 +10,7 @@ export interface Avsnitt {
     type: 'AVSNITT';
     label: string;
     verdier: HtmlFelt[];
+    beholdMargin?: boolean;
 }
 
 export interface Verdi {

@@ -39,11 +39,17 @@ const mapFelter = (felt: HtmlFelt, nivå: number = 1) => {
             return (
                 <div>
                     {header(felt, nivå, nivåClassName)}
-                    {felt.verdier.map((verdi, index) => (
-                        <div className={nivåClassName} key={index}>
-                            {mapFelter(verdi, Math.min(nivå + 1, 4))}
-                        </div>
-                    ))}
+                    {felt.verdier.map((verdi, index) => {
+                        if (verdi.type == 'AVSNITT' && verdi.beholdMargin) {
+                            return mapFelter(verdi, Math.min(nivå, 4));
+                        } else {
+                            return (
+                                <div className={nivåClassName} key={index}>
+                                    {mapFelter(verdi, Math.min(nivå + 1, 4))}
+                                </div>
+                            );
+                        }
+                    })}
                 </div>
             );
         case 'LINJE':
