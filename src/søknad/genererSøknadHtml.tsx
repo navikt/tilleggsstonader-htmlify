@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import soknadCss from './soknadCss';
-import { Avsnitt, HtmlFelt, Søknad, Verdi } from './typer';
+import { Avsnitt, Dokumentasjon, HtmlFelt, Søknad, Verdi } from './typer';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { HtmlLang } from '../felles/HtmlLang';
 import { NavSvg } from '../felles/nav_svg';
@@ -59,6 +59,25 @@ const mapFelter = (felt: HtmlFelt, nivå: number = 1) => {
     }
 };
 
+const mapDokumentasjon = (dokumentasjon: Dokumentasjon[]) => {
+    return (
+        <div className={'level-2'}>
+            {dokumentasjon.map((d) => (
+                <>
+                    <h2>{d.label}</h2>
+                    {d.dokument.map((d) => (
+                        <div className={'level-3'}>
+                            <h3>{d.label}</h3>
+                            <div>{d.labelSendtInnTidligere}</div>
+                            <div>{d.labelAntall}</div>
+                        </div>
+                    ))}
+                </>
+            ))}
+        </div>
+    );
+};
+
 const genererSøknadHtml = async (data: Søknad): Promise<string> => {
     const asyncHtml = () => (
         <html lang={HtmlLang.NB}>
@@ -77,6 +96,7 @@ const genererSøknadHtml = async (data: Søknad): Promise<string> => {
                         <h1>{tittelSøknad(data.type)}</h1>
                     </div>
                     {mapFelter(data.avsnitt)}
+                    {mapDokumentasjon(data.dokumentasjon)}
                 </div>
             </body>
         </html>

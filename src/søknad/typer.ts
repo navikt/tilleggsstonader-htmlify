@@ -4,6 +4,7 @@ export interface Søknad {
     type: Stønadstype;
     mottattTidspunkt: string;
     avsnitt: Avsnitt;
+    dokumentasjon: Dokumentasjon[];
 }
 
 export interface Avsnitt {
@@ -24,3 +25,12 @@ export interface Linje {
 }
 
 export type HtmlFelt = Avsnitt | Verdi | Linje;
+
+export interface Dokumentasjon {
+    label: string;
+    dokument: {
+        label: string;
+        labelSendtInnTidligere: string;
+        labelAntall: string;
+    }[];
+}
