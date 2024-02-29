@@ -66,15 +66,18 @@ h4 {
 }
 
 .level-2 {
-    margin-left: 10px
+    margin-left: 10px;
+    page-break-inside: avoid;
 }
 
 .level-3 {
-    margin-left: 20px
+    margin-left: 20px;
+    page-break-inside: avoid;
 }
 
 .level-4 {
-    margin-left: 30px
+    margin-left: 30px;
+    page-break-inside: avoid;
 }
 
 .alternativer {

@@ -44,7 +44,7 @@ const mapFelter = (felt: HtmlFelt, nivå: number = 1) => {
                             return mapFelter(verdi, Math.min(nivå, 4));
                         } else {
                             return (
-                                <div className={nivåClassName} key={index}>
+                                <div className={`${nivåClassName}`} key={index}>
                                     {mapFelter(verdi, Math.min(nivå + 1, 4))}
                                 </div>
                             );
