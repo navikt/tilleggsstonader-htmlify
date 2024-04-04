@@ -1,17 +1,11 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import soknadCss from './soknadCss';
-import { Avsnitt, Dokumentasjon, HtmlFelt, Søknad, Verdi } from './typer';
+import { Avsnitt, Dokumentasjon, HtmlFelt, Søknad } from './typer';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { HtmlLang } from '../felles/HtmlLang';
 import { NavSvg } from '../felles/nav_svg';
 import { tittelSøknad } from '../felles/stønadstype';
-
-const alternativer = (verdi: Verdi) => {
-    return (
-        verdi.alternativer && <div className={'alternativer'}>{verdi.alternativer.join(', ')}</div>
-    );
-};
 
 const header = (avsnitt: Avsnitt, nivå: number, className: string) => {
     switch (nivå) {
@@ -31,7 +25,7 @@ const mapFelter = (felt: HtmlFelt, nivå: number = 1) => {
         case 'VERDI':
             return (
                 <>
-                    {alternativer(felt)}
+                    {felt.alternativer && <div className={'alternativer'}>{felt.alternativer}</div>}
                     {felt.verdi}
                 </>
             );
