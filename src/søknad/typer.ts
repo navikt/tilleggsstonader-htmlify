@@ -17,7 +17,7 @@ export interface Avsnitt {
 export interface Verdi {
     type: 'VERDI';
     verdi: string;
-    alternativer?: string[];
+    alternativer?: string;
 }
 
 export interface Linje {
