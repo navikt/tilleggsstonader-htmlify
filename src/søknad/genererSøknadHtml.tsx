@@ -87,8 +87,9 @@ const genererSøknadHtml = async (data: Søknad): Promise<string> => {
                     </div>
                     <div className={'stonad-tittel'}>
                         <h1>{data.tittel}</h1>
+                        <h2>{data.skjemanummer}</h2>
                     </div>
-                    {mapFelter(data.avsnitt)}
+                    {data.felter.map((verdi) => mapFelter(verdi, 2))}
                     {mapDokumentasjon(data.dokumentasjon)}
                 </div>
             </body>

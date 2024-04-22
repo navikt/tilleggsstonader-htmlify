@@ -3,8 +3,9 @@ import { Stønadstype } from '../felles/stønadstype';
 export interface Søknad {
     type: Stønadstype;
     tittel: string;
+    skjemanummer: string;
     mottattTidspunkt: string;
-    avsnitt: Avsnitt;
+    felter: HtmlFelt[];
     dokumentasjon: Dokumentasjon[];
 }
 
