@@ -5,7 +5,6 @@ import { Avsnitt, Dokumentasjon, HtmlFelt, Søknad } from './typer';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { HtmlLang } from '../felles/HtmlLang';
 import { NavSvg } from '../felles/nav_svg';
-import { tittelSøknad } from '../felles/stønadstype';
 
 const header = (avsnitt: Avsnitt, nivå: number, className: string) => {
     switch (nivå) {
@@ -78,7 +77,7 @@ const genererSøknadHtml = async (data: Søknad): Promise<string> => {
             <head>
                 <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
                 <style type="text/css" dangerouslySetInnerHTML={{ __html: soknadCss }} />
-                <title>{tittelSøknad(data.type)}</title>
+                <title>{data.tittel}</title>
             </head>
             <body className={'body'}>
                 <div className={'header'}>
@@ -87,7 +86,7 @@ const genererSøknadHtml = async (data: Søknad): Promise<string> => {
                         <p>{formaterNorskDato(data.mottattTidspunkt)}</p>
                     </div>
                     <div className={'stonad-tittel'}>
-                        <h1>{tittelSøknad(data.type)}</h1>
+                        <h1>{data.tittel}</h1>
                     </div>
                     {mapFelter(data.avsnitt)}
                     {mapDokumentasjon(data.dokumentasjon)}

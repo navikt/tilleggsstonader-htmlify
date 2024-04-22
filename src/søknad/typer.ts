@@ -2,6 +2,7 @@ import { Stønadstype } from '../felles/stønadstype';
 
 export interface Søknad {
     type: Stønadstype;
+    tittel: string;
     mottattTidspunkt: string;
     avsnitt: Avsnitt;
     dokumentasjon: Dokumentasjon[];
