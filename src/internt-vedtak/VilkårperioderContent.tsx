@@ -38,7 +38,6 @@ const Vurdering: React.FC<{ navn: string; vurdering?: VurderingVilkårperiode }>
                 <strong>{navn}</strong> ({vurdering.resultat})
             </div>
             <div>Svar: {vurdering.svar}</div>
-            <Begrunnelse data={vurdering} />
         </NonBreakingDiv>
     );
 };

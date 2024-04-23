@@ -24,7 +24,6 @@ export interface DelvilkårVilkårperiode {
 
 export interface VurderingVilkårperiode {
     svar?: string;
-    begrunnelse?: string;
     resultat: string;
 }
 
