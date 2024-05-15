@@ -11,6 +11,7 @@ import {
     VurderingVilkårperiode,
 } from './typer/vilkårperiode';
 import { formaterPeriode } from '../felles/datoFormat';
+import { notNullOrUndefined } from '../felles/nullOrUndefined';
 import { tekstEllerFeil } from '../felles/tekstutils';
 import IkkeOppfylt from '../ikoner/IkkeOppfylt';
 import InfoIkon from '../ikoner/InfoIkon';
@@ -56,6 +57,9 @@ const VilkårperiodeRad: React.FC<{ periode: Vilkårperiode }> = ({ periode }) =
             </div>
             <div className={'vilkaarperiode-rad-content'}>
                 <div>Periode: {formaterPeriode(periode)}</div>
+                {notNullOrUndefined(periode.aktivitetsdager) && (
+                    <div>Aktivitetsdager: {periode.aktivitetsdager}</div>
+                )}
                 <div>Kilde: {tekstEllerFeil(kildeVilkårperiodeTilTekst, periode.kilde)}</div>
                 <Begrunnelse begrunnelse={periode.begrunnelse} />
                 <KommentarSlettet data={periode} />

@@ -7,6 +7,7 @@ export interface Vilkårperiode extends Periode {
     resultat: ResultatVilkårperiode;
     begrunnelse?: string;
     slettetKommentar?: string;
+    aktivitetsdager?: number | null;
 }
 
 export interface DelvilkårVilkårperiode {
