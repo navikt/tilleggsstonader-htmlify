@@ -51,7 +51,7 @@ const VilkårperiodeRad: React.FC<{ periode: Vilkårperiode }> = ({ periode }) =
             <div className={'vilkaarperiode-rad-content'}>
                 <div>Periode: {formaterPeriode(periode)}</div>
                 <div>Kilde: {periode.kilde}</div>
-                <Begrunnelse data={periode} />
+                <Begrunnelse begrunnelse={periode.begrunnelse} />
                 <KommentarSlettet data={periode} />
                 <Vurdering navn={'Medlemskap'} vurdering={periode.delvilkår.medlemskap} />
                 <Vurdering navn={'Lønnet'} vurdering={periode.delvilkår.lønnet} />
