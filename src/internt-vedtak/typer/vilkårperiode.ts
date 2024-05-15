@@ -12,8 +12,8 @@ export interface Vilkårperiode extends Periode {
 
 export interface DelvilkårVilkårperiode {
     medlemskap?: VurderingVilkårperiode;
+    dekketAvAnnetRegelverk?: VurderingVilkårperiode;
     lønnet?: VurderingVilkårperiode;
-    mottarSykepenger?: VurderingVilkårperiode;
 }
 
 export interface VurderingVilkårperiode {

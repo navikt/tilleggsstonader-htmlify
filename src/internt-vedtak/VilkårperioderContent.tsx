@@ -64,11 +64,11 @@ const VilkårperiodeRad: React.FC<{ periode: Vilkårperiode }> = ({ periode }) =
                 <Begrunnelse begrunnelse={periode.begrunnelse} />
                 <KommentarSlettet data={periode} />
                 <Vurdering navn={'Medlemskap'} vurdering={periode.delvilkår.medlemskap} />
-                <Vurdering navn={'Lønnet'} vurdering={periode.delvilkår.lønnet} />
                 <Vurdering
-                    navn={'Mottar sykepenger'}
-                    vurdering={periode.delvilkår.mottarSykepenger}
+                    navn={'Dekkes av annet regelverk'}
+                    vurdering={periode.delvilkår.dekketAvAnnetRegelverk}
                 />
+                <Vurdering navn={'Lønnet'} vurdering={periode.delvilkår.lønnet} />
             </div>
         </NonBreakingDiv>
     );
