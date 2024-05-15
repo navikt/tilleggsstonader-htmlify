@@ -63,6 +63,16 @@ body {
     margin-left: 5px;
 }
 
+.vilkårsresultat-ikon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: 5px;
+    margin:0;
+    padding:0;
+}
+
 @page {
     @bottom-right {
         content: 'Side ' counter(page) ' av ' counter(pages);
