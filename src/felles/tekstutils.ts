@@ -5,7 +5,7 @@ export const tekstEllerFeil = <T extends string>(
     if (kode) {
         const tekst = mapping[kode];
         if (!tekst) {
-            throw Error('Finner ikke mapping');
+            throw Error(`Finner ikke mapping av ${kode}`);
         }
         return tekst;
     }
