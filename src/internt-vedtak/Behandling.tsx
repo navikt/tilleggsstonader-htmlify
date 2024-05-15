@@ -1,9 +1,14 @@
 import React from 'react';
 
 import { NonBreakingDiv } from './felles';
-import { Behandlinginfo } from './typer/interntVedtak';
+import {
+    Behandlinginfo,
+    resultatBehandlingTilTekst,
+    årsakBehandlingTilTekst,
+} from './typer/interntVedtak';
 import { formaterNorskDatoTid } from '../felles/datoFormat';
 import { tittelInterntVedtak } from '../felles/stønadstype';
+import { tekstEllerFeil } from '../felles/tekstutils';
 
 const Behandling: React.FC<{ behandling: Behandlinginfo }> = ({ behandling }) => {
     return (
@@ -31,7 +36,7 @@ const Behandling: React.FC<{ behandling: Behandlinginfo }> = ({ behandling }) =>
                         </tr>
                         <tr>
                             <th>Årsak</th>
-                            <td>{behandling.årsak}</td>
+                            <td>{tekstEllerFeil(årsakBehandlingTilTekst, behandling.årsak)}</td>
                         </tr>
                         <tr>
                             <th>Saksbehandler</th>
@@ -43,7 +48,9 @@ const Behandling: React.FC<{ behandling: Behandlinginfo }> = ({ behandling }) =>
                         </tr>
                         <tr>
                             <th>Resultat</th>
-                            <td>{behandling.resultat}</td>
+                            <td>
+                                {tekstEllerFeil(resultatBehandlingTilTekst, behandling.resultat)}
+                            </td>
                         </tr>
                         <tr>
                             <th>Vedtakstidspunkt</th>
@@ -51,19 +58,6 @@ const Behandling: React.FC<{ behandling: Behandlinginfo }> = ({ behandling }) =>
                         </tr>
                     </tbody>
                 </table>
-
-                {/* <div>Fagsak: {behandling.eksternFagsakId}</div>
-                <div>Behandling: {behandling.behandlingId}</div>
-
-                <div>Opprettet: {formaterNorskDatoTid(behandling.opprettetTidspunkt)}</div>
-                <div>Årsak: {behandling.årsak}</div>
-
-                <div style={{ marginTop: '10px' }}>
-                    <div>Saksbehandler: {behandling.saksbehandler}</div>
-                    {behandling.beslutter && <div>Beslutter: {behandling.beslutter}</div>}
-                    <div>Resultat: {behandling.resultat}</div>
-                    <div>Vedtakstidspunkt: {formaterNorskDatoTid(behandling.vedtakstidspunkt)}</div>
-                </div> */}
             </div>
         </NonBreakingDiv>
     );
