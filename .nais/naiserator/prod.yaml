@@ -24,6 +24,8 @@ spec:
   prometheus:
     enabled: true
     path: /metrics
+  secureLogs:
+    enabled: true
   ingresses:
     - https://tilleggsstonader-htmlify.intern.nav.no
   accessPolicy:
