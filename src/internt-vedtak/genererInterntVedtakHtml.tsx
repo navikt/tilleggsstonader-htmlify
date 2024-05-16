@@ -7,6 +7,8 @@ import interntVedtakCss from './interntVedtakCss';
 import StønadsperioderContent from './StønadsperioderContent';
 import Søknadsinformasjon from './Søknadsinformasjon';
 import { InterntVedtak } from './typer/interntVedtak';
+import { VedtakContent } from './VedtakContent';
+import { VilkårContent } from './VilkårContent';
 import VilkårperioderContent from './VilkårperioderContent';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { HtmlLang } from '../felles/HtmlLang';
@@ -32,9 +34,8 @@ const asyncHtml = (data: InterntVedtak) => (
             <VilkårperioderContent navn={'Målgrupper'} perioder={data.målgrupper} />
             <VilkårperioderContent navn={'Aktiviteter'} perioder={data.aktiviteter} />
             <StønadsperioderContent perioder={data.stønadsperioder} />
-            <h2>Stønadsvilkår</h2>
-            <h2>Vedtak</h2>
-            <h2>Utbetalingsperioder</h2>
+            <VilkårContent vilkårsett={data.vilkår} />
+            <VedtakContent vedtak={data.vedtak} />
         </body>
     </html>
 );

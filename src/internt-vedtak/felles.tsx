@@ -5,12 +5,12 @@ export const NonBreakingDiv: React.FC<{ children: React.ReactNode; className?: s
     className,
 }) => <div className={`internt-vedtak-page-break ${className || ''}`}>{children}</div>;
 
-export const Begrunnelse: React.FC<{ data: { begrunnelse?: string } }> = ({ data }) => {
+export const Begrunnelse: React.FC<{ begrunnelse?: string }> = ({ begrunnelse }) => {
     return (
-        data.begrunnelse && (
+        begrunnelse && (
             <p style={{ whiteSpace: 'pre-wrap' }}>
                 Begrunnelse: <br />
-                {data.begrunnelse}
+                {begrunnelse}
             </p>
         )
     );
