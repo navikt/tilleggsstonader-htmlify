@@ -65,7 +65,7 @@ const UtgifterBarnContent: React.FC<{ utgifterBarn: UtgiftBarn[] }> = ({ utgifte
                                 <tr>
                                     <th>Fra</th>
                                     <th>Til</th>
-                                    <th>Beløp</th>
+                                    <th>Utgift</th>
                                 </tr>
                             </thead>
                             <tbody>
