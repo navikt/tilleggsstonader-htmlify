@@ -18,7 +18,7 @@ export interface DelvilkårVilkårperiode {
 
 export interface VurderingVilkårperiode {
     svar?: SvarVurdering;
-    resultat: ResultatVurderingVilkårperiode;
+    resultat: ResultatDelvilkårperiode;
 }
 
 export interface Stønadsperiode extends Periode {
@@ -55,21 +55,18 @@ export const svarVurderingTilTekst: Record<SvarVurdering, string> = {
     NEI: 'Nei',
 };
 
-enum ResultatVurderingVilkårperiode {
+enum ResultatDelvilkårperiode {
     OPPFYLT = 'OPPFYLT',
     IKKE_OPPFYLT = 'IKKE_OPPFYLT',
     IKKE_VURDERT = 'IKKE_VURDERT',
-    SLETTET = 'SLETTET',
+    IKKE_AKTUELT = 'IKKE_AKTUELT',
 }
 
-export const resultatVurderingVilkårperiodeTilTekst: Record<
-    ResultatVurderingVilkårperiode,
-    string
-> = {
+export const resultatDelvilkårperiodeTilTekst: Record<ResultatDelvilkårperiode, string> = {
     OPPFYLT: 'Oppfylt',
     IKKE_OPPFYLT: 'Ikke oppfylt',
     IKKE_VURDERT: 'Ikke vurdert',
-    SLETTET: 'Slettet',
+    IKKE_AKTUELT: 'Ikke aktuelt',
 };
 
 enum TypeStønadsperiode {
