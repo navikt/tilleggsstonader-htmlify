@@ -4,7 +4,7 @@ import { Begrunnelse, KommentarSlettet, NonBreakingDiv } from './felles';
 import {
     kildeVilkårperiodeTilTekst,
     ResultatVilkårperiode,
-    resultatVurderingVilkårperiodeTilTekst,
+    resultatDelvilkårperiodeTilTekst,
     svarVurderingTilTekst,
     typeStønadsperiodeTilTekst,
     Vilkårperiode,
@@ -42,7 +42,7 @@ const Vurdering: React.FC<{ navn: string; vurdering?: VurderingVilkårperiode }>
         <NonBreakingDiv>
             <div>
                 <strong>{navn}</strong> (
-                {tekstEllerFeil(resultatVurderingVilkårperiodeTilTekst, vurdering.resultat)})
+                {tekstEllerFeil(resultatDelvilkårperiodeTilTekst, vurdering.resultat)})
             </div>
             <div>Svar: {tekstEllerFeil(svarVurderingTilTekst, vurdering.svar)}</div>
         </NonBreakingDiv>
