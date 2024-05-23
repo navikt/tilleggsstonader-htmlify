@@ -26,7 +26,9 @@ export const VedtakContent: React.FC<{ vedtak: Vedtak }> = ({ vedtak }) => {
 };
 
 const Avslag: React.FC<{ vedtak: VedtakAvslag }> = ({ vedtak }) => {
-    const årsaker = vedtak.årsakerAvslag.map((årsak) => årsakAvslagTilTekst[årsak]).join(', ');
+    const årsaker = vedtak.årsakerAvslag
+        .map((årsak) => tekstEllerFeil(årsakAvslagTilTekst, årsak))
+        .join(', ');
 
     return (
         <NonBreakingDiv>
