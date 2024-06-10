@@ -76,7 +76,9 @@ enum TypeStønadsperiode {
     OVERGANGSSTØNAD = 'OVERGANGSSTØNAD',
     NEDSATT_ARBEIDSEVNE = 'NEDSATT_ARBEIDSEVNE',
     UFØRETRYGD = 'UFØRETRYGD',
+    SYKEPENGER_100_PROSENT = 'SYKEPENGER_100_PROSENT',
     INGEN_MÅLGRUPPE = 'INGEN_MÅLGRUPPE',
+
     TILTAK = 'TILTAK',
     UTDANNING = 'UTDANNING',
     REELL_ARBEIDSSØKER = 'REELL_ARBEIDSSØKER',
@@ -90,7 +92,9 @@ export const typeStønadsperiodeTilTekst: Record<TypeStønadsperiode, string> = 
     OVERGANGSSTØNAD: 'Overgangsstønad',
     NEDSATT_ARBEIDSEVNE: 'Nedsatt arbeidsevne',
     UFØRETRYGD: 'Uføretrygd',
+    SYKEPENGER_100_PROSENT: '100% sykepenger',
     INGEN_MÅLGRUPPE: 'Ingen målgruppe',
+
     TILTAK: 'Tiltak',
     UTDANNING: 'Utdanning',
     REELL_ARBEIDSSØKER: 'Reell arbeidssøker',
