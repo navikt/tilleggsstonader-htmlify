@@ -3,6 +3,9 @@ export interface Vilkår {
     type: Vilkårtype;
     delvilkår: DelvilkårInternt[];
     fødselsdatoBarn?: string;
+    fom?: string;
+    tom?: string;
+    beløp?: number;
 }
 
 export interface DelvilkårInternt {

@@ -28,19 +28,52 @@ const resultatIkon = (resultat: Vilkårsresultat) => {
     }
 };
 
+const formaterDatoMedBeløp = (vilkår: Vilkår): string => {
+    let str = '';
+    if (vilkår.fom && vilkår.tom) {
+        str = `${formaterNorskDato(vilkår.fom)} til ${formaterNorskDato(vilkår.tom)}`;
+        if (Number.isInteger(vilkår.beløp)) {
+            str = ` - ${str} ${vilkår.beløp}kr`;
+        }
+    }
+    return str;
+};
+
+const grupperPerTypeOgBarn = (vilkårsett: Vilkår[]): Record<string, Vilkår[]> => {
+    return vilkårsett.reduce(
+        (acc, vilkår) => {
+            const key = `${vilkår.type}-${vilkår.fødselsdatoBarn}`;
+            acc[key] = [...(acc[key] || []), vilkår];
+            return acc;
+        },
+        {} as Record<string, Vilkår[]>
+    );
+};
+
 export const VilkårContent: React.FC<{
     vilkårsett: Vilkår[];
 }> = ({ vilkårsett }) => (
     <NonBreakingDiv className={'stonadsperioder'}>
-        {vilkårsett.map((vilkår, indexVilkår) => {
+        {Object.values(grupperPerTypeOgBarn(vilkårsett)).map((liste, indexVilkår) => {
+            const førsteVilkår = liste[0];
             return (
                 <NonBreakingDiv key={indexVilkår}>
-                    <h2>{tekstEllerFeil(vilkårtypeTilTekst, vilkår.type)}</h2>
-                    {vilkår.fødselsdatoBarn && (
-                        <div>Barn med fødselsdato:{formaterNorskDato(vilkår.fødselsdatoBarn)}</div>
+                    <h2>{tekstEllerFeil(vilkårtypeTilTekst, førsteVilkår.type)}</h2>
+                    {førsteVilkår.fødselsdatoBarn && (
+                        <div>
+                            Barn med fødselsdato: {formaterNorskDato(førsteVilkår.fødselsdatoBarn)}
+                        </div>
                     )}
-                    <h4>Vilkårsvurdering: {tekstEllerFeil(resultatTilTekst, vilkår.resultat)}</h4>
-                    <Delvilkår vilkår={vilkår} />
+                    {liste.map((vilkår, index) => (
+                        <NonBreakingDiv key={index} className={'vilkar-rad-content'}>
+                            <h4>
+                                Vilkårsvurdering:{' '}
+                                {tekstEllerFeil(resultatTilTekst, vilkår.resultat)}
+                            </h4>
+                            <div>Periode: {formaterDatoMedBeløp(vilkår)}</div>
+                            <Delvilkår vilkår={vilkår} />
+                        </NonBreakingDiv>
+                    ))}
                 </NonBreakingDiv>
             );
         })}
