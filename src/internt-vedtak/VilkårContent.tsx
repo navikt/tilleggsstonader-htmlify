@@ -28,12 +28,12 @@ const resultatIkon = (resultat: Vilkårsresultat) => {
     }
 };
 
-const formaterDatoMedBeløp = (vilkår: Vilkår): string => {
+const formaterDatoMedUtgift = (vilkår: Vilkår): string => {
     let str = '';
     if (vilkår.fom && vilkår.tom) {
         str = `${formaterNorskDato(vilkår.fom)} til ${formaterNorskDato(vilkår.tom)}`;
-        if (Number.isInteger(vilkår.beløp)) {
-            str = ` - ${str} ${vilkår.beløp}kr`;
+        if (Number.isInteger(vilkår.utgift)) {
+            str = ` - ${str} ${vilkår.utgift}kr`;
         }
     }
     return str;
@@ -70,7 +70,7 @@ export const VilkårContent: React.FC<{
                                 Vilkårsvurdering:{' '}
                                 {tekstEllerFeil(resultatTilTekst, vilkår.resultat)}
                             </h4>
-                            <div>Periode: {formaterDatoMedBeløp(vilkår)}</div>
+                            <div>Periode: {formaterDatoMedUtgift(vilkår)}</div>
                             <Delvilkår vilkår={vilkår} />
                         </NonBreakingDiv>
                     ))}

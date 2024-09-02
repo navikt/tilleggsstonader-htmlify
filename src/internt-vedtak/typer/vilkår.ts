@@ -5,7 +5,7 @@ export interface Vilkår {
     fødselsdatoBarn?: string;
     fom?: string;
     tom?: string;
-    beløp?: number;
+    utgift?: number;
 }
 
 export interface DelvilkårInternt {
