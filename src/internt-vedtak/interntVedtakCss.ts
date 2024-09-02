@@ -63,6 +63,13 @@ body {
     margin-left: 5px;
 }
 
+.vilkar-rad-content {
+    margin-top: 5px;
+    margin-left: 5px;
+    padding-left: 10px;
+    border-left: 2px solid grey;
+}
+
 .vilkårsresultat-ikon {
     display: inline-block;
     width: 24px;
