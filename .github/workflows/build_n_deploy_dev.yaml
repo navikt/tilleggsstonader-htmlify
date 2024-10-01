@@ -1,45 +1,17 @@
-name: Build, push, and deploy app to dev
+name: Bygg og deploy app til dev
 
-on: [workflow_dispatch]
-
-permissions:
-  contents: "read"
-  id-token: "write"
-  packages: "write"
+on:
+  workflow_dispatch:
 
 jobs:
   build:
-    name: Build and push Docker container
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: yarn
-          registry-url: "https://npm.pkg.github.com"
-      - name: Yarn install
-        run: yarn --prefer-offline --frozen-lockfile
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-      - name: Yarn build
-        run: yarn build
-      - uses: nais/docker-build-push@v0
-        id: docker-push
-        with:
-          team: tilleggsstonader
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-    outputs:
-      image: ${{ steps.docker-push.outputs.image }}
-  deploy:
-    name: Deploy to NAIS
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: dev-gcp
-          RESOURCE: .nais/naiserator/dev.yaml
-          IMAGE: ${{ needs.build.outputs.image }}
+    name: "Bygger app og deployer til dev-gcp"
+    uses: navikt/tilleggsstonader/.github/workflows/ts-build-and-deploy.yml@main
+    with:
+      cluster: "dev-gcp"
+      manifest: ".nais/naiserator/dev.yaml"
+    secrets: inherit
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
