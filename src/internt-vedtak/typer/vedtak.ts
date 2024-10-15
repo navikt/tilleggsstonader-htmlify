@@ -8,7 +8,6 @@ export interface VedtakAvslag {
 
 export interface VedtakInnvilgeTilsynBarn {
     type: VedtakType.INNVILGELSE;
-    utgifterBarn: UtgiftBarn[];
 }
 
 enum ÅrsakAvslag {
@@ -17,11 +16,6 @@ enum ÅrsakAvslag {
     INGEN_OVERLAPP_AKTIVITET_MÅLGRUPPE = 'INGEN_OVERLAPP_AKTIVITET_MÅLGRUPPE',
     MANGELFULL_DOKUMENTASJON = 'MANGELFULL_DOKUMENTASJON',
     ANNET = 'ANNET',
-}
-
-export interface UtgiftBarn {
-    fødselsdatoBarn: string;
-    utgifter: Utgift[];
 }
 
 export interface Utgift {

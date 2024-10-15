@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Begrunnelse, NonBreakingDiv } from './felles';
 import {
-    UtgiftBarn,
     Vedtak,
     VedtakAvslag,
     VedtakInnvilgeTilsynBarn,
@@ -10,7 +9,6 @@ import {
     vedtakTypeTilTekst,
     årsakAvslagTilTekst,
 } from './typer/vedtak';
-import { formaterNorskDato } from '../felles/datoFormat';
 import { tekstEllerFeil } from '../felles/tekstutils';
 
 export const VedtakContent: React.FC<{ vedtak: Vedtak }> = ({ vedtak }) => {
@@ -54,42 +52,6 @@ const InnvilgelseTilsynBarn: React.FC<{ vedtak: VedtakInnvilgeTilsynBarn }> = ({
                 <strong>Resultat: </strong>
                 {tekstEllerFeil(vedtakTypeTilTekst, vedtak.type)}
             </div>
-            <UtgifterBarnContent utgifterBarn={vedtak.utgifterBarn} />
-        </NonBreakingDiv>
-    );
-};
-
-const UtgifterBarnContent: React.FC<{ utgifterBarn: UtgiftBarn[] }> = ({ utgifterBarn }) => {
-    return (
-        <NonBreakingDiv>
-            <h3>Utgifter</h3>
-            {utgifterBarn.map((utgiftBarn, indexUtgiftBarn) => {
-                return (
-                    <NonBreakingDiv key={indexUtgiftBarn}>
-                        <h4>
-                            Barn med fødselsdato:{formaterNorskDato(utgiftBarn.fødselsdatoBarn)}
-                        </h4>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Fra</th>
-                                    <th>Til</th>
-                                    <th>Utgift</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {utgiftBarn.utgifter.map((utgift, indexUtgift) => (
-                                    <tr key={indexUtgift}>
-                                        <td>{formaterNorskDato(utgift.fom)}</td>
-                                        <td>{formaterNorskDato(utgift.tom)}</td>
-                                        <td>{utgift.beløp}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </NonBreakingDiv>
-                );
-            })}
         </NonBreakingDiv>
     );
 };
