@@ -6,7 +6,7 @@ import {
     resultatBehandlingTilTekst,
     årsakBehandlingTilTekst,
 } from './typer/interntVedtak';
-import { formaterNorskDatoTid } from '../felles/datoFormat';
+import { formaterNorskDato, formaterNorskDatoTid } from '../felles/datoFormat';
 import { tittelInterntVedtak } from '../felles/stønadstype';
 import { tekstEllerFeil } from '../felles/tekstutils';
 
@@ -34,6 +34,12 @@ const Behandling: React.FC<{ behandling: Behandlinginfo }> = ({ behandling }) =>
                             <th>Opprettet</th>
                             <td>{formaterNorskDatoTid(behandling.opprettetTidspunkt)}</td>
                         </tr>
+                        {behandling.revurderFra && (
+                            <tr>
+                                <th>Revurderes fra</th>
+                                <td>{formaterNorskDato(behandling.revurderFra)}</td>
+                            </tr>
+                        )}
                         <tr>
                             <th>Årsak</th>
                             <td>{tekstEllerFeil(årsakBehandlingTilTekst, behandling.årsak)}</td>
