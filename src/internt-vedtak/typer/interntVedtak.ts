@@ -27,6 +27,7 @@ export interface Behandlinginfo {
     vedtakstidspunkt: string;
     saksbehandler: string;
     beslutter?: string;
+    revurderFra?: string;
 }
 
 export enum ÅrsakBehandling {

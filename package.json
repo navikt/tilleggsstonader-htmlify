@@ -7,8 +7,7 @@
     "ci": "yarn install --prefer-offline --frozen-lockfile",
     "build": "ncc build src/server.ts -o build",
     "start:dev": "NODE_ENV=development ncc run src/server.ts",
-    "postinstall": "husky install",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css}": [
