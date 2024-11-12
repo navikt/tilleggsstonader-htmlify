@@ -1,9 +1,15 @@
-export type Vedtak = VedtakAvslag | VedtakInnvilgeTilsynBarn;
+export type Vedtak = VedtakAvslag | VedtakInnvilgeTilsynBarn | VedtakOpphørTilsynBarn;
 
 export interface VedtakAvslag {
     type: VedtakType.AVSLAG;
     årsakerAvslag: ÅrsakAvslag[];
     avslagBegrunnelse: string;
+}
+
+export interface VedtakOpphørTilsynBarn {
+    type: VedtakType.OPPHØR;
+    årsakerOpphør: ÅrsakOpphør[];
+    opphørBegrunnelse: string;
 }
 
 export interface VedtakInnvilgeTilsynBarn {
@@ -16,6 +22,13 @@ enum ÅrsakAvslag {
     IKKE_I_MÅLGRUPPE = 'IKKE_I_MÅLGRUPPE',
     INGEN_OVERLAPP_AKTIVITET_MÅLGRUPPE = 'INGEN_OVERLAPP_AKTIVITET_MÅLGRUPPE',
     MANGELFULL_DOKUMENTASJON = 'MANGELFULL_DOKUMENTASJON',
+    ANNET = 'ANNET',
+}
+
+export enum ÅrsakOpphør {
+    ENDRING_AKTIVITET = 'ENDRING_AKTIVITET',
+    ENDRING_MÅLGRUPPE = 'ENDRING_MÅLGRUPPE',
+    ENDRING_UTGIFTER = 'ENDRING_UTGIFTER',
     ANNET = 'ANNET',
 }
 
@@ -33,11 +46,13 @@ export interface Utgift {
 export enum VedtakType {
     INNVILGELSE = 'INNVILGELSE',
     AVSLAG = 'AVSLAG',
+    OPPHØR = 'OPPHØR',
 }
 
 export const vedtakTypeTilTekst: Record<VedtakType, string> = {
     INNVILGELSE: 'Innvilget',
     AVSLAG: 'Avslag',
+    OPPHØR: 'Opphør',
 };
 
 export const årsakAvslagTilTekst: Record<ÅrsakAvslag, string> = {
@@ -45,5 +60,12 @@ export const årsakAvslagTilTekst: Record<ÅrsakAvslag, string> = {
     IKKE_I_MÅLGRUPPE: 'Ingen målgruppe',
     INGEN_OVERLAPP_AKTIVITET_MÅLGRUPPE: 'Ingen overlapp aktivitet/målgruppe',
     MANGELFULL_DOKUMENTASJON: 'Mangelfull dokumentasjon',
+    ANNET: 'Annet',
+};
+
+export const årsakOpphørTilTekst: Record<ÅrsakOpphør, string> = {
+    ENDRING_AKTIVITET: 'Endring i aktivitet',
+    ENDRING_MÅLGRUPPE: 'Endring i målgruppe',
+    ENDRING_UTGIFTER: 'Endring i utgifter',
     ANNET: 'Annet',
 };

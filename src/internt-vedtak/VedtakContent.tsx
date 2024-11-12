@@ -6,9 +6,11 @@ import {
     Vedtak,
     VedtakAvslag,
     VedtakInnvilgeTilsynBarn,
+    VedtakOpphørTilsynBarn,
     VedtakType,
     vedtakTypeTilTekst,
     årsakAvslagTilTekst,
+    årsakOpphørTilTekst,
 } from './typer/vedtak';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { tekstEllerFeil } from '../felles/tekstutils';
@@ -19,6 +21,8 @@ export const VedtakContent: React.FC<{ vedtak: Vedtak }> = ({ vedtak }) => {
             return <Avslag vedtak={vedtak} />;
         case VedtakType.INNVILGELSE:
             return <InnvilgelseTilsynBarn vedtak={vedtak} />;
+        case VedtakType.OPPHØR:
+            return <OpphørTilsynBarn vedtak={vedtak} />;
         default:
             // @ts-ignore
             throw Error(`Har ikke mapping av ${vedtak.type}`);
@@ -42,6 +46,27 @@ const Avslag: React.FC<{ vedtak: VedtakAvslag }> = ({ vedtak }) => {
                 {årsaker}
             </p>
             <Begrunnelse begrunnelse={vedtak.avslagBegrunnelse} />
+        </NonBreakingDiv>
+    );
+};
+
+const OpphørTilsynBarn: React.FC<{ vedtak: VedtakOpphørTilsynBarn }> = ({ vedtak }) => {
+    const årsaker = vedtak.årsakerOpphør
+        .map((årsak) => tekstEllerFeil(årsakOpphørTilTekst, årsak))
+        .join(', ');
+
+    return (
+        <NonBreakingDiv>
+            <h2>Vedtak</h2>
+            <div>
+                <strong>Resultat: </strong>
+                {tekstEllerFeil(vedtakTypeTilTekst, vedtak.type)}
+            </div>
+            <p>
+                Årsaker til opphør: <br />
+                {årsaker}
+            </p>
+            <Begrunnelse begrunnelse={vedtak.opphørBegrunnelse} />
         </NonBreakingDiv>
     );
 };
