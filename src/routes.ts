@@ -23,7 +23,8 @@ router.post('/soknad', async (req: Request, res: Response) => {
         logError(`Generering av dokument (pdf) feilet: Sjekk secure-logs`, req);
         logSecureInfo(`Feilet håndtering av ${JSON.stringify(data)}`, req, feil);
 
-        return res.status(500).send(`Generering av søknad feilet: ${error.message}`);
+        res.status(500).send(`Generering av søknad feilet: ${error.message}`);
+        return;
     }
 });
 
@@ -38,7 +39,8 @@ router.post('/internt-vedtak', async (req: Request, res: Response) => {
         logError(`Generering av internt-vedtak feilet: Sjekk secure-logs`, req);
         logSecureInfo(`Feilet håndtering av ${JSON.stringify(data)}`, req, feil);
 
-        return res.status(500).send(`Generering av internt-vedtak feilet: ${error.message}`);
+        res.status(500).send(`Generering av internt-vedtak feilet: ${error.message}`);
+        return;
     }
 });
 
