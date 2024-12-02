@@ -1,9 +1,11 @@
 export enum Stønadstype {
     BARNETILSYN = 'BARNETILSYN',
+    LÆREMIDLER = 'LÆREMIDLER',
 }
 
 const stønadstypeInterntVedtakTittel: Record<Stønadstype, string> = {
     BARNETILSYN: 'Tilsyn barn',
+    LÆREMIDLER: 'Læremidler',
 };
 
 export const tittelInterntVedtak = (stønadstype: Stønadstype): string => {
