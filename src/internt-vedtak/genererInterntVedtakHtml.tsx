@@ -31,8 +31,16 @@ const asyncHtml = (data: InterntVedtak) => (
             </div>
             <Behandling behandling={data.behandling} />
             <Søknadsinformasjon søknad={data.søknad} />
-            <VilkårperioderContent navn={'Målgrupper'} perioder={data.målgrupper} />
-            <VilkårperioderContent navn={'Aktiviteter'} perioder={data.aktiviteter} />
+            <VilkårperioderContent
+                type={'Målgrupper'}
+                perioder={data.målgrupper}
+                stønadstype={data.behandling.stønadstype}
+            />
+            <VilkårperioderContent
+                type={'Aktiviteter'}
+                perioder={data.aktiviteter}
+                stønadstype={data.behandling.stønadstype}
+            />
             <StønadsperioderContent perioder={data.stønadsperioder} />
             <VilkårContent vilkårsett={data.vilkår} />
             <VedtakContent vedtak={data.vedtak} />
