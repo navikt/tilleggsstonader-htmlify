@@ -9,11 +9,12 @@ import Søknadsinformasjon from './Søknadsinformasjon';
 import { InterntVedtak } from './typer/interntVedtak';
 import { VedtakContent } from './VedtakContent';
 import { VilkårContent } from './VilkårContent';
-import VilkårperioderContent from './VilkårperioderContent';
+import { Målgrupper } from './vilkårperioder/Målgrupper';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { HtmlLang } from '../felles/HtmlLang';
 import { NavSvg } from '../felles/nav_svg';
 import { tittelInterntVedtak } from '../felles/stønadstype';
+import { Aktiviteter } from './vilkårperioder/Aktiviteter';
 
 const asyncHtml = (data: InterntVedtak) => (
     <html lang={HtmlLang.NB}>
@@ -31,16 +32,8 @@ const asyncHtml = (data: InterntVedtak) => (
             </div>
             <Behandling behandling={data.behandling} />
             <Søknadsinformasjon søknad={data.søknad} />
-            <VilkårperioderContent
-                type={'Målgrupper'}
-                perioder={data.målgrupper}
-                stønadstype={data.behandling.stønadstype}
-            />
-            <VilkårperioderContent
-                type={'Aktiviteter'}
-                perioder={data.aktiviteter}
-                stønadstype={data.behandling.stønadstype}
-            />
+            <Målgrupper målgrupper={data.målgrupper} />
+            <Aktiviteter aktiviteter={data.aktiviteter} stønadstype={data.behandling.stønadstype} />
             <StønadsperioderContent perioder={data.stønadsperioder} />
             <VilkårContent vilkårsett={data.vilkår} />
             <VedtakContent vedtak={data.vedtak} />
