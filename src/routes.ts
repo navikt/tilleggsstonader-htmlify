@@ -1,5 +1,5 @@
-import express from 'express';
 import type { Request, Response } from 'express';
+import express from 'express';
 
 import { logError, logSecureInfo } from './felles/logger';
 import genererInterntVedtakHtml from './internt-vedtak/genererInterntVedtakHtml';
