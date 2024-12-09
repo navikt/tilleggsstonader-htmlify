@@ -1,17 +1,16 @@
 import React from 'react';
 
+import { FaktaOgVurderingerAktivitet } from './FaktaOgVurderingerAktivitet';
 import { Begrunnelse, KommentarSlettet, NonBreakingDiv } from './felles';
 import {
     kildeVilkårperiodeTilTekst,
     ResultatVilkårperiode,
-    resultatDelvilkårperiodeTilTekst,
-    svarVurderingTilTekst,
     typeStønadsperiodeTilTekst,
     Vilkårperiode,
-    VurderingVilkårperiode,
 } from './typer/vilkårperiode';
+import { VurderingerMålgruppe } from './VurderingerMålgruppe';
 import { formaterPeriode } from '../felles/datoFormat';
-import { notNullOrUndefined } from '../felles/nullOrUndefined';
+import { Stønadstype } from '../felles/stønadstype';
 import { tekstEllerFeil } from '../felles/tekstutils';
 import IkkeOppfylt from '../ikoner/IkkeOppfylt';
 import InfoIkon from '../ikoner/InfoIkon';
@@ -33,22 +32,10 @@ const resultatIkon = (resultat: ResultatVilkårperiode) => {
     }
 };
 
-const Vurdering: React.FC<{ navn: string; vurdering?: VurderingVilkårperiode }> = ({
-    navn,
-    vurdering,
-}) => {
-    if (!vurdering) return null;
-    return (
-        <NonBreakingDiv>
-            <div>
-                <strong>{navn}</strong> (
-                {tekstEllerFeil(resultatDelvilkårperiodeTilTekst, vurdering.resultat)})
-            </div>
-            <div>Svar: {tekstEllerFeil(svarVurderingTilTekst, vurdering.svar)}</div>
-        </NonBreakingDiv>
-    );
-};
-const VilkårperiodeRad: React.FC<{ periode: Vilkårperiode }> = ({ periode }) => {
+const VilkårperiodeRad: React.FC<{
+    periode: Vilkårperiode;
+    faktaOgVurderinger: React.ReactNode;
+}> = ({ periode, faktaOgVurderinger }) => {
     return (
         <NonBreakingDiv className={'vilkaarperiode-rad'}>
             <div className={'vilkaarperiode-type'}>
@@ -57,40 +44,38 @@ const VilkårperiodeRad: React.FC<{ periode: Vilkårperiode }> = ({ periode }) =
             </div>
             <div className={'vilkaarperiode-rad-content'}>
                 <div>Periode: {formaterPeriode(periode)}</div>
-                {notNullOrUndefined(periode.aktivitetsdager) && (
-                    <div>Aktivitetsdager: {periode.aktivitetsdager}</div>
-                )}
                 <div>Kilde: {tekstEllerFeil(kildeVilkårperiodeTilTekst, periode.kilde)}</div>
                 <Begrunnelse begrunnelse={periode.begrunnelse} />
                 <KommentarSlettet data={periode} />
-                <Vurdering
-                    navn={'Medlemskap i folketrygden?'}
-                    vurdering={periode.delvilkår.medlemskap}
-                />
-                <Vurdering
-                    navn={'Dekkes utgiftene av annet regelverk?'}
-                    vurdering={periode.delvilkår.dekketAvAnnetRegelverk}
-                />
-                <Vurdering
-                    navn={'Mottar bruker ordinær lønn i tiltaket?'}
-                    vurdering={periode.delvilkår.lønnet}
-                />
+                {faktaOgVurderinger}
             </div>
         </NonBreakingDiv>
     );
 };
 
 const VilkårperioderContent: React.FC<{
-    navn: 'Målgrupper' | 'Aktiviteter';
+    type: 'Målgrupper' | 'Aktiviteter';
     perioder: Vilkårperiode[];
-}> = ({ navn, perioder }) => {
+    stønadstype: Stønadstype;
+}> = ({ type, perioder, stønadstype }) => {
     return (
         <NonBreakingDiv className={'vilkaarperiode'}>
-            <h2>{navn}</h2>
+            <h2>{type}</h2>
             {perioder.map((periode, index) => (
-                <React.Fragment key={index}>
-                    <VilkårperiodeRad periode={periode} />
-                </React.Fragment>
+                <VilkårperiodeRad
+                    key={index}
+                    periode={periode}
+                    faktaOgVurderinger={
+                        type === 'Aktiviteter' ? (
+                            <FaktaOgVurderingerAktivitet
+                                aktivitet={periode}
+                                stønadstype={stønadstype}
+                            />
+                        ) : (
+                            <VurderingerMålgruppe målgruppe={periode} />
+                        )
+                    }
+                />
             ))}
         </NonBreakingDiv>
     );

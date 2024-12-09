@@ -3,11 +3,38 @@ import { Periode } from '../../felles/periode';
 export interface Vilkårperiode extends Periode {
     type: TypeStønadsperiode;
     delvilkår: DelvilkårVilkårperiode;
+    faktaOgVurderinger: FaktaOgVurderinger;
     kilde: KildeVilkårperiode;
     resultat: ResultatVilkårperiode;
     begrunnelse?: string;
     slettetKommentar?: string;
     aktivitetsdager?: number | null;
+}
+
+export type FaktaOgVurderinger = MålgruppeFaktaOgVurderingerDto | AktivitetFaktaOgVurderingDto;
+
+export interface MålgruppeFaktaOgVurderingerDto {
+    medlemskap: VurderingVilkårperiode | undefined;
+    utgifterDekketAvAnnetRegelverk: VurderingVilkårperiode | undefined;
+}
+
+export type AktivitetFaktaOgVurderingDto =
+    | AktivitetBarnetilsynFaktaOgVurderingerDto
+    | AktivitetLæremidlerFaktaOgVurderingerDto;
+
+type Studienivå = 'VIDEREGÅENDE' | 'HØYERE_UTDANNING';
+
+// TODO: Nullability
+export interface AktivitetBarnetilsynFaktaOgVurderingerDto {
+    aktivitetsdager: number | null;
+    lønnet?: VurderingVilkårperiode;
+}
+
+export interface AktivitetLæremidlerFaktaOgVurderingerDto {
+    prosent: number | null;
+    studienivå: Studienivå | null;
+    harUtgifter: VurderingVilkårperiode | undefined;
+    harRettTilUtstyrsstipend: VurderingVilkårperiode | undefined;
 }
 
 export interface DelvilkårVilkårperiode {
