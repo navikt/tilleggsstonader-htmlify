@@ -31,7 +31,7 @@ export const FaktaOgVurderingerAktivitet: React.FC<{
                 aktivitet.faktaOgVurderinger as AktivitetLæremidlerFaktaOgVurderingerDto;
             return (
                 <>
-                    {notNullOrUndefined(prosent) && <div>Prosent: {prosent}</div>}
+                    {notNullOrUndefined(prosent) && <div>Prosent: {prosent} %</div>}
                     {notNullOrUndefined(studienivå) && <div>Studienivå: {studienivå}</div>}
                     <Vurdering
                         navn={'Har bruker utgifter til læremidler?'}
