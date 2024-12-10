@@ -58,9 +58,12 @@ const FaktaOgVurderingerAktivitet: React.FC<{
                 <>
                     {notNullOrUndefined(prosent) && <div>Prosent: {prosent}</div>}
                     {notNullOrUndefined(studienivå) && <div>Studienivå: {studienivå}</div>}
-                    <Vurdering navn={'Har utgifter'} vurdering={harUtgifter} />
                     <Vurdering
-                        navn={'Har rett til utstyrsstipend'}
+                        navn={'Har bruker utgifter til læremidler?'}
+                        vurdering={harUtgifter}
+                    />
+                    <Vurdering
+                        navn={'Har bruker rett til utsstyrsstipend?\n'}
                         vurdering={harRettTilUtstyrsstipend}
                     />
                 </>
