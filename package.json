@@ -8,8 +8,8 @@
     "build": "ncc build src/server.ts -o build",
     "start:dev": "NODE_ENV=development ncc run src/server.ts",
     "lint": "eslint 'src/**/*'",
+    "lint:fix": "eslint 'src/**/*' --fix",
     "prepare": "husky"
-
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css}": [
