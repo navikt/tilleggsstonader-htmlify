@@ -21,6 +21,8 @@ enum ÅrsakAvslag {
     IKKE_I_MÅLGRUPPE = 'IKKE_I_MÅLGRUPPE',
     INGEN_OVERLAPP_AKTIVITET_MÅLGRUPPE = 'INGEN_OVERLAPP_AKTIVITET_MÅLGRUPPE',
     MANGELFULL_DOKUMENTASJON = 'MANGELFULL_DOKUMENTASJON',
+    HAR_IKKE_UTGIFTER = 'HAR_IKKE_UTGIFTER',
+    RETT_TIL_UTSTYRSSTIPEND = 'RETT_TIL_UTSTYRSSTIPEND',
     ANNET = 'ANNET',
 }
 
@@ -59,6 +61,8 @@ export const årsakAvslagTilTekst: Record<ÅrsakAvslag, string> = {
     IKKE_I_MÅLGRUPPE: 'Ingen målgruppe',
     INGEN_OVERLAPP_AKTIVITET_MÅLGRUPPE: 'Ingen overlapp aktivitet/målgruppe',
     MANGELFULL_DOKUMENTASJON: 'Mangelfull dokumentasjon',
+    HAR_IKKE_UTGIFTER: 'Har ikke utgifter',
+    RETT_TIL_UTSTYRSSTIPEND: 'Rett til utstyrsstipend',
     ANNET: 'Annet',
 };
 
