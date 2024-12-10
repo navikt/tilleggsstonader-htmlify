@@ -24,6 +24,11 @@ export type AktivitetFaktaOgVurderingDto =
 
 type Studienivå = 'VIDEREGÅENDE' | 'HØYERE_UTDANNING';
 
+export const studienivåTilTekst: Record<Studienivå, string> = {
+    VIDEREGÅENDE: 'Videregående',
+    HØYERE_UTDANNING: 'Høyere utdanning',
+};
+
 // TODO: Nullability
 export interface AktivitetBarnetilsynFaktaOgVurderingerDto {
     aktivitetsdager: number | null;

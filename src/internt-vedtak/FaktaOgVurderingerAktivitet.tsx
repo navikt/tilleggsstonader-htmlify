@@ -3,6 +3,7 @@ import React from 'react';
 import {
     AktivitetBarnetilsynFaktaOgVurderingerDto,
     AktivitetLæremidlerFaktaOgVurderingerDto,
+    studienivåTilTekst,
     Vilkårperiode,
 } from './typer/vilkårperiode';
 import { Vurdering } from './Vurdering';
@@ -32,7 +33,9 @@ export const FaktaOgVurderingerAktivitet: React.FC<{
             return (
                 <>
                     {notNullOrUndefined(prosent) && <div>Prosent: {prosent}</div>}
-                    {notNullOrUndefined(studienivå) && <div>Studienivå: {studienivå}</div>}
+                    {notNullOrUndefined(studienivå) && (
+                        <div>Studienivå: {studienivåTilTekst[studienivå]}</div>
+                    )}
                     <Vurdering
                         navn={'Har bruker utgifter til læremidler?'}
                         vurdering={harUtgifter}
