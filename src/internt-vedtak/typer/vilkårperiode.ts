@@ -2,13 +2,11 @@ import { Periode } from '../../felles/periode';
 
 export interface Vilkårperiode extends Periode {
     type: TypeStønadsperiode;
-    delvilkår: DelvilkårVilkårperiode;
     faktaOgVurderinger: FaktaOgVurderinger;
     kilde: KildeVilkårperiode;
     resultat: ResultatVilkårperiode;
     begrunnelse?: string;
     slettetKommentar?: string;
-    aktivitetsdager?: number | null;
 }
 
 export interface FaktaOgVurderinger {
@@ -28,12 +26,6 @@ export const studienivåTilTekst: Record<Studienivå, string> = {
     VIDEREGÅENDE: 'Videregående',
     HØYERE_UTDANNING: 'Høyere utdanning',
 };
-
-export interface DelvilkårVilkårperiode {
-    medlemskap?: VurderingVilkårperiode;
-    dekketAvAnnetRegelverk?: VurderingVilkårperiode;
-    lønnet?: VurderingVilkårperiode;
-}
 
 export interface VurderingVilkårperiode {
     svar?: SvarVurdering;
