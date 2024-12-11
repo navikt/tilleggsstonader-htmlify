@@ -9,7 +9,7 @@ import Søknadsinformasjon from './Søknadsinformasjon';
 import { InterntVedtak } from './typer/interntVedtak';
 import { VedtakContent } from './VedtakContent';
 import { VilkårContent } from './VilkårContent';
-import VilkårperioderContent from './VilkårperioderContent';
+import { VilkårperioderContent } from './VilkårperioderContent';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { HtmlLang } from '../felles/HtmlLang';
 import { NavSvg } from '../felles/nav_svg';
@@ -31,16 +31,8 @@ const asyncHtml = (data: InterntVedtak) => (
             </div>
             <Behandling behandling={data.behandling} />
             <Søknadsinformasjon søknad={data.søknad} />
-            <VilkårperioderContent
-                type={'Målgrupper'}
-                perioder={data.målgrupper}
-                stønadstype={data.behandling.stønadstype}
-            />
-            <VilkårperioderContent
-                type={'Aktiviteter'}
-                perioder={data.aktiviteter}
-                stønadstype={data.behandling.stønadstype}
-            />
+            <VilkårperioderContent navn={'Målgrupper'} perioder={data.målgrupper} />
+            <VilkårperioderContent navn={'Aktiviteter'} perioder={data.aktiviteter} />
             <StønadsperioderContent perioder={data.stønadsperioder} />
             <VilkårContent vilkårsett={data.vilkår} />
             <VedtakContent vedtak={data.vedtak} />

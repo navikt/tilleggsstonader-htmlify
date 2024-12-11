@@ -11,16 +11,16 @@ export interface Vilkårperiode extends Periode {
     aktivitetsdager?: number | null;
 }
 
-export type FaktaOgVurderinger = MålgruppeFaktaOgVurderingerDto | AktivitetFaktaOgVurderingDto;
-
-export interface MålgruppeFaktaOgVurderingerDto {
-    medlemskap: VurderingVilkårperiode | undefined;
-    utgifterDekketAvAnnetRegelverk: VurderingVilkårperiode | undefined;
+export interface FaktaOgVurderinger {
+    prosent?: number;
+    aktivitetsdager?: number;
+    studienivå?: Studienivå;
+    medlemskap?: VurderingVilkårperiode;
+    utgifterDekketAvAnnetRegelverk?: VurderingVilkårperiode;
+    lønnet?: VurderingVilkårperiode;
+    harUtgifter?: VurderingVilkårperiode;
+    harRettTilUtstyrsstipend?: VurderingVilkårperiode;
 }
-
-export type AktivitetFaktaOgVurderingDto =
-    | AktivitetBarnetilsynFaktaOgVurderingerDto
-    | AktivitetLæremidlerFaktaOgVurderingerDto;
 
 type Studienivå = 'VIDEREGÅENDE' | 'HØYERE_UTDANNING';
 
@@ -28,19 +28,6 @@ export const studienivåTilTekst: Record<Studienivå, string> = {
     VIDEREGÅENDE: 'Videregående',
     HØYERE_UTDANNING: 'Høyere utdanning',
 };
-
-// TODO: Nullability
-export interface AktivitetBarnetilsynFaktaOgVurderingerDto {
-    aktivitetsdager: number | null;
-    lønnet?: VurderingVilkårperiode;
-}
-
-export interface AktivitetLæremidlerFaktaOgVurderingerDto {
-    prosent: number | null;
-    studienivå: Studienivå | null;
-    harUtgifter: VurderingVilkårperiode | undefined;
-    harRettTilUtstyrsstipend: VurderingVilkårperiode | undefined;
-}
 
 export interface DelvilkårVilkårperiode {
     medlemskap?: VurderingVilkårperiode;
