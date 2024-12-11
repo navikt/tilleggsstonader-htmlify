@@ -9,7 +9,7 @@ import Søknadsinformasjon from './Søknadsinformasjon';
 import { InterntVedtak } from './typer/interntVedtak';
 import { VedtakContent } from './VedtakContent';
 import { VilkårContent } from './VilkårContent';
-import { VilkårperioderContent } from './VilkårperioderContent';
+import { VilkårperioderContent } from './vilkårperioder/VilkårperioderContent';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { HtmlLang } from '../felles/HtmlLang';
 import { NavSvg } from '../felles/nav_svg';

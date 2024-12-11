@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { NonBreakingDiv } from './felles';
+import { tekstEllerFeil } from '../../felles/tekstutils';
+import { NonBreakingDiv } from '../felles';
 import {
     resultatDelvilkårperiodeTilTekst,
     svarVurderingTilTekst,
     VurderingVilkårperiode,
-} from './typer/vilkårperiode';
-import { tekstEllerFeil } from '../felles/tekstutils';
+} from '../typer/vilkårperiode';
 
 export const Vurdering: React.FC<{ navn: string; vurdering?: VurderingVilkårperiode }> = ({
     navn,

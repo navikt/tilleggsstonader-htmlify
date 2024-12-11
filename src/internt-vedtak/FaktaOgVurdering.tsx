@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { FaktaOgVurderinger, studienivåTilTekst } from './typer/vilkårperiode';
-import { Vurdering } from './Vurdering';
+import { Vurdering } from './vilkårperioder/Vurdering';
 import { notNullOrUndefined } from '../felles/nullOrUndefined';
 
-export const FaktaOgVurderingerVilkårperioder: React.FC<{
+export const FaktaOgVurdering: React.FC<{
     faktaOgVurderinger: FaktaOgVurderinger;
 }> = ({
     faktaOgVurderinger: {
