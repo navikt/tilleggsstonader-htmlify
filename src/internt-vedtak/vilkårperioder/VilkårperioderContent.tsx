@@ -12,8 +12,8 @@ export const VilkårperioderContent: React.FC<{
     return (
         <NonBreakingDiv className={'vilkaarperiode'}>
             <h2>{navn}</h2>
-            {perioder.map((periode) => (
-                <NonBreakingDiv className={'vilkaarperiode-rad'}>
+            {perioder.map((periode, indeks) => (
+                <NonBreakingDiv className={'vilkaarperiode-rad'} key={indeks}>
                     <TypeOgResultat periode={periode} />
                     <Detaljer periode={periode} />
                 </NonBreakingDiv>

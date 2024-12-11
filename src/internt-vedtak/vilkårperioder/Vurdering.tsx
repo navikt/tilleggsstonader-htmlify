@@ -15,12 +15,11 @@ export const Vurdering: React.FC<{ navn: string; vurdering?: VurderingVilkårper
     if (!vurdering) return null;
     return (
         <NonBreakingDiv>
-            <p style={{ whiteSpace: 'pre-wrap' }}>
+            <div>
                 <strong>{navn}</strong> (
                 {tekstEllerFeil(resultatDelvilkårperiodeTilTekst, vurdering.resultat)})
-                <br />
-                Svar: {tekstEllerFeil(svarVurderingTilTekst, vurdering.svar)}
-            </p>
+            </div>
+            <div>Svar: {tekstEllerFeil(svarVurderingTilTekst, vurdering.svar)}</div>
         </NonBreakingDiv>
     );
 };
