@@ -3,12 +3,31 @@ import { Periode } from '../../felles/periode';
 export interface Vilkårperiode extends Periode {
     type: TypeStønadsperiode;
     delvilkår: DelvilkårVilkårperiode;
+    faktaOgVurderinger: FaktaOgVurderinger;
     kilde: KildeVilkårperiode;
     resultat: ResultatVilkårperiode;
     begrunnelse?: string;
     slettetKommentar?: string;
     aktivitetsdager?: number | null;
 }
+
+export interface FaktaOgVurderinger {
+    prosent?: number;
+    aktivitetsdager?: number;
+    studienivå?: Studienivå;
+    medlemskap?: VurderingVilkårperiode;
+    utgifterDekketAvAnnetRegelverk?: VurderingVilkårperiode;
+    lønnet?: VurderingVilkårperiode;
+    harUtgifter?: VurderingVilkårperiode;
+    harRettTilUtstyrsstipend?: VurderingVilkårperiode;
+}
+
+type Studienivå = 'VIDEREGÅENDE' | 'HØYERE_UTDANNING';
+
+export const studienivåTilTekst: Record<Studienivå, string> = {
+    VIDEREGÅENDE: 'Videregående',
+    HØYERE_UTDANNING: 'Høyere utdanning',
+};
 
 export interface DelvilkårVilkårperiode {
     medlemskap?: VurderingVilkårperiode;
