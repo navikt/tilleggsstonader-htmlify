@@ -94,6 +94,7 @@ enum TypeStønadsperiode {
     UTDANNING = 'UTDANNING',
     REELL_ARBEIDSSØKER = 'REELL_ARBEIDSSØKER',
     INGEN_AKTIVITET = 'INGEN_AKTIVITET',
+    INGEN_UTDANNING = 'INGEN_UTDANNING',
 }
 
 export const typeStønadsperiodeTilTekst: Record<TypeStønadsperiode, string> = {
@@ -110,4 +111,5 @@ export const typeStønadsperiodeTilTekst: Record<TypeStønadsperiode, string> = 
     UTDANNING: 'Utdanning',
     REELL_ARBEIDSSØKER: 'Reell arbeidssøker',
     INGEN_AKTIVITET: 'Ingen aktivitet',
+    INGEN_UTDANNING: 'Ingen utdanning',
 };
