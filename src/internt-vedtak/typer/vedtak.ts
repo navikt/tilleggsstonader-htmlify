@@ -57,7 +57,7 @@ export const vedtakTypeTilTekst: Record<VedtakType, string> = {
 };
 
 export const årsakAvslagTilTekst: Record<ÅrsakAvslag, string> = {
-    INGEN_AKTIVITET: 'Ingen aktivitet',
+    INGEN_AKTIVITET: 'Ingen relevant aktivitet',
     IKKE_I_MÅLGRUPPE: 'Ingen målgruppe',
     INGEN_OVERLAPP_AKTIVITET_MÅLGRUPPE: 'Ingen overlapp aktivitet/målgruppe',
     MANGELFULL_DOKUMENTASJON: 'Mangelfull dokumentasjon',

@@ -109,5 +109,5 @@ export const typeStønadsperiodeTilTekst: Record<TypeStønadsperiode, string> = 
     TILTAK: 'Tiltak',
     UTDANNING: 'Utdanning',
     REELL_ARBEIDSSØKER: 'Reell arbeidssøker',
-    INGEN_AKTIVITET: 'Ingen aktivitet',
+    INGEN_AKTIVITET: 'Ingen relevant aktivitet',
 };
