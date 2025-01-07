@@ -33,8 +33,8 @@ export interface VurderingVilkårperiode {
 }
 
 export interface Stønadsperiode extends Periode {
-    målgruppe: string;
-    aktivitet: string;
+    målgruppe: TypeStønadsperiode;
+    aktivitet: TypeStønadsperiode;
 }
 
 export enum ResultatVilkårperiode {
