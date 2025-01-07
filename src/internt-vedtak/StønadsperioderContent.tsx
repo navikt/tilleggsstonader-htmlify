@@ -20,7 +20,7 @@ const StønadsperioderContent: React.FC<{
 }> = ({ perioder }) => {
     return (
         <NonBreakingDiv className={'stonadsperioder'}>
-            <h2>Stønadsperioder</h2>
+            <h2>Overlappsperioder</h2>
             <table>
                 <thead>
                     <tr>
