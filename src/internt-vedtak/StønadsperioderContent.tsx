@@ -1,14 +1,15 @@
 import React from 'react';
 
 import { NonBreakingDiv } from './felles';
-import { Stønadsperiode } from './typer/vilkårperiode';
+import { Stønadsperiode, typeStønadsperiodeTilTekst } from './typer/vilkårperiode';
 import { formaterNorskDato } from '../felles/datoFormat';
+import { tekstEllerFeil } from '../felles/tekstutils';
 
 const StønadsperiodeRad: React.FC<{ periode: Stønadsperiode }> = ({ periode }) => {
     return (
         <tr>
-            <td>{periode.målgruppe}</td>
-            <td>{periode.aktivitet}</td>
+            <td>{tekstEllerFeil(typeStønadsperiodeTilTekst, periode.målgruppe)}</td>
+            <td>{tekstEllerFeil(typeStønadsperiodeTilTekst, periode.aktivitet)}</td>
             <td>{formaterNorskDato(periode.fom)}</td>
             <td>{formaterNorskDato(periode.tom)}</td>
         </tr>
