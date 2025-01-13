@@ -3,6 +3,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import Behandling from './Behandling';
+import { BeregningsresultatContent } from './BeregningsresultatContent';
 import interntVedtakCss from './interntVedtakCss';
 import StønadsperioderContent from './StønadsperioderContent';
 import Søknadsinformasjon from './Søknadsinformasjon';
@@ -35,6 +36,7 @@ const asyncHtml = (data: InterntVedtak) => (
             <VilkårperioderContent navn={'Aktiviteter'} perioder={data.aktiviteter} />
             <StønadsperioderContent perioder={data.stønadsperioder} />
             <VilkårContent vilkårsett={data.vilkår} />
+            <BeregningsresultatContent beregningsresultat={data.beregningsresultat} />
             <VedtakContent vedtak={data.vedtak} />
         </body>
     </html>

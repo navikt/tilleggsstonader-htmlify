@@ -1,3 +1,4 @@
+import { Beregningsresultat } from './beregningsresultat';
 import { Søknad } from './søknad';
 import { Vedtak } from './vedtak';
 import { Vilkår } from './vilkår';
@@ -11,10 +12,9 @@ export interface InterntVedtak {
     aktiviteter: Vilkårperiode[];
     stønadsperioder: Stønadsperiode[];
     vilkår: Vilkår[];
+    beregningsresultat?: Beregningsresultat;
     vedtak: Vedtak;
 }
-// utgifter for tilsyn barn
-// satt på vent?
 
 export interface Behandlinginfo {
     behandlingId: string;
