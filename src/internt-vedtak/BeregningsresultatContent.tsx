@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { NonBreakingDiv } from './felles';
-import { Beregningsresultat } from './typer/beregningsresultat';
+import {
+    Beregningsresultat,
+    BeregningsresultatLæremidler,
+    BeregningsresultatTilsynBarn,
+} from './typer/beregningsresultat';
 
 export const BeregningsresultatContent: React.FC<{
     beregningsresultat?: Beregningsresultat;
@@ -12,15 +16,23 @@ export const BeregningsresultatContent: React.FC<{
     return (
         <NonBreakingDiv>
             <h2>Beregning</h2>
-            {beregningsresultat.tilsynBarn &&
-                TilsynBarnBeregningsresultatTabell(beregningsresultat)}
-            {beregningsresultat.læremidler &&
-                LæremidlerBeregningsresultatTabell(beregningsresultat)}
+            {beregningsresultat.tilsynBarn && (
+                <TilsynBarnBeregningsresultatTabell
+                    beregningsresultatTilsynBarn={beregningsresultat.tilsynBarn}
+                />
+            )}
+            {beregningsresultat.læremidler && (
+                <LæremidlerBeregningsresultatTabell
+                    beregningsresultatLæremidler={beregningsresultat.læremidler}
+                />
+            )}
         </NonBreakingDiv>
     );
 };
 
-const TilsynBarnBeregningsresultatTabell = (beregningsresultat: Beregningsresultat) => (
+const TilsynBarnBeregningsresultatTabell: React.FC<{
+    beregningsresultatTilsynBarn: BeregningsresultatTilsynBarn[];
+}> = ({ beregningsresultatTilsynBarn }) => (
     <table>
         <thead>
             <tr>
@@ -32,7 +44,7 @@ const TilsynBarnBeregningsresultatTabell = (beregningsresultat: Beregningsresult
             </tr>
         </thead>
         <tbody>
-            {beregningsresultat.tilsynBarn?.map((beregningsresultat, index) => (
+            {beregningsresultatTilsynBarn.map((beregningsresultat, index) => (
                 <tr key={index}>
                     <td>{beregningsresultat.grunnlag.måned}</td>
                     <td>{beregningsresultat.grunnlag.antallBarn}</td>
@@ -45,7 +57,9 @@ const TilsynBarnBeregningsresultatTabell = (beregningsresultat: Beregningsresult
     </table>
 );
 
-const LæremidlerBeregningsresultatTabell = (beregningsresultat: Beregningsresultat) => (
+const LæremidlerBeregningsresultatTabell: React.FC<{
+    beregningsresultatLæremidler: BeregningsresultatLæremidler[];
+}> = ({ beregningsresultatLæremidler }) => (
     <table>
         <thead>
             <tr>
@@ -58,7 +72,7 @@ const LæremidlerBeregningsresultatTabell = (beregningsresultat: Beregningsresul
             </tr>
         </thead>
         <tbody>
-            {beregningsresultat.læremidler?.map((beregningsresultat, index) => (
+            {beregningsresultatLæremidler.map((beregningsresultat, index) => (
                 <tr key={index}>
                     <td>{beregningsresultat.fom}</td>
                     <td>{beregningsresultat.tom}</td>
