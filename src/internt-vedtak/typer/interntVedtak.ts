@@ -1,6 +1,7 @@
 import { Beregningsresultat } from './beregningsresultat';
 import { Søknad } from './søknad';
 import { Vedtak } from './vedtak';
+import { Vedtaksperiode } from './vedtaksperiode';
 import { Vilkår } from './vilkår';
 import { Stønadsperiode, Vilkårperiode } from './vilkårperiode';
 import { Stønadstype } from '../../felles/stønadstype';
@@ -11,6 +12,7 @@ export interface InterntVedtak {
     målgrupper: Vilkårperiode[];
     aktiviteter: Vilkårperiode[];
     stønadsperioder: Stønadsperiode[];
+    vedtaksperioder: Vedtaksperiode[];
     vilkår: Vilkår[];
     beregningsresultat?: Beregningsresultat;
     vedtak: Vedtak;
