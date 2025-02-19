@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { NonBreakingDiv } from './felles';
-import { Stønadsperiode, typeStønadsperiodeTilTekst } from './typer/vilkårperiode';
+import { typeStønadsperiodeTilTekst } from './typer/vilkårperiode';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { tekstEllerFeil } from '../felles/tekstutils';
+import { Vedtaksperiode } from './typer/vedtaksperiode';
 
-const StønadsperiodeRad: React.FC<{ periode: Stønadsperiode }> = ({ periode }) => {
+const VedtaksperiodeRad: React.FC<{ periode: Vedtaksperiode }> = ({ periode }) => {
     return (
         <tr>
             <td>{tekstEllerFeil(typeStønadsperiodeTilTekst, periode.målgruppe)}</td>
@@ -16,13 +17,13 @@ const StønadsperiodeRad: React.FC<{ periode: Stønadsperiode }> = ({ periode })
     );
 };
 
-const StønadsperioderContent: React.FC<{
-    perioder: Stønadsperiode[];
+const VedtaksperiodeContent: React.FC<{
+    perioder: Vedtaksperiode[];
 }> = ({ perioder }) => {
     if (perioder.length > 0) {
         return (
-            <NonBreakingDiv className={'stonadsperioder'}>
-                <h2>Overlappsperioder</h2>
+            <NonBreakingDiv className={'vedtaksperioder'}>
+                <h2>Vedtaksperioder</h2>
                 <table>
                     <thead>
                         <tr>
@@ -34,7 +35,7 @@ const StønadsperioderContent: React.FC<{
                     </thead>
                     <tbody>
                         {perioder.map((periode, index) => (
-                            <StønadsperiodeRad key={index} periode={periode} />
+                            <VedtaksperiodeRad key={index} periode={periode} />
                         ))}
                     </tbody>
                 </table>
@@ -43,4 +44,4 @@ const StønadsperioderContent: React.FC<{
     }
 };
 
-export default StønadsperioderContent;
+export default VedtaksperiodeContent;
