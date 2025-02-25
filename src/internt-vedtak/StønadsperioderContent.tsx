@@ -19,28 +19,26 @@ const StønadsperiodeRad: React.FC<{ periode: Stønadsperiode }> = ({ periode })
 const StønadsperioderContent: React.FC<{
     perioder: Stønadsperiode[];
 }> = ({ perioder }) => {
-    if (perioder.length > 0) {
-        return (
-            <NonBreakingDiv className={'stonadsperioder'}>
-                <h2>Overlappsperioder</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Målgruppe</th>
-                            <th>Aktivitet</th>
-                            <th>Fra</th>
-                            <th>Til</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {perioder.map((periode, index) => (
-                            <StønadsperiodeRad key={index} periode={periode} />
-                        ))}
-                    </tbody>
-                </table>
-            </NonBreakingDiv>
-        );
-    }
+    return (
+        <NonBreakingDiv className={'stonadsperioder'}>
+            <h2>Overlappsperioder</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Målgruppe</th>
+                        <th>Aktivitet</th>
+                        <th>Fra</th>
+                        <th>Til</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {perioder.map((periode, index) => (
+                        <StønadsperiodeRad key={index} periode={periode} />
+                    ))}
+                </tbody>
+            </table>
+        </NonBreakingDiv>
+    );
 };
 
 export default StønadsperioderContent;
