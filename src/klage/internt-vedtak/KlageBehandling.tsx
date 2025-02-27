@@ -107,6 +107,16 @@ export const Klagevurdering: React.FC<{ vurdering?: IVurdering }> = ({ vurdering
                     <span>{tekstEllerFeil(hjemmelTilVisningstekst, vurdering.hjemmel)}</span>
                 </>
             )}
+            {vurdering.hjemler && (
+                <>
+                    <h4 className={'blankett'}>Hjemler</h4>
+                    <ul>
+                        {vurdering.hjemler.map((hjemmel, index) => (
+                            <li key={index}>{tekstEllerFeil(hjemmelTilVisningstekst, hjemmel)}</li>
+                        ))}
+                    </ul>
+                </>
+            )}
             {vurdering.årsak && (
                 <>
                     <h4 className={'blankett'}>Årsak</h4>
