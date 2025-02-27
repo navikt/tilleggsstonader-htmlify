@@ -18,7 +18,7 @@ export const genererInterntVedtakKlage = async (data: IKlageDokumentData): Promi
         <html lang={HtmlLang.NB}>
             <head>
                 <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
-                <style type="text/css">{klageCss}</style>
+                <style type="text/css" dangerouslySetInnerHTML={{ __html: klageCss }} />
                 <title>Saksbehandlingsblankett klage</title>
             </head>
             <body className={'body'}>

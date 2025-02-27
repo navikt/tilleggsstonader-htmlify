@@ -14,7 +14,7 @@ export const lagFritekstBrevKlage = (brevMedSignatur: IFritekstbrevMedSignatur) 
         <html lang={'nb'}>
             <head>
                 <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
-                <style type="text/css">{klageCss}</style>
+                <style type="text/css" dangerouslySetInnerHTML={{ __html: klageCss }} />
                 <title>{brev.overskrift}</title>
             </head>
             <body className={'body'}>
