@@ -33,6 +33,7 @@ spec:
       rules:
         - application: tilleggsstonader-soknad-api
         - application: tilleggsstonader-sak
+        - application: tilleggsstonader-klage
   env:
     - name: APP_VERSION
       value: '{{version}}'
