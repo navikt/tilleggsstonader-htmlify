@@ -4,10 +4,10 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import { klageCss } from '../klageCss';
 import { Brevhode } from './Brevhode';
-import { IFritekstbrevMedSignatur } from './dokumentApiBrev';
+import { FritekstbrevMedSignatur } from './dokumentApiBrev';
 import { dagensDatoFormatert } from '../klageDatoUtils';
 
-export const lagFritekstBrevKlage = (brevMedSignatur: IFritekstbrevMedSignatur) => {
+export const lagFritekstBrevKlage = (brevMedSignatur: FritekstbrevMedSignatur) => {
     const brev = brevMedSignatur.brevFraSaksbehandler;
 
     return renderToStaticMarkup(

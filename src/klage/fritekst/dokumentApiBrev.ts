@@ -1,19 +1,19 @@
-export interface IFritekstbrevMedSignatur {
-    brevFraSaksbehandler: IFritekstbrev;
+export interface FritekstbrevMedSignatur {
+    brevFraSaksbehandler: Fritekstbrev;
     besluttersignatur?: string;
     saksbehandlersignatur: string;
     enhet?: string;
     datoPlaceholder?: string;
 }
 
-export interface IFritekstbrev {
+export interface Fritekstbrev {
     overskrift: string;
-    avsnitt?: IAvsnitt[];
+    avsnitt?: Avsnitt[];
     personIdent: string;
     navn: string;
 }
 
-export interface IAvsnitt {
+export interface Avsnitt {
     deloverskrift?: string;
     innhold?: string;
 }

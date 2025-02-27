@@ -2,21 +2,21 @@ import React from 'react';
 
 import {
     behandlingResultatTilTekst,
-    EFormVilkår,
+    FormVilkår,
     formkravFristUnntakTilTekst,
     formVilkårTilTekst,
     hjemmelTilVisningstekst,
-    IFormkravVilkår,
-    IKlageBehandling,
-    IPåklagetVedtak,
-    IVurdering,
+    FormkravVilkår,
+    BehandlingKlage,
+    PåklagetVedtak,
+    Vurdering,
     vedtakTilTekst,
     årsakTilTekst,
 } from './klageInterntVedtakTyper';
 import { formaterNorskDato, formaterNorskDatoTid } from '../../felles/datoFormat';
 import { tekstEllerFeil } from '../../felles/tekstutils';
 
-const påklagetVedtak = (påklagetVedtak?: IPåklagetVedtak) => {
+const påklagetVedtak = (påklagetVedtak?: PåklagetVedtak) => {
     if (!påklagetVedtak) {
         return 'Har ikke klaget på et vedtak';
     } else {
@@ -26,7 +26,7 @@ const påklagetVedtak = (påklagetVedtak?: IPåklagetVedtak) => {
     }
 };
 
-export const KlageBehandling: React.FC<{ behandling: IKlageBehandling }> = ({ behandling }) => {
+export const KlageBehandling: React.FC<{ behandling: BehandlingKlage }> = ({ behandling }) => {
     return (
         <div className={'blankett-page-break'}>
             <h2>Behandling</h2>
@@ -47,7 +47,7 @@ export const KlageBehandling: React.FC<{ behandling: IKlageBehandling }> = ({ be
     );
 };
 
-export const KlageFormkrav: React.FC<{ formkrav: IFormkravVilkår }> = ({ formkrav }) => {
+export const KlageFormkrav: React.FC<{ formkrav: FormkravVilkår }> = ({ formkrav }) => {
     return (
         <div className={'blankett-page-break'}>
             <>
@@ -58,7 +58,7 @@ export const KlageFormkrav: React.FC<{ formkrav: IFormkravVilkår }> = ({ formkr
                 <span>{tekstEllerFeil(formVilkårTilTekst, formkrav.klageKonkret)}</span>
                 <h4 className={'blankett'}>Er klagefristen overholdt?</h4>
                 <span>{tekstEllerFeil(formVilkårTilTekst, formkrav.klagefristOverholdt)}</span>
-                {formkrav.klagefristOverholdt === EFormVilkår.IKKE_OPPFYLT &&
+                {formkrav.klagefristOverholdt === FormVilkår.IKKE_OPPFYLT &&
                     formkrav.klagefristOverholdtUnntak && (
                         <>
                             <h5>Er unntak for klagefristen oppfylt?</h5>
@@ -91,7 +91,7 @@ export const KlageFormkrav: React.FC<{ formkrav: IFormkravVilkår }> = ({ formkr
     );
 };
 
-export const Klagevurdering: React.FC<{ vurdering?: IVurdering }> = ({ vurdering }) => {
+export const Klagevurdering: React.FC<{ vurdering?: Vurdering }> = ({ vurdering }) => {
     if (!vurdering) {
         return null;
     }

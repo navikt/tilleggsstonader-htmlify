@@ -4,8 +4,8 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import Header from './Header';
 import { KlageBehandling, KlageFormkrav, Klagevurdering } from './KlageBehandling';
-import { IKlageDokumentData, stønadstypeTilTekst } from './klageInterntVedtakTyper';
-import { tekstEllerFeil } from '../../felles/tekstutils';
+import { KlageDokumentData } from './klageInterntVedtakTyper';
+import { tittelInterntVedtak } from '../../felles/stønadstype';
 import { klageCss } from '../klageCss';
 import { dagensDatoFormatert } from '../klageDatoUtils';
 
@@ -13,7 +13,7 @@ enum HtmlLang {
     NB = 'nb',
 }
 
-export const genererInterntVedtakKlage = async (data: IKlageDokumentData): Promise<string> => {
+export const genererInterntVedtakKlage = async (data: KlageDokumentData): Promise<string> => {
     const asyncHtml = () => (
         <html lang={HtmlLang.NB}>
             <head>
@@ -25,7 +25,7 @@ export const genererInterntVedtakKlage = async (data: IKlageDokumentData): Promi
                 <div>
                     <Header
                         visLogo={true}
-                        tittel={`Blankett klage ${tekstEllerFeil(stønadstypeTilTekst, data.behandling.stønadstype)}`}
+                        tittel={`Blankett klage ${tittelInterntVedtak(data.behandling.stønadstype)}`}
                         navn={data.personopplysninger.navn}
                         fodselsnummer={data.personopplysninger.personIdent}
                         dato={dagensDatoFormatert()}

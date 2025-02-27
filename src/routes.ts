@@ -4,10 +4,10 @@ import type { Request, Response } from 'express';
 import { logError, logSecureInfo } from './felles/logger';
 import genererInterntVedtakHtml from './internt-vedtak/genererInterntVedtakHtml';
 import { InterntVedtak } from './internt-vedtak/typer/interntVedtak';
-import { IFritekstbrevMedSignatur } from './klage/fritekst/dokumentApiBrev';
+import { FritekstbrevMedSignatur } from './klage/fritekst/dokumentApiBrev';
 import { lagFritekstBrevKlage } from './klage/fritekst/lagFritekstBrevKlage';
 import { genererInterntVedtakKlage } from './klage/internt-vedtak/genererInterntVedtakKlage';
-import { IKlageDokumentData } from './klage/internt-vedtak/klageInterntVedtakTyper';
+import { KlageDokumentData } from './klage/internt-vedtak/klageInterntVedtakTyper';
 import genererSøknadHtml from './søknad/genererSøknadHtml';
 import { Søknad } from './søknad/typer';
 
@@ -49,7 +49,7 @@ router.post('/internt-vedtak', async (req: Request, res: Response) => {
 });
 
 router.post('/klage/fritekst-brev', async (req: Request, res: Response) => {
-    const brev = req.body as IFritekstbrevMedSignatur;
+    const brev = req.body as FritekstbrevMedSignatur;
     try {
         const html = lagFritekstBrevKlage(brev);
         res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -63,7 +63,7 @@ router.post('/klage/fritekst-brev', async (req: Request, res: Response) => {
 });
 
 router.post('/klage/internt-vedtak', async (req: Request, res: Response) => {
-    const dokument: IKlageDokumentData = req.body as IKlageDokumentData;
+    const dokument: KlageDokumentData = req.body as KlageDokumentData;
     try {
         const html = await genererInterntVedtakKlage(dokument);
         res.setHeader('Content-Type', 'text/html; charset=utf-8');

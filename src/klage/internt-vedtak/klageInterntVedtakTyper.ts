@@ -1,61 +1,51 @@
-export interface IKlageDokumentData {
-    behandling: IKlageBehandling;
-    personopplysninger: IPersonopplysninger;
-    formkrav: IFormkravVilkår;
-    vurdering: IVurdering;
+import { Stønadstype } from '../../felles/stønadstype';
+
+export interface KlageDokumentData {
+    behandling: BehandlingKlage;
+    personopplysninger: PersonopplysningerKlage;
+    formkrav: FormkravVilkår;
+    vurdering: Vurdering;
 }
 
-export interface IPersonopplysninger {
+export interface PersonopplysningerKlage {
     navn: string;
     personIdent: string;
 }
 
-export interface IKlageBehandling {
+export interface BehandlingKlage {
     eksternFagsakId: string;
-    stønadstype: EStønadstype;
+    stønadstype: Stønadstype;
     klageMottatt: string;
-    resultat: EKlageBehandlingResultat;
-    påklagetVedtak?: IPåklagetVedtak;
+    resultat: KlageBehandlingResultat;
+    påklagetVedtak?: PåklagetVedtak;
 }
 
-export interface IPåklagetVedtak {
+export interface PåklagetVedtak {
     behandlingstype: string;
     resultat: string;
     vedtakstidspunkt: string;
 }
 
-export enum EStønadstype {
-    BARNETILSYN = 'BARNETILSYN',
-    LÆREMIDLER = 'LÆREMIDLER',
-    BOUTGIFTER = 'BOUTGIFTER',
-}
-
-export const stønadstypeTilTekst: Record<EStønadstype, string> = {
-    BARNETILSYN: 'Barnetilsyn',
-    LÆREMIDLER: 'Læremidler',
-    BOUTGIFTER: 'Boutgifter',
-};
-
-export enum EKlageBehandlingResultat {
+export enum KlageBehandlingResultat {
     MEDHOLD = 'MEDHOLD',
     IKKE_MEDHOLD = 'IKKE_MEDHOLD',
     IKKE_MEDHOLD_FORMKRAV_AVVIST = 'IKKE_MEDHOLD_FORMKRAV_AVVIST',
     HENLAGT = 'HENLAGT',
 }
 
-export const behandlingResultatTilTekst: Record<EKlageBehandlingResultat, string> = {
+export const behandlingResultatTilTekst: Record<KlageBehandlingResultat, string> = {
     MEDHOLD: 'Medhold',
     IKKE_MEDHOLD: 'Oversendt til KA',
     IKKE_MEDHOLD_FORMKRAV_AVVIST: 'Ikke medhold formkrav avvist',
     HENLAGT: 'Henlagt',
 };
 
-export interface IFormkravVilkår {
-    klagePart: EFormVilkår;
-    klagefristOverholdt: EFormVilkår;
+export interface FormkravVilkår {
+    klagePart: FormVilkår;
+    klagefristOverholdt: FormVilkår;
     klagefristOverholdtUnntak?: FormkravFristUnntak;
-    klageKonkret: EFormVilkår;
-    klageSignert: EFormVilkår;
+    klageKonkret: FormVilkår;
+    klageSignert: FormVilkår;
     saksbehandlerBegrunnelse?: string;
     brevtekst?: string;
 }
@@ -74,23 +64,23 @@ export const formkravFristUnntakTilTekst: Record<FormkravFristUnntak, string> = 
     IKKE_SATT: 'Ikke satt',
 };
 
-export enum EFormVilkår {
+export enum FormVilkår {
     OPPFYLT = 'OPPFYLT',
     IKKE_OPPFYLT = 'IKKE_OPPFYLT',
     SKAL_IKKE_VURDERES = 'SKAL_IKKE_VURDERES',
     IKKE_SATT = 'IKKE_SATT',
 }
 
-export const formVilkårTilTekst: Record<EFormVilkår, string> = {
+export const formVilkårTilTekst: Record<FormVilkår, string> = {
     OPPFYLT: 'Oppfylt',
     IKKE_OPPFYLT: 'Ikke oppfylt',
     SKAL_IKKE_VURDERES: 'Skal ikke vurderes',
     IKKE_SATT: 'Ikke satt',
 };
 
-export interface IVurdering {
-    vedtak: EVedtak;
-    årsak?: EÅrsakOmgjøring;
+export interface Vurdering {
+    vedtak: TypeVedtak;
+    årsak?: ÅrsakOmgjøring;
     begrunnelseOmgjøring?: string;
     hjemmel?: Hjemmel; // TODO fjern når hjemler er tatt i bruk i klage
     hjemler?: Hjemmel[];
@@ -99,18 +89,18 @@ export interface IVurdering {
 }
 
 // VEDTAK
-export enum EVedtak {
+export enum TypeVedtak {
     OMGJØR_VEDTAK = 'OMGJØR_VEDTAK',
     OPPRETTHOLD_VEDTAK = 'OPPRETTHOLD_VEDTAK',
 }
 
-export const vedtakTilTekst: Record<EVedtak, string> = {
+export const vedtakTilTekst: Record<TypeVedtak, string> = {
     OMGJØR_VEDTAK: 'Omgjør vedtak',
     OPPRETTHOLD_VEDTAK: 'Oppretthold vedtak',
 };
 
 // ÅRSAK
-export enum EÅrsakOmgjøring {
+export enum ÅrsakOmgjøring {
     FEIL_I_LOVANDVENDELSE = 'FEIL_I_LOVANDVENDELSE',
     FEIL_REGELVERKSFORSTÅELSE = 'FEIL_REGELVERKSFORSTÅELSE',
     FEIL_ELLER_ENDRET_FAKTA = 'FEIL_ELLER_ENDRET_FAKTA',
@@ -119,7 +109,7 @@ export enum EÅrsakOmgjøring {
     ANNET = 'ANNET',
 }
 
-export const årsakTilTekst: Record<EÅrsakOmgjøring, string> = {
+export const årsakTilTekst: Record<ÅrsakOmgjøring, string> = {
     FEIL_I_LOVANDVENDELSE: 'Feil lovanvendelse',
     FEIL_REGELVERKSFORSTÅELSE: 'Feil regelverksforståelse',
     FEIL_ELLER_ENDRET_FAKTA: 'Feil eller endret fakta',
@@ -202,7 +192,7 @@ const arbeidsmarkedslovenVisningstekster: Record<ArbeidsmarkedslovenHjemmel, str
     ARBML_22: 'Arb.mark.lov § 22',
 };
 
-export const folketrygdlovenTSVisningstekster: Record<FolketrygdlovenHjemmelTS, string> = {
+const folketrygdlovenTSVisningstekster: Record<FolketrygdlovenHjemmelTS, string> = {
     FTRL_11_A_3: 'Ftrl. § 11 A-3',
     FTRL_11_A_4: 'Ftrl. § 11 A-4',
     FTRL_11_A_4_3: 'Ftrl. § 11 A-4 3. ledd',
