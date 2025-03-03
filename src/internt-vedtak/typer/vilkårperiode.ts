@@ -80,7 +80,7 @@ export const resultatDelvilkårperiodeTilTekst: Record<ResultatDelvilkårperiode
     IKKE_AKTUELT: 'Ikke aktuelt',
 };
 
-enum TypeStønadsperiode {
+export enum TypeStønadsperiode {
     AAP = 'AAP',
     DAGPENGER = 'DAGPENGER',
     OMSTILLINGSSTØNAD = 'OMSTILLINGSSTØNAD',
