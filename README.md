@@ -13,5 +13,5 @@ App for å generere html ut fra json som skal brukes for å generere pdf.
 
 ### Internt vedtak
 
-I `tilleggsstonader-sak:InterntVedtakServiceTest` er det laget en test gjør kall mot http://localhost:8001 med
+I `tilleggsstonader-sak:InterntVedtakGenereringTest` er det laget en test gjør kall mot http://localhost:8001 med
 syntetiske testdata. 
