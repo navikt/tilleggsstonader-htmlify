@@ -14,6 +14,7 @@ export interface VedtakOpphørTilsynBarn {
 
 export interface VedtakInnvilgeTilsynBarn {
     type: VedtakType.INNVILGELSE;
+    innvilgelseBegrunnelse: string;
 }
 
 enum ÅrsakAvslag {

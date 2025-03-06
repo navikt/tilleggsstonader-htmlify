@@ -77,6 +77,7 @@ const InnvilgelseTilsynBarn: React.FC<{ vedtak: VedtakInnvilgeTilsynBarn }> = ({
                 <strong>Resultat: </strong>
                 {tekstEllerFeil(vedtakTypeTilTekst, vedtak.type)}
             </div>
+            <Begrunnelse begrunnelse={vedtak.innvilgelseBegrunnelse} />
         </NonBreakingDiv>
     );
 };
