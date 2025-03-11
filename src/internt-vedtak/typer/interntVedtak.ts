@@ -11,7 +11,7 @@ export interface InterntVedtak {
     søknad?: Søknad;
     målgrupper: Vilkårperiode[];
     aktiviteter: Vilkårperiode[];
-    stønadsperioder: Stønadsperiode[];
+    stønadsperioder?: Stønadsperiode[];
     vedtaksperioder: Vedtaksperiode[];
     vilkår: Vilkår[];
     beregningsresultat?: Beregningsresultat;
