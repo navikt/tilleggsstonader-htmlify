@@ -16,6 +16,7 @@ export const FaktaOgVurdering: React.FC<{
         utgifterDekketAvAnnetRegelverk,
         medlemskap,
         lønnet,
+        aldersvilkår,
     },
 }) => {
     return (
@@ -36,6 +37,7 @@ export const FaktaOgVurdering: React.FC<{
                 navn={'Dekkes utgiftene av annet regelverk?'}
                 vurdering={utgifterDekketAvAnnetRegelverk}
             />
+            <Vurdering navn={'Aldersvilkår'} vurdering={aldersvilkår} />
         </>
     );
 };

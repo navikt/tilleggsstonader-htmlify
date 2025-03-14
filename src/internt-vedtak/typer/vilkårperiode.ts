@@ -18,6 +18,7 @@ export interface FaktaOgVurderinger {
     lønnet?: VurderingVilkårperiode;
     harUtgifter?: VurderingVilkårperiode;
     harRettTilUtstyrsstipend?: VurderingVilkårperiode;
+    aldersvilkår?: VurderingVilkårperiode;
 }
 
 type Studienivå = 'VIDEREGÅENDE' | 'HØYERE_UTDANNING';
