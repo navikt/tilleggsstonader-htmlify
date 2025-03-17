@@ -19,6 +19,7 @@ export interface FaktaOgVurderinger {
     harUtgifter?: VurderingVilkårperiode;
     harRettTilUtstyrsstipend?: VurderingVilkårperiode;
     aldersvilkår?: VurderingVilkårperiode;
+    skalVurdereSykepengerForFulltidsstilling?: VurderingVilkårperiode;
 }
 
 type Studienivå = 'VIDEREGÅENDE' | 'HØYERE_UTDANNING';
