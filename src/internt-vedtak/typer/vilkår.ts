@@ -21,10 +21,16 @@ export interface Vurdering {
 
 export enum Vilkårtype {
     PASS_BARN = 'PASS_BARN',
+    UTGIFTER_OVERNATTING = 'UTGIFTER_OVERNATTING',
+    LØPENDE_UTGIFTER_EN_BOLIG = 'LØPENDE_UTGIFTER_EN_BOLIG',
+    LØPENDE_UTGIFTER_TO_BOLIGER = 'LØPENDE_UTGIFTER_TO_BOLIGER',
 }
 
 export const vilkårtypeTilTekst: Record<Vilkårtype, string> = {
     PASS_BARN: 'Vilkår om pass av barn',
+    LØPENDE_UTGIFTER_EN_BOLIG: 'Løpende utgifter én bolig',
+    LØPENDE_UTGIFTER_TO_BOLIGER: 'Løpende utgifter to boliger',
+    UTGIFTER_OVERNATTING: 'Utgifter til overnatting',
 };
 
 export enum Vilkårsresultat {
