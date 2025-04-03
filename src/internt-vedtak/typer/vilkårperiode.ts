@@ -1,7 +1,13 @@
+import {
+    aktivitetTilTekst,
+    AktivitetType,
+    målgruppeTilTekst,
+    MålgruppeType,
+} from './målgruppeOgAktivitet';
 import { Periode } from '../../felles/periode';
 
 export interface Vilkårperiode extends Periode {
-    type: TypeStønadsperiode;
+    type: VilkårperiodeType;
     faktaOgVurderinger: FaktaOgVurderinger;
     kilde: KildeVilkårperiode;
     resultat: ResultatVilkårperiode;
@@ -21,6 +27,13 @@ export interface FaktaOgVurderinger {
     aldersvilkår?: VurderingVilkårperiode;
 }
 
+type VilkårperiodeType = MålgruppeType | AktivitetType;
+
+export const vilkårperiodeTypeTilTekst: Record<VilkårperiodeType, string> = {
+    ...målgruppeTilTekst,
+    ...aktivitetTilTekst,
+};
+
 type Studienivå = 'VIDEREGÅENDE' | 'HØYERE_UTDANNING';
 
 export const studienivåTilTekst: Record<Studienivå, string> = {
@@ -31,11 +44,6 @@ export const studienivåTilTekst: Record<Studienivå, string> = {
 export interface VurderingVilkårperiode {
     svar?: SvarVurdering;
     resultat: ResultatDelvilkårperiode;
-}
-
-export interface Stønadsperiode extends Periode {
-    målgruppe: TypeStønadsperiode;
-    aktivitet: TypeStønadsperiode;
 }
 
 export enum ResultatVilkårperiode {
@@ -79,36 +87,4 @@ export const resultatDelvilkårperiodeTilTekst: Record<ResultatDelvilkårperiode
     IKKE_OPPFYLT: 'Ikke oppfylt',
     IKKE_VURDERT: 'Ikke vurdert',
     IKKE_AKTUELT: 'Ikke aktuelt',
-};
-
-export enum TypeStønadsperiode {
-    AAP = 'AAP',
-    DAGPENGER = 'DAGPENGER',
-    OMSTILLINGSSTØNAD = 'OMSTILLINGSSTØNAD',
-    OVERGANGSSTØNAD = 'OVERGANGSSTØNAD',
-    NEDSATT_ARBEIDSEVNE = 'NEDSATT_ARBEIDSEVNE',
-    UFØRETRYGD = 'UFØRETRYGD',
-    SYKEPENGER_100_PROSENT = 'SYKEPENGER_100_PROSENT',
-    INGEN_MÅLGRUPPE = 'INGEN_MÅLGRUPPE',
-
-    TILTAK = 'TILTAK',
-    UTDANNING = 'UTDANNING',
-    REELL_ARBEIDSSØKER = 'REELL_ARBEIDSSØKER',
-    INGEN_AKTIVITET = 'INGEN_AKTIVITET',
-}
-
-export const typeStønadsperiodeTilTekst: Record<TypeStønadsperiode, string> = {
-    AAP: 'AAP',
-    DAGPENGER: 'Dagpenger',
-    OMSTILLINGSSTØNAD: 'Omstillingsstønad',
-    OVERGANGSSTØNAD: 'Overgangsstønad',
-    NEDSATT_ARBEIDSEVNE: 'Nedsatt arbeidsevne',
-    UFØRETRYGD: 'Uføretrygd',
-    SYKEPENGER_100_PROSENT: '100% sykepenger',
-    INGEN_MÅLGRUPPE: 'Ingen målgruppe',
-
-    TILTAK: 'Tiltak',
-    UTDANNING: 'Utdanning',
-    REELL_ARBEIDSSØKER: 'Reell arbeidssøker',
-    INGEN_AKTIVITET: 'Ingen relevant aktivitet',
 };

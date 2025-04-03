@@ -7,13 +7,13 @@ import OppfyltIkon from '../../ikoner/OppfyltIkon';
 import SlettetIkon from '../../ikoner/SlettetIkon';
 import {
     ResultatVilkårperiode,
-    typeStønadsperiodeTilTekst,
     Vilkårperiode,
+    vilkårperiodeTypeTilTekst,
 } from '../typer/vilkårperiode';
 
 export const TypeOgResultat = (props: { periode: Vilkårperiode }) => (
     <div className={'vilkaarperiode-type'}>
-        <strong>{tekstEllerFeil(typeStønadsperiodeTilTekst, props.periode.type)}</strong>
+        <strong>{tekstEllerFeil(vilkårperiodeTypeTilTekst, props.periode.type)}</strong>
         <div className={'vilkaarperiode-resultat'}>{resultatIkon(props.periode.resultat)}</div>
     </div>
 );
