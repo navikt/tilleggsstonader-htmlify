@@ -3,6 +3,7 @@ import React from 'react';
 import { NonBreakingDiv } from './felles';
 import {
     Beregningsresultat,
+    BeregningsresultatBoutgifter,
     BeregningsresultatLæremidler,
     BeregningsresultatTilsynBarn,
 } from './typer/beregningsresultat';
@@ -24,6 +25,11 @@ export const BeregningsresultatContent: React.FC<{
             {beregningsresultat.læremidler && (
                 <LæremidlerBeregningsresultatTabell
                     beregningsresultatLæremidler={beregningsresultat.læremidler}
+                />
+            )}
+            {beregningsresultat.boutgifter && (
+                <BoutgifterBeregningsresultatTabell
+                    beregningsresultatBoutgifter={beregningsresultat.boutgifter}
                 />
             )}
         </NonBreakingDiv>
@@ -73,6 +79,35 @@ const LæremidlerBeregningsresultatTabell: React.FC<{
         </thead>
         <tbody>
             {beregningsresultatLæremidler.map((beregningsresultat, index) => (
+                <tr key={index}>
+                    <td>{beregningsresultat.fom}</td>
+                    <td>{beregningsresultat.tom}</td>
+                    <td>{beregningsresultat.antallMåneder}</td>
+                    <td>{beregningsresultat.beløp}</td>
+                    <td>{beregningsresultat.stønadsbeløp}</td>
+                    <td>{beregningsresultat.utbetalingsdato}</td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+);
+
+const BoutgifterBeregningsresultatTabell: React.FC<{
+    beregningsresultatBoutgifter: BeregningsresultatBoutgifter[];
+}> = ({ beregningsresultatBoutgifter }) => (
+    <table>
+        <thead>
+            <tr>
+                <th>Fom</th>
+                <th>Tom</th>
+                <th>Ant. månder</th>
+                <th>Månedsbeløp</th>
+                <th>Stønadsbeløp</th>
+                <th>Utbetalingsdato</th>
+            </tr>
+        </thead>
+        <tbody>
+            {beregningsresultatBoutgifter.map((beregningsresultat, index) => (
                 <tr key={index}>
                     <td>{beregningsresultat.fom}</td>
                     <td>{beregningsresultat.tom}</td>
