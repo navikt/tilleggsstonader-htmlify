@@ -25,6 +25,7 @@ export interface FaktaOgVurderinger {
     harUtgifter?: VurderingVilkårperiode;
     harRettTilUtstyrsstipend?: VurderingVilkårperiode;
     aldersvilkår?: VurderingVilkårperiode;
+    skalVurdereSykepengerForFulltidsstilling?: VurderingVilkårperiode;
 }
 
 type VilkårperiodeType = MålgruppeType | AktivitetType;
@@ -67,12 +68,16 @@ enum SvarVurdering {
     JA = 'JA',
     JA_IMPLISITT = 'JA_IMPLISITT',
     NEI = 'NEI',
+    NEI_IMPLISITT = 'NEI_IMPLISITT',
+    GAMMEL_MANGLER_DATA = 'GAMMEL_MANGLER_DATA',
 }
 
 export const svarVurderingTilTekst: Record<SvarVurdering, string> = {
     JA: 'Ja',
     JA_IMPLISITT: 'Ja, implisitt',
     NEI: 'Nei',
+    NEI_IMPLISITT: 'Nei, implisitt',
+    GAMMEL_MANGLER_DATA: 'Gammel, mangler data for dette vilkåret',
 };
 
 enum ResultatDelvilkårperiode {
