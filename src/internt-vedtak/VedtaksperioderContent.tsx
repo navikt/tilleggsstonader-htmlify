@@ -3,17 +3,14 @@ import React from 'react';
 import { NonBreakingDiv } from './felles';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { tekstEllerFeil } from '../felles/tekstutils';
-import {
-    aktivitetTilTekst,
-    målgruppeEllerFaktiskMålgruppeTilTekst,
-} from './typer/målgruppeOgAktivitet';
+import { aktivitetTilTekst, faktiskMålgruppeTilTekst } from './typer/målgruppeOgAktivitet';
 import { Vedtaksperiode } from './typer/vedtaksperiode';
 
 const VedtaksperiodeRad: React.FC<{ periode: Vedtaksperiode }> = ({ periode }) => {
     return (
         <tr>
             {periode.målgruppe && (
-                <td>{tekstEllerFeil(målgruppeEllerFaktiskMålgruppeTilTekst, periode.målgruppe)}</td>
+                <td>{tekstEllerFeil(faktiskMålgruppeTilTekst, periode.målgruppe)}</td>
             )}
             {periode.aktivitet && <td>{tekstEllerFeil(aktivitetTilTekst, periode.aktivitet)}</td>}
             <td>{formaterNorskDato(periode.fom)}</td>

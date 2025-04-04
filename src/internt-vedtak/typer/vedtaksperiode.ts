@@ -1,7 +1,7 @@
-import { AktivitetType, FaktiskMålgruppeType, MålgruppeType } from './målgruppeOgAktivitet';
+import { AktivitetType, FaktiskMålgruppeType } from './målgruppeOgAktivitet';
 import { Periode } from '../../felles/periode';
 
 export interface Vedtaksperiode extends Periode {
-    målgruppe: MålgruppeType | FaktiskMålgruppeType;
+    målgruppe: FaktiskMålgruppeType;
     aktivitet: AktivitetType;
 }

@@ -39,14 +39,6 @@ export const faktiskMålgruppeTilTekst: Record<FaktiskMålgruppeType, string> = 
     GJENLEVENDE: 'Gjenlevende',
 };
 
-export const målgruppeEllerFaktiskMålgruppeTilTekst: Record<
-    MålgruppeType | FaktiskMålgruppeType,
-    string
-> = {
-    ...målgruppeTilTekst,
-    ...faktiskMålgruppeTilTekst,
-};
-
 export const aktivitetTilTekst: Record<AktivitetType, string> = {
     TILTAK: 'Tiltak',
     UTDANNING: 'Utdanning',
