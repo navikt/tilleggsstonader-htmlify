@@ -101,8 +101,6 @@ const BoutgifterBeregningsresultatTabell: React.FC<{
             <tr>
                 <th>Fom</th>
                 <th>Tom</th>
-                <th>Ant. månder</th>
-                <th>Månedsbeløp</th>
                 <th>Stønadsbeløp</th>
                 <th>Utbetalingsdato</th>
             </tr>
@@ -112,8 +110,6 @@ const BoutgifterBeregningsresultatTabell: React.FC<{
                 <tr key={index}>
                     <td>{formaterNorskDato(beregningsresultat.fom)}</td>
                     <td>{formaterNorskDatoTid(beregningsresultat.tom)}</td>
-                    <td>{beregningsresultat.antallMåneder}</td>
-                    <td>{beregningsresultat.beløp}</td>
                     <td>{beregningsresultat.stønadsbeløp}</td>
                     <td>{formaterNorskDato(beregningsresultat.utbetalingsdato)}</td>
                 </tr>
