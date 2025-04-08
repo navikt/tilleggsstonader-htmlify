@@ -9,35 +9,25 @@ import { Vedtaksperiode } from './typer/vedtaksperiode';
 const VedtaksperiodeRad: React.FC<{ periode: Vedtaksperiode }> = ({ periode }) => {
     return (
         <tr>
-            {periode.målgruppe && (
-                <td>{tekstEllerFeil(faktiskMålgruppeTilTekst, periode.målgruppe)}</td>
-            )}
-            {periode.aktivitet && <td>{tekstEllerFeil(aktivitetTilTekst, periode.aktivitet)}</td>}
+            <td>{tekstEllerFeil(faktiskMålgruppeTilTekst, periode.målgruppe)}</td>
+            <td>{tekstEllerFeil(aktivitetTilTekst, periode.aktivitet)}</td>
             <td>{formaterNorskDato(periode.fom)}</td>
             <td>{formaterNorskDato(periode.tom)}</td>
         </tr>
     );
 };
 
-/*
-Denne komponenten gjør en sjekk for om målgrupper og aktiviteter finnes da denne komponentetn brukes både for
-vedtaksperioder tilsyn barn og vedtaksperioder læremidler.
-Når vedtaksperioder læremidler får målgruppe og aktivtet kan dette skrives om
- */
 const VedtaksperiodeContent: React.FC<{
     perioder: Vedtaksperiode[];
 }> = ({ perioder }) => {
-    const harMålgrupper = perioder[0]?.målgruppe !== null;
-    const harAktiviteter = perioder[0]?.aktivitet !== null;
-
     return (
         <NonBreakingDiv className={'vedtaksperioder'}>
             <h2>Vedtaksperioder</h2>
             <table>
                 <thead>
                     <tr>
-                        {harMålgrupper && <th>Målgruppe</th>}
-                        {harAktiviteter && <th>Aktivitet</th>}
+                        <th>Målgruppe</th>
+                        <th>Aktivitet</th>
                         <th>Fra</th>
                         <th>Til</th>
                     </tr>

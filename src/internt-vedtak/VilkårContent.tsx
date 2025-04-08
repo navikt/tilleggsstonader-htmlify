@@ -53,7 +53,7 @@ const grupperPerTypeOgBarn = (vilkårsett: Vilkår[]): Record<string, Vilkår[]>
 export const VilkårContent: React.FC<{
     vilkårsett: Vilkår[];
 }> = ({ vilkårsett }) => (
-    <NonBreakingDiv className={'stonadsperioder'}>
+    <NonBreakingDiv>
         {Object.values(grupperPerTypeOgBarn(vilkårsett)).map((liste, indexVilkår) => {
             const førsteVilkår = liste[0];
             return (
