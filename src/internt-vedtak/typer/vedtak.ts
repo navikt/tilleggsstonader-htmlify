@@ -24,6 +24,8 @@ enum ÅrsakAvslag {
     MANGELFULL_DOKUMENTASJON = 'MANGELFULL_DOKUMENTASJON',
     HAR_IKKE_UTGIFTER = 'HAR_IKKE_UTGIFTER',
     RETT_TIL_UTSTYRSSTIPEND = 'RETT_TIL_UTSTYRSSTIPEND',
+    HAR_IKKE_MERUTGIFTER = 'HAR_IKKE_MERUTGIFTER',
+    RETT_TIL_BOSTØTTE = 'RETT_TIL_BOSTØTTE',
     ANNET = 'ANNET',
 }
 
@@ -64,6 +66,8 @@ export const årsakAvslagTilTekst: Record<ÅrsakAvslag, string> = {
     MANGELFULL_DOKUMENTASJON: 'Mangelfull dokumentasjon',
     HAR_IKKE_UTGIFTER: 'Har ikke utgifter',
     RETT_TIL_UTSTYRSSTIPEND: 'Rett til utstyrsstipend',
+    HAR_IKKE_MERUTGIFTER: 'Har ikke nødvendige merutgifter',
+    RETT_TIL_BOSTØTTE: 'Rett til/mottar bostøtte',
     ANNET: 'Annet',
 };
 
