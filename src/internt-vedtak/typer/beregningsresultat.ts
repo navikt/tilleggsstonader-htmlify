@@ -29,5 +29,4 @@ export interface BeregningsresultatBoutgifter {
     antallMåneder: number;
     beløp: number;
     stønadsbeløp: number;
-    utbetalingsdato: string;
 }
