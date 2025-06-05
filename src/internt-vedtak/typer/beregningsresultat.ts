@@ -27,6 +27,5 @@ export interface BeregningsresultatBoutgifter {
     fom: string;
     tom: string;
     antallMåneder: number;
-    beløp: number;
     stønadsbeløp: number;
 }
