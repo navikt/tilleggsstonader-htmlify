@@ -18,8 +18,8 @@ export interface BeregningsresultatLæremidler {
     fom: string;
     tom: string;
     antallMåneder: number;
-    beløp: number;
-    stønadsbeløp: number;
+    stønadsbeløpPerMåned: number;
+    stønadsbeløpForPeriode: number;
     utbetalingsdato: string;
 }
 

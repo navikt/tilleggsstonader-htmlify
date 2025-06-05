@@ -84,8 +84,8 @@ const LæremidlerBeregningsresultatTabell: React.FC<{
                     <td>{beregningsresultat.fom}</td>
                     <td>{beregningsresultat.tom}</td>
                     <td>{beregningsresultat.antallMåneder}</td>
-                    <td>{beregningsresultat.beløp}</td>
-                    <td>{beregningsresultat.stønadsbeløp}</td>
+                    <td>{beregningsresultat.stønadsbeløpPerMåned}</td>
+                    <td>{beregningsresultat.stønadsbeløpForPeriode}</td>
                     <td>{beregningsresultat.utbetalingsdato}</td>
                 </tr>
             ))}
