@@ -101,12 +101,6 @@ export const Klagevurdering: React.FC<{ vurdering?: Vurdering }> = ({ vurdering 
             <h2>Vurdering</h2>
             <h4 className={'blankett'}>Vedtak</h4>
             <span>{tekstEllerFeil(vedtakTilTekst, vurdering.vedtak)}</span>
-            {vurdering.hjemmel && (
-                <>
-                    <h4 className={'blankett'}>Hjemmel</h4>
-                    <span>{tekstEllerFeil(hjemmelTilVisningstekst, vurdering.hjemmel)}</span>
-                </>
-            )}
             {vurdering.hjemler && (
                 <>
                     <h4 className={'blankett'}>Hjemler</h4>

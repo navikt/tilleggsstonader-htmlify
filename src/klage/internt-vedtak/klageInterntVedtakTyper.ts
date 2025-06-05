@@ -82,7 +82,6 @@ export interface Vurdering {
     vedtak: TypeVedtak;
     årsak?: ÅrsakOmgjøring;
     begrunnelseOmgjøring?: string;
-    hjemmel?: Hjemmel; // TODO fjern når hjemler er tatt i bruk i klage
     hjemler?: Hjemmel[];
     innstillingKlageinstans?: string;
     interntNotat?: string;
