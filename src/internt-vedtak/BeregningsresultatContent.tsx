@@ -7,7 +7,7 @@ import {
     BeregningsresultatLæremidler,
     BeregningsresultatTilsynBarn,
 } from './typer/beregningsresultat';
-import { formaterNorskDato, formaterNorskDatoTid } from '../felles/datoFormat';
+import { formaterNorskDato } from '../felles/datoFormat';
 
 export const BeregningsresultatContent: React.FC<{
     beregningsresultat?: Beregningsresultat;
@@ -108,7 +108,7 @@ const BoutgifterBeregningsresultatTabell: React.FC<{
             {beregningsresultatBoutgifter.map((beregningsresultat, index) => (
                 <tr key={index}>
                     <td>{formaterNorskDato(beregningsresultat.fom)}</td>
-                    <td>{formaterNorskDatoTid(beregningsresultat.tom)}</td>
+                    <td>{formaterNorskDato(beregningsresultat.tom)}</td>
                     <td>{beregningsresultat.stønadsbeløp}</td>
                 </tr>
             ))}
