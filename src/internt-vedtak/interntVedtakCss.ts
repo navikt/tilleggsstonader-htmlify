@@ -47,8 +47,8 @@ body {
     border-left: 2px solid grey;
 }
 
-.vilkaarperiode > .vilkaarperiode-rad:first-of-type {
-    margin-top: 0;
+.vilkaarperiode > .vilkaarperiode-rad.first {
+    margin-top: 0px;
 }
 
 .vilkaarperiode-type {
