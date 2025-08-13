@@ -84,12 +84,10 @@ enum ResultatDelvilkårperiode {
     OPPFYLT = 'OPPFYLT',
     IKKE_OPPFYLT = 'IKKE_OPPFYLT',
     IKKE_VURDERT = 'IKKE_VURDERT',
-    IKKE_AKTUELT = 'IKKE_AKTUELT',
 }
 
 export const resultatDelvilkårperiodeTilTekst: Record<ResultatDelvilkårperiode, string> = {
     OPPFYLT: 'Oppfylt',
     IKKE_OPPFYLT: 'Ikke oppfylt',
     IKKE_VURDERT: 'Ikke vurdert',
-    IKKE_AKTUELT: 'Ikke aktuelt',
 };
