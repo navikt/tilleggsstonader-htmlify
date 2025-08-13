@@ -6,6 +6,7 @@ export interface Vilkår {
     fom?: string;
     tom?: string;
     utgift?: number;
+    slettetKommentar?: string;
 }
 
 export interface DelvilkårInternt {
@@ -40,6 +41,7 @@ export enum Vilkårsresultat {
     IKKE_AKTUELL = 'IKKE_AKTUELL',
     IKKE_TATT_STILLING_TIL = 'IKKE_TATT_STILLING_TIL',
     SKAL_IKKE_VURDERES = 'SKAL_IKKE_VURDERES',
+    SLETTET = 'SLETTET',
 }
 
 export const resultatTilTekst: Record<Vilkårsresultat, string> = {
@@ -49,4 +51,5 @@ export const resultatTilTekst: Record<Vilkårsresultat, string> = {
     IKKE_AKTUELL: 'Ikke aktuell',
     IKKE_TATT_STILLING_TIL: 'Ikke tatt stilling til',
     SKAL_IKKE_VURDERES: 'Skal ikke vurderes',
+    SLETTET: 'Slettet', // Denne metoden brukes til delvilkår, men delvilkår kan ikke slettes
 };

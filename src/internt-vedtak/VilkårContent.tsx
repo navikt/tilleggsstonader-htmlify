@@ -2,9 +2,9 @@ import React from 'react';
 
 import { NonBreakingDiv } from './felles';
 import {
+    resultatTilTekst,
     Vilkår,
     Vilkårsresultat,
-    resultatTilTekst,
     vilkårtypeTilTekst,
     Vurdering,
 } from './typer/vilkår';
@@ -14,6 +14,8 @@ import IkkeOppfylt from '../ikoner/IkkeOppfylt';
 import { IkkeVurdert } from '../ikoner/IkkeVurdert';
 import InfoIkon from '../ikoner/InfoIkon';
 import OppfyltIkon from '../ikoner/OppfyltIkon';
+import SlettetIkon from '../ikoner/SlettetIkon';
+import { KommentarSlettet } from './felles/KommentarSlettet';
 
 const resultatIkon = (resultat: Vilkårsresultat) => {
     switch (resultat) {
@@ -23,6 +25,8 @@ const resultatIkon = (resultat: Vilkårsresultat) => {
             return <IkkeOppfylt heigth={24} width={24} />;
         case Vilkårsresultat.SKAL_IKKE_VURDERES:
             return <InfoIkon heigth={24} width={24} />;
+        case Vilkårsresultat.SLETTET:
+            return <SlettetIkon heigth={24} width={24} />;
         default:
             return <IkkeVurdert heigth={24} width={24} />;
     }
@@ -71,6 +75,7 @@ export const VilkårContent: React.FC<{
                                 {tekstEllerFeil(resultatTilTekst, vilkår.resultat)}
                             </h4>
                             <div>Periode: {formaterDatoMedUtgift(vilkår)}</div>
+                            <KommentarSlettet data={vilkår} />
                             <Delvilkår vilkår={vilkår} />
                         </NonBreakingDiv>
                     ))}

@@ -4,7 +4,7 @@ import { formaterPeriode } from '../../felles/datoFormat';
 import { tekstEllerFeil } from '../../felles/tekstutils';
 import { FaktaOgVurdering } from '../FaktaOgVurdering';
 import { Begrunnelse } from '../felles';
-import { KommentarSlettet } from './KommentarSlettet';
+import { KommentarSlettet } from '../felles/KommentarSlettet';
 import { kildeVilkårperiodeTilTekst, Vilkårperiode } from '../typer/vilkårperiode';
 
 export const Detaljer: React.FC<{
