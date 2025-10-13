@@ -10,19 +10,19 @@ export interface Kjøreliste {
 }
 
 export interface Uke {
-    ukeTekst: string;
+    ukeLabel: string;
     spørsmål: string;
     dager: Dag[];
 }
 
 export interface Dag {
-    datoTekst: string;
+    datoLabel: string;
     harKjørt: boolean;
     parkeringsutgift?: Parkeringsutgift;
 }
 
 export interface Parkeringsutgift {
-    tekst: string;
+    label: string;
     beløp: number;
 }
 

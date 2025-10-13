@@ -11,12 +11,12 @@ const mapDag = (dag: Dag) => {
     const harKjørtSvar = dag.harKjørt ? 'Ja' : '-';
     const parkeringsutgiftTekst =
         dag.harKjørt && dag.parkeringsutgift
-            ? ` | ${dag.parkeringsutgift.tekst}: ${dag.parkeringsutgift.beløp}`
+            ? ` | ${dag.parkeringsutgift.label}: ${dag.parkeringsutgift.beløp}`
             : '';
 
     return (
         <div className={'dag'}>
-            <span className={'label'}>{dag.datoTekst}:</span>
+            <span className={'label'}>{dag.datoLabel}:</span>
             <span className={'verdi'}>Kjørt: {harKjørtSvar + parkeringsutgiftTekst}</span>
         </div>
     );
@@ -25,7 +25,7 @@ const mapDag = (dag: Dag) => {
 const mapKjørelisteUker = (uker: Uke[]) => {
     return uker.map((uke) => (
         <div className={'uke'}>
-            <h2>{uke.ukeTekst}</h2>
+            <h2>{uke.ukeLabel}</h2>
             <div className={'label'}>{uke.spørsmål}</div>
             {uke.dager.map((dag) => mapDag(dag))}
         </div>
