@@ -26,6 +26,8 @@ enum ÅrsakAvslag {
     RETT_TIL_UTSTYRSSTIPEND = 'RETT_TIL_UTSTYRSSTIPEND',
     HAR_IKKE_MERUTGIFTER = 'HAR_IKKE_MERUTGIFTER',
     RETT_TIL_BOSTØTTE = 'RETT_TIL_BOSTØTTE',
+    REISEAVSTAND_UNDER_6_KM = 'REISEAVSTAND_UNDER_6_KM',
+    LØNN_I_TILTAK = 'LØNN_I_TILTAK',
     ANNET = 'ANNET',
 }
 
@@ -68,6 +70,8 @@ export const årsakAvslagTilTekst: Record<ÅrsakAvslag, string> = {
     RETT_TIL_UTSTYRSSTIPEND: 'Rett til utstyrsstipend',
     HAR_IKKE_MERUTGIFTER: 'Har ikke nødvendige merutgifter',
     RETT_TIL_BOSTØTTE: 'Rett til/mottar bostøtte',
+    REISEAVSTAND_UNDER_6_KM: 'Reiseavstand er under 6 km',
+    LØNN_I_TILTAK: 'Mottar ordinær lønn i tiltak',
     ANNET: 'Annet',
 };
 
