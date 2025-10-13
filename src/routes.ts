@@ -4,7 +4,7 @@ import type { Request, Response } from 'express';
 import { logError, logSecureInfo } from './felles/logger';
 import genererInterntVedtakHtml from './internt-vedtak/genererInterntVedtakHtml';
 import { InterntVedtak } from './internt-vedtak/typer/interntVedtak';
-import genererKjørelisteHtml from './kjøreliste/genererKjørelisteHtml';
+import { genererKjørelisteHtml } from './kjøreliste/genererKjørelisteHtml';
 import { Kjøreliste } from './kjøreliste/typer';
 import { FritekstbrevMedSignatur } from './klage/fritekst/dokumentApiBrev';
 import { lagFritekstBrevKlage } from './klage/fritekst/lagFritekstBrevKlage';
@@ -37,7 +37,7 @@ router.post('/soknad', async (req: Request, res: Response) => {
 router.post('/kjoreliste', async (req: Request, res: Response) => {
     const data: Kjøreliste = req.body as Kjøreliste;
     try {
-        const html = await genererKjørelisteHtml(data);
+        const html = genererKjørelisteHtml(data);
         res.setHeader('Content-Type', 'text/html; charset=utf-8');
         res.end(html);
     } catch (feil) {

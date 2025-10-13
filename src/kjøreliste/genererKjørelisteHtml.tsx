@@ -8,10 +8,11 @@ import { NavSvg } from '../felles/nav_svg';
 import { Dokumentasjon } from '../søknad/typer';
 
 const mapDag = (dag: Dag) => {
-    const harKjørtSvar = dag.harKjørt ? 'Ja' : 'Nei';
-    const parkeringsutgiftTekst = dag.parkeringsutgift
-        ? ` | ${dag.parkeringsutgift.tekst}: ${dag.parkeringsutgift.beløp}`
-        : '';
+    const harKjørtSvar = dag.harKjørt ? 'Ja' : '-';
+    const parkeringsutgiftTekst =
+        dag.harKjørt && dag.parkeringsutgift
+            ? ` | ${dag.parkeringsutgift.tekst}: ${dag.parkeringsutgift.beløp}`
+            : '';
 
     return (
         <div className={'dag'}>
@@ -34,10 +35,10 @@ const mapKjørelisteUker = (uker: Uke[]) => {
 const mapDokumentasjon = (dokumentasjon: Dokumentasjon[]) => {
     return (
         <div className={'level-2'}>
-            {dokumentasjon.map((d) => (
+            {dokumentasjon.map((dokumentasjon) => (
                 <>
-                    <h2>{d.label}</h2>
-                    {d.dokument.map((d) => (
+                    <h2>{dokumentasjon.label}</h2>
+                    {dokumentasjon.dokument.map((d) => (
                         <div className={'level-3'}>
                             <h3>{d.label}</h3>
                             <div>{d.labelSendtInnTidligere}</div>
@@ -50,8 +51,8 @@ const mapDokumentasjon = (dokumentasjon: Dokumentasjon[]) => {
     );
 };
 
-const genererKjørelisteHtml = async (data: Kjøreliste): Promise<string> => {
-    const asyncHtml = () => (
+export const genererKjørelisteHtml = (data: Kjøreliste): string => {
+    const html = (
         <html lang={HtmlLang.NB}>
             <head>
                 <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
@@ -88,7 +89,5 @@ const genererKjørelisteHtml = async (data: Kjøreliste): Promise<string> => {
         </html>
     );
 
-    return renderToStaticMarkup(asyncHtml());
+    return renderToStaticMarkup(html);
 };
-
-export default genererKjørelisteHtml;

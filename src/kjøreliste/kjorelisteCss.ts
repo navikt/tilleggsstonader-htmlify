@@ -73,10 +73,7 @@ h3 {
 
 
 .uke {
-    /*border-left: 4px solid #003366;
-    background: #fff;*/
     padding: 10px 15px;
-    /*margin-bottom: 12px;*/
 }
 
 .spm {
