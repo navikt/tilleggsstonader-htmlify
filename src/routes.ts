@@ -4,6 +4,8 @@ import type { Request, Response } from 'express';
 import { logError, logSecureInfo } from './felles/logger';
 import genererInterntVedtakHtml from './internt-vedtak/genererInterntVedtakHtml';
 import { InterntVedtak } from './internt-vedtak/typer/interntVedtak';
+import { genererKjørelisteHtml } from './kjøreliste/genererKjørelisteHtml';
+import { Kjøreliste } from './kjøreliste/typer';
 import { FritekstbrevMedSignatur } from './klage/fritekst/dokumentApiBrev';
 import { lagFritekstBrevKlage } from './klage/fritekst/lagFritekstBrevKlage';
 import { genererInterntVedtakKlage } from './klage/internt-vedtak/genererInterntVedtakKlage';
@@ -28,6 +30,22 @@ router.post('/soknad', async (req: Request, res: Response) => {
         logSecureInfo(`Feilet håndtering av ${JSON.stringify(data)}`, req, feil);
 
         res.status(500).send(`Generering av søknad feilet: ${error.message}`);
+        return;
+    }
+});
+
+router.post('/kjoreliste', async (req: Request, res: Response) => {
+    const data: Kjøreliste = req.body as Kjøreliste;
+    try {
+        const html = genererKjørelisteHtml(data);
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.end(html);
+    } catch (feil) {
+        const error = feil as Error;
+        logError(`Generering av dokument (pdf) feilet: Sjekk secure-logs`, req);
+        logSecureInfo(`Feilet håndtering av ${JSON.stringify(data)}`, req, feil);
+
+        res.status(500).send(`Generering av kjøreliste feilet: ${error.message}`);
         return;
     }
 });
