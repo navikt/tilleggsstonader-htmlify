@@ -2,6 +2,7 @@ export interface Beregningsresultat {
     tilsynBarn?: BeregningsresultatTilsynBarn[];
     læremidler?: BeregningsresultatLæremidler[];
     boutgifter?: BeregningsresultatBoutgifter[];
+    dagligReiseTso?: BeregningsresultatDagligReiseTso;
 }
 
 export interface BeregningsresultatTilsynBarn {
@@ -28,4 +29,20 @@ export interface BeregningsresultatBoutgifter {
     tom: string;
     antallMåneder: number;
     stønadsbeløp: number;
+}
+export interface BeregningsresultatDagligReiseTso {
+    offentligTransport: {
+        reiser: {
+            perioder: {
+                fom: string;
+                tom: string;
+                prisEnkeltbillett: number;
+                prisSyvdagersbillett: number;
+                pris30dagersbillett: number;
+                antallReisedagerPerUke: number;
+                beløp: number;
+                billettdetaljer: Record<string, number>;
+            }[];
+        }[];
+    };
 }

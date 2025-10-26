@@ -2,12 +2,16 @@ export enum Stønadstype {
     BARNETILSYN = 'BARNETILSYN',
     LÆREMIDLER = 'LÆREMIDLER',
     BOUTGIFTER = 'BOUTGIFTER',
+    DAGLIG_REISE_TSO = 'DAGLIG_REISE_TSO',
+    DAGLIG_REISE_TSR = 'DAGLIG_REISE_TSR',
 }
 
 const stønadstypeInterntVedtakTittel: Record<Stønadstype, string> = {
     BARNETILSYN: 'Tilsyn barn',
     LÆREMIDLER: 'Læremidler',
     BOUTGIFTER: 'Boutgifter',
+    DAGLIG_REISE_TSO: 'Daglig reise',
+    DAGLIG_REISE_TSR: 'Daglig reise',
 };
 
 export const tittelInterntVedtak = (stønadstype: Stønadstype): string => {
