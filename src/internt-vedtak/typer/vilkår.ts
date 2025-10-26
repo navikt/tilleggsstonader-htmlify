@@ -25,7 +25,7 @@ export enum Vilkårtype {
     UTGIFTER_OVERNATTING = 'UTGIFTER_OVERNATTING',
     LØPENDE_UTGIFTER_EN_BOLIG = 'LØPENDE_UTGIFTER_EN_BOLIG',
     LØPENDE_UTGIFTER_TO_BOLIGER = 'LØPENDE_UTGIFTER_TO_BOLIGER',
-    DAGLIG_REISE_OFFENTLIG_TRANSPORT = 'DAGLIG_REISE_OFFENTLIG_TRANSPORT',
+    DAGLIG_REISE = 'DAGLIG_REISE',
 }
 
 export const vilkårtypeTilTekst: Record<Vilkårtype, string> = {
@@ -33,7 +33,7 @@ export const vilkårtypeTilTekst: Record<Vilkårtype, string> = {
     LØPENDE_UTGIFTER_EN_BOLIG: 'Løpende utgifter én bolig',
     LØPENDE_UTGIFTER_TO_BOLIGER: 'Løpende utgifter to boliger',
     UTGIFTER_OVERNATTING: 'Utgifter til overnatting',
-    DAGLIG_REISE_OFFENTLIG_TRANSPORT: 'Daglig reise offentlig transport',
+    DAGLIG_REISE: 'Daglig reise',
 };
 
 export enum Vilkårsresultat {
