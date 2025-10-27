@@ -6,7 +6,7 @@ export enum Stønadstype {
     DAGLIG_REISE_TSR = 'DAGLIG_REISE_TSR',
 }
 
-const stønadstypeInterntVedtakTittel: Record<Stønadstype, string> = {
+export const stønadstypeTilTeXt: Record<Stønadstype, string> = {
     BARNETILSYN: 'Tilsyn barn',
     LÆREMIDLER: 'Læremidler',
     BOUTGIFTER: 'Boutgifter',
@@ -15,7 +15,7 @@ const stønadstypeInterntVedtakTittel: Record<Stønadstype, string> = {
 };
 
 export const tittelInterntVedtak = (stønadstype: Stønadstype): string => {
-    const tittel = stønadstypeInterntVedtakTittel[stønadstype];
+    const tittel = stønadstypeTilTeXt[stønadstype];
     if (!tittel) {
         throw Error(`Finner ikke stønadstype=${stønadstype}`);
     }
