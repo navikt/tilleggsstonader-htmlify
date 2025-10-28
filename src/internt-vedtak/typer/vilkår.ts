@@ -1,3 +1,5 @@
+import { tekstEllerFeil } from '../../felles/tekstutils';
+
 export interface Vilkår {
     resultat: Vilkårsresultat;
     type: Vilkårtype;
@@ -7,6 +9,30 @@ export interface Vilkår {
     tom?: string;
     utgift?: number;
     slettetKommentar?: string;
+    fakta?: VilkårFakta;
+}
+
+export type VilkårFakta = FaktaDagligReiseOffentligTransport | FaktaDagligReisePrivatBil;
+
+export interface FaktaDagligReiseOffentligTransport {
+    type: VilkårFaktaType.DAGLIG_REISE_OFFENTLIG_TRANSPORT;
+    reisedagerPerUke: number;
+    prisEnkelbillett?: number | null;
+    prisSyvdagersbillett?: number | null;
+    prisTrettidagersbillett?: number | null;
+}
+
+export interface FaktaDagligReisePrivatBil {
+    type: VilkårFaktaType.DAGLIG_REISE_PRIVAT_BIL;
+    reisedagerPerUke: number;
+    reiseavstandEnVei: number;
+    prisBompengerPerDag?: number | null;
+    prisFergekostandPerDag?: number | null;
+}
+
+export enum VilkårFaktaType {
+    DAGLIG_REISE_PRIVAT_BIL = 'DAGLIG_REISE_PRIVAT_BIL',
+    DAGLIG_REISE_OFFENTLIG_TRANSPORT = 'DAGLIG_REISE_OFFENTLIG_TRANSPORT',
 }
 
 export interface DelvilkårInternt {
@@ -19,6 +45,11 @@ export interface Vurdering {
     svar?: string;
     begrunnelse?: string;
 }
+
+export const vilkårFaktaTypeTilTeXt: Record<VilkårFaktaType, string> = {
+    DAGLIG_REISE_OFFENTLIG_TRANSPORT: 'Daglig reise offentlig transport',
+    DAGLIG_REISE_PRIVAT_BIL: 'daglig reise privat bil',
+};
 
 export enum Vilkårtype {
     PASS_BARN = 'PASS_BARN',
@@ -33,7 +64,7 @@ export const vilkårtypeTilTekst: Record<Vilkårtype, string> = {
     LØPENDE_UTGIFTER_EN_BOLIG: 'Løpende utgifter én bolig',
     LØPENDE_UTGIFTER_TO_BOLIGER: 'Løpende utgifter to boliger',
     UTGIFTER_OVERNATTING: 'Utgifter til overnatting',
-    DAGLIG_REISE: 'Vilkår om daglig reise offentlig transport',
+    DAGLIG_REISE: 'Vilkår om ',
 };
 
 export enum Vilkårsresultat {
@@ -54,4 +85,11 @@ export const resultatTilTekst: Record<Vilkårsresultat, string> = {
     IKKE_TATT_STILLING_TIL: 'Ikke tatt stilling til',
     SKAL_IKKE_VURDERES: 'Skal ikke vurderes',
     SLETTET: 'Slettet', // Denne metoden brukes til delvilkår, men delvilkår kan ikke slettes
+};
+
+export const vilkårTitle = (vilkår: Vilkår): string => {
+    if (vilkår.type === Vilkårtype.DAGLIG_REISE && vilkår.fakta?.type) {
+        return `Vilkår om ${vilkårFaktaTypeTilTeXt[vilkår.fakta.type] ?? 'ukjent type'}`;
+    }
+    return tekstEllerFeil(vilkårtypeTilTekst, vilkår.type) ?? 'Ukjent vilkår';
 };

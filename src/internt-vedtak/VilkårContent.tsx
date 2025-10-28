@@ -2,10 +2,11 @@ import React from 'react';
 
 import { NonBreakingDiv } from './felles';
 import {
+    vilkårTitle,
     resultatTilTekst,
     Vilkår,
+    VilkårFaktaType,
     Vilkårsresultat,
-    vilkårtypeTilTekst,
     Vurdering,
 } from './typer/vilkår';
 import { formaterNorskDato } from '../felles/datoFormat';
@@ -62,7 +63,7 @@ export const VilkårContent: React.FC<{
             const førsteVilkår = liste[0];
             return (
                 <NonBreakingDiv key={indexVilkår}>
-                    <h2>{tekstEllerFeil(vilkårtypeTilTekst, førsteVilkår.type)}</h2>
+                    <h2>{vilkårTitle(førsteVilkår)}</h2>
                     {førsteVilkår.fødselsdatoBarn && (
                         <div>
                             Barn med fødselsdato: {formaterNorskDato(førsteVilkår.fødselsdatoBarn)}
@@ -85,18 +86,26 @@ export const VilkårContent: React.FC<{
     </NonBreakingDiv>
 );
 
-const Delvilkår: React.FC<{ vilkår: Vilkår }> = ({ vilkår }) =>
-    vilkår.delvilkår.map((delvilkår, indexDelvilkår) => (
-        <React.Fragment key={indexDelvilkår}>
-            <NonBreakingDiv>
-                <strong>Delvilkår</strong>: {tekstEllerFeil(resultatTilTekst, delvilkår.resultat)}{' '}
-                <div className={'vilkårsresultat-ikon'}>
-                    <span style={{ paddingBottom: '20%' }}>{resultatIkon(delvilkår.resultat)}</span>
-                </div>
-            </NonBreakingDiv>
-            <Vurderinger vurderinger={delvilkår.vurderinger} />
-        </React.Fragment>
-    ));
+const Delvilkår: React.FC<{ vilkår: Vilkår }> = ({ vilkår }) => (
+    <>
+        {vilkår.delvilkår.map((delvilkår, indexDelvilkår) => (
+            <React.Fragment key={indexDelvilkår}>
+                <NonBreakingDiv>
+                    <strong>Delvilkår</strong>:{' '}
+                    {tekstEllerFeil(resultatTilTekst, delvilkår.resultat)}{' '}
+                    <div className={'vilkårsresultat-ikon'}>
+                        <span style={{ paddingBottom: '20%' }}>
+                            {resultatIkon(delvilkår.resultat)}
+                        </span>
+                    </div>
+                </NonBreakingDiv>
+                <Vurderinger vurderinger={delvilkår.vurderinger} />
+            </React.Fragment>
+        ))}
+
+        {vilkår.fakta && <Fakta fakta={vilkår.fakta} />}
+    </>
+);
 
 const Vurderinger: React.FC<{ vurderinger: Vurdering[] }> = ({ vurderinger }) =>
     vurderinger.map((vurdering, indexVurdering) => {
@@ -114,3 +123,44 @@ const Vurderinger: React.FC<{ vurderinger: Vurdering[] }> = ({ vurderinger }) =>
             </NonBreakingDiv>
         );
     });
+
+const Fakta: React.FC<{ fakta: Vilkår['fakta'] }> = ({ fakta }) => {
+    if (!fakta) return null;
+
+    switch (fakta.type) {
+        case VilkårFaktaType.DAGLIG_REISE_OFFENTLIG_TRANSPORT:
+            return (
+                <NonBreakingDiv className="fakta-section">
+                    <h4>Fakta Offentlig transport</h4>
+                    <div>Reisedager per uke: {fakta.reisedagerPerUke}</div>
+                    {fakta.prisEnkelbillett != null && (
+                        <div>Pris enkelbillett: {fakta.prisEnkelbillett} kr</div>
+                    )}
+                    {fakta.prisSyvdagersbillett != null && (
+                        <div>Pris 7-dagersbillett: {fakta.prisSyvdagersbillett} kr</div>
+                    )}
+                    {fakta.prisTrettidagersbillett != null && (
+                        <div>Pris 30-dagersbillett: {fakta.prisTrettidagersbillett} kr</div>
+                    )}
+                </NonBreakingDiv>
+            );
+
+        case VilkårFaktaType.DAGLIG_REISE_PRIVAT_BIL:
+            return (
+                <NonBreakingDiv className="fakta-section">
+                    <h4>Fakta – Privat bil</h4>
+                    <div>Reisedager per uke: {fakta.reisedagerPerUke}</div>
+                    <div>Reiseavstand én vei: {fakta.reiseavstandEnVei} km</div>
+                    {fakta.prisBompengerPerDag != null && (
+                        <div>Bompenger per dag: {fakta.prisBompengerPerDag} kr</div>
+                    )}
+                    {fakta.prisFergekostandPerDag != null && (
+                        <div>Fergekostnad per dag: {fakta.prisFergekostandPerDag} kr</div>
+                    )}
+                </NonBreakingDiv>
+            );
+
+        default:
+            return null;
+    }
+};
