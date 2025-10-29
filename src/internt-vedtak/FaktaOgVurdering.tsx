@@ -3,11 +3,11 @@ import React from 'react';
 import { FaktaOgVurderinger, studienivåTilTekst } from './typer/vilkårperiode';
 import { Vurdering } from './vilkårperioder/Vurdering';
 import { notNullOrUndefined } from '../felles/nullOrUndefined';
-import { Stønadstype, stønadstypeTilTeXt } from '../felles/stønadstype';
+import { Stønadstype, stønadstypeTekstTilSmåBokstav } from '../felles/stønadstype';
 
 export const FaktaOgVurdering: React.FC<{
     faktaOgVurderinger: FaktaOgVurderinger;
-    stønadType: Stønadstype;
+    stønadstype: Stønadstype;
 }> = ({
     faktaOgVurderinger: {
         aktivitetsdager,
@@ -20,9 +20,8 @@ export const FaktaOgVurdering: React.FC<{
         lønnet,
         aldersvilkår,
     },
-    stønadType,
+    stønadstype,
 }) => {
-    const stønadTittel = stønadstypeTilTeXt[stønadType];
     return (
         <>
             {notNullOrUndefined(aktivitetsdager) && <div>Aktivitetsdager: {aktivitetsdager}</div>}
@@ -31,7 +30,10 @@ export const FaktaOgVurdering: React.FC<{
                 <div>Studienivå: {studienivåTilTekst[studienivå]}</div>
             )}
             <Vurdering navn={'Mottar bruker ordinær lønn i tiltaket?'} vurdering={lønnet} />
-            <Vurdering navn={`Har bruker utgifter til ${stønadTittel}?`} vurdering={harUtgifter} />
+            <Vurdering
+                navn={`Har bruker utgifter til ${stønadstypeTekstTilSmåBokstav(stønadstype)}?`}
+                vurdering={harUtgifter}
+            />
             <Vurdering
                 navn={'Har bruker rett til utsstyrsstipend?'}
                 vurdering={harRettTilUtstyrsstipend}

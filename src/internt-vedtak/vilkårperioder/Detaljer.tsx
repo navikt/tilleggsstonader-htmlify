@@ -10,8 +10,8 @@ import { kildeVilkårperiodeTilTekst, Vilkårperiode } from '../typer/vilkårper
 
 export const Detaljer: React.FC<{
     periode: Vilkårperiode;
-    stønadType: Stønadstype;
-}> = ({ periode, stønadType }) => {
+    stønadstype: Stønadstype;
+}> = ({ periode, stønadstype }) => {
     return (
         <div className={'vilkaarperiode-rad-content'}>
             <div>Periode: {formaterPeriode(periode)}</div>
@@ -20,7 +20,7 @@ export const Detaljer: React.FC<{
             <KommentarSlettet data={periode} />
             <FaktaOgVurdering
                 faktaOgVurderinger={periode.faktaOgVurderinger}
-                stønadType={stønadType}
+                stønadstype={stønadstype}
             />
         </div>
     );

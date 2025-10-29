@@ -14,6 +14,11 @@ export const stønadstypeTilTeXt: Record<Stønadstype, string> = {
     DAGLIG_REISE_TSR: 'Daglig reise',
 };
 
+export function stønadstypeTekstTilSmåBokstav(stønadstype: Stønadstype): string {
+    const stønadstypeTilText = stønadstypeTilTeXt[stønadstype];
+    return stønadstypeTilText.toLowerCase();
+}
+
 export const tittelInterntVedtak = (stønadstype: Stønadstype): string => {
     const tittel = stønadstypeTilTeXt[stønadstype];
     if (!tittel) {

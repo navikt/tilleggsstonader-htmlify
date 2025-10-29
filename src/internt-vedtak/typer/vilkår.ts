@@ -35,6 +35,11 @@ export enum VilkårFaktaType {
     DAGLIG_REISE_OFFENTLIG_TRANSPORT = 'DAGLIG_REISE_OFFENTLIG_TRANSPORT',
 }
 
+export const vilkårFaktaTypeTilTeXt: Record<VilkårFaktaType, string> = {
+    DAGLIG_REISE_OFFENTLIG_TRANSPORT: 'Offentlig transport',
+    DAGLIG_REISE_PRIVAT_BIL: 'Privat bil',
+};
+
 export interface DelvilkårInternt {
     resultat: Vilkårsresultat;
     vurderinger: Vurdering[];
@@ -45,11 +50,6 @@ export interface Vurdering {
     svar?: string;
     begrunnelse?: string;
 }
-
-export const vilkårFaktaTypeTilTeXt: Record<VilkårFaktaType, string> = {
-    DAGLIG_REISE_OFFENTLIG_TRANSPORT: 'Daglig reise offentlig transport',
-    DAGLIG_REISE_PRIVAT_BIL: 'daglig reise privat bil',
-};
 
 export enum Vilkårtype {
     PASS_BARN = 'PASS_BARN',
@@ -64,7 +64,7 @@ export const vilkårtypeTilTekst: Record<Vilkårtype, string> = {
     LØPENDE_UTGIFTER_EN_BOLIG: 'Løpende utgifter én bolig',
     LØPENDE_UTGIFTER_TO_BOLIGER: 'Løpende utgifter to boliger',
     UTGIFTER_OVERNATTING: 'Utgifter til overnatting',
-    DAGLIG_REISE: 'Vilkår om ',
+    DAGLIG_REISE: 'Vilkår om daglig reise',
 };
 
 export enum Vilkårsresultat {
@@ -89,7 +89,7 @@ export const resultatTilTekst: Record<Vilkårsresultat, string> = {
 
 export const vilkårTitle = (vilkår: Vilkår): string => {
     if (vilkår.type === Vilkårtype.DAGLIG_REISE && vilkår.fakta?.type) {
-        return `Vilkår om ${vilkårFaktaTypeTilTeXt[vilkår.fakta.type] ?? 'ukjent type'}`;
+        return `Vilkår om daglig reise ${vilkårFaktaTypeTilTeXt[vilkår.fakta.type] ?? 'ukjent type'}`;
     }
     return tekstEllerFeil(vilkårtypeTilTekst, vilkår.type) ?? 'Ukjent vilkår';
 };

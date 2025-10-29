@@ -2,12 +2,13 @@ import React from 'react';
 
 import { NonBreakingDiv } from './felles';
 import {
-    vilkårTitle,
     resultatTilTekst,
     Vilkår,
     VilkårFaktaType,
     Vilkårsresultat,
     Vurdering,
+    vilkårtypeTilTekst,
+    vilkårFaktaTypeTilTeXt,
 } from './typer/vilkår';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { tekstEllerFeil } from '../felles/tekstutils';
@@ -63,7 +64,7 @@ export const VilkårContent: React.FC<{
             const førsteVilkår = liste[0];
             return (
                 <NonBreakingDiv key={indexVilkår}>
-                    <h2>{vilkårTitle(førsteVilkår)}</h2>
+                    <h2>{tekstEllerFeil(vilkårtypeTilTekst, førsteVilkår.type)}</h2>
                     {førsteVilkår.fødselsdatoBarn && (
                         <div>
                             Barn med fødselsdato: {formaterNorskDato(førsteVilkår.fødselsdatoBarn)}
@@ -76,8 +77,12 @@ export const VilkårContent: React.FC<{
                                 {tekstEllerFeil(resultatTilTekst, vilkår.resultat)}
                             </h4>
                             <div>Periode: {formaterDatoMedUtgift(vilkår)}</div>
+                            {vilkår.fakta && (
+                                <p>Type: {vilkårFaktaTypeTilTeXt[vilkår.fakta?.type]}</p>
+                            )}
                             <KommentarSlettet data={vilkår} />
                             <Delvilkår vilkår={vilkår} />
+                            {vilkår.fakta && <Fakta fakta={vilkår.fakta} />}
                         </NonBreakingDiv>
                     ))}
                 </NonBreakingDiv>
@@ -102,8 +107,6 @@ const Delvilkår: React.FC<{ vilkår: Vilkår }> = ({ vilkår }) => (
                 <Vurderinger vurderinger={delvilkår.vurderinger} />
             </React.Fragment>
         ))}
-
-        {vilkår.fakta && <Fakta fakta={vilkår.fakta} />}
     </>
 );
 
@@ -130,32 +133,34 @@ const Fakta: React.FC<{ fakta: Vilkår['fakta'] }> = ({ fakta }) => {
     switch (fakta.type) {
         case VilkårFaktaType.DAGLIG_REISE_OFFENTLIG_TRANSPORT:
             return (
-                <NonBreakingDiv className="fakta-section">
-                    <h4>Fakta Offentlig transport</h4>
-                    <div>Reisedager per uke: {fakta.reisedagerPerUke}</div>
-                    {fakta.prisEnkelbillett != null && (
-                        <div>Pris enkelbillett: {fakta.prisEnkelbillett} kr</div>
-                    )}
-                    {fakta.prisSyvdagersbillett != null && (
-                        <div>Pris 7-dagersbillett: {fakta.prisSyvdagersbillett} kr</div>
-                    )}
-                    {fakta.prisTrettidagersbillett != null && (
-                        <div>Pris 30-dagersbillett: {fakta.prisTrettidagersbillett} kr</div>
-                    )}
+                <NonBreakingDiv>
+                    <h4 style={{ marginBottom: '0.3em' }}>Fakta offentlig transport</h4>
+                    <div className="fakta-vilkår">
+                        <p>Reisedager per uke: {fakta.reisedagerPerUke}</p>
+                        {fakta.prisEnkelbillett != null && (
+                            <p>Pris enkelbillett: {fakta.prisEnkelbillett} kr</p>
+                        )}
+                        {fakta.prisSyvdagersbillett != null && (
+                            <p>Pris 7-dagersbillett: {fakta.prisSyvdagersbillett} kr</p>
+                        )}
+                        {fakta.prisTrettidagersbillett != null && (
+                            <p>Pris 30-dagersbillett: {fakta.prisTrettidagersbillett} kr</p>
+                        )}
+                    </div>
                 </NonBreakingDiv>
             );
 
         case VilkårFaktaType.DAGLIG_REISE_PRIVAT_BIL:
             return (
-                <NonBreakingDiv className="fakta-section">
-                    <h4>Fakta – Privat bil</h4>
-                    <div>Reisedager per uke: {fakta.reisedagerPerUke}</div>
-                    <div>Reiseavstand én vei: {fakta.reiseavstandEnVei} km</div>
+                <NonBreakingDiv>
+                    <h4 style={{ marginBottom: '0.3em' }}>Fakta privat bil</h4>
+                    <p>Reisedager per uke: {fakta.reisedagerPerUke}</p>
+                    <p>Reiseavstand én vei: {fakta.reiseavstandEnVei} km</p>
                     {fakta.prisBompengerPerDag != null && (
-                        <div>Bompenger per dag: {fakta.prisBompengerPerDag} kr</div>
+                        <p>Bompenger per dag: {fakta.prisBompengerPerDag} kr</p>
                     )}
                     {fakta.prisFergekostandPerDag != null && (
-                        <div>Fergekostnad per dag: {fakta.prisFergekostandPerDag} kr</div>
+                        <p>Fergekostnad per dag: {fakta.prisFergekostandPerDag} kr</p>
                     )}
                 </NonBreakingDiv>
             );

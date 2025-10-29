@@ -35,12 +35,12 @@ const asyncHtml = (data: InterntVedtak) => (
             <VilkårperioderContent
                 navn={'Målgrupper'}
                 perioder={data.målgrupper}
-                stønadType={data.behandling.stønadstype}
+                stønadstype={data.behandling.stønadstype}
             />
             <VilkårperioderContent
                 navn={'Aktiviteter'}
                 perioder={data.aktiviteter}
-                stønadType={data.behandling.stønadstype}
+                stønadstype={data.behandling.stønadstype}
             />
             <VedtaksperioderContent perioder={data.vedtaksperioder} />
             <VilkårContent vilkårsett={data.vilkår} />
