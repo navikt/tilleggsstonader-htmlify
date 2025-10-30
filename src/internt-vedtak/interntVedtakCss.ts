@@ -80,6 +80,11 @@ body {
     padding:0;
 }
 
+.fakta-vilkår p {
+    margin: 0;
+    height: 1.3;
+}
+
 @page {
     @bottom-right {
         content: 'Side ' counter(page) ' av ' counter(pages);
@@ -144,4 +149,5 @@ td, th {
     text-align: left;
     padding: 3px 10px;
 }
+
 `;

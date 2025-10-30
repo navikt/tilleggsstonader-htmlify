@@ -4,9 +4,11 @@ import { NonBreakingDiv } from './felles';
 import {
     resultatTilTekst,
     Vilkår,
+    VilkårFaktaType,
     Vilkårsresultat,
-    vilkårtypeTilTekst,
     Vurdering,
+    vilkårtypeTilTekst,
+    vilkårFaktaTypeTilTeXt,
 } from './typer/vilkår';
 import { formaterNorskDato } from '../felles/datoFormat';
 import { tekstEllerFeil } from '../felles/tekstutils';
@@ -75,8 +77,12 @@ export const VilkårContent: React.FC<{
                                 {tekstEllerFeil(resultatTilTekst, vilkår.resultat)}
                             </h4>
                             <div>Periode: {formaterDatoMedUtgift(vilkår)}</div>
+                            {vilkår.fakta && (
+                                <p>Type: {vilkårFaktaTypeTilTeXt[vilkår.fakta?.type]}</p>
+                            )}
                             <KommentarSlettet data={vilkår} />
                             <Delvilkår vilkår={vilkår} />
+                            {vilkår.fakta && <Fakta fakta={vilkår.fakta} />}
                         </NonBreakingDiv>
                     ))}
                 </NonBreakingDiv>
@@ -85,18 +91,24 @@ export const VilkårContent: React.FC<{
     </NonBreakingDiv>
 );
 
-const Delvilkår: React.FC<{ vilkår: Vilkår }> = ({ vilkår }) =>
-    vilkår.delvilkår.map((delvilkår, indexDelvilkår) => (
-        <React.Fragment key={indexDelvilkår}>
-            <NonBreakingDiv>
-                <strong>Delvilkår</strong>: {tekstEllerFeil(resultatTilTekst, delvilkår.resultat)}{' '}
-                <div className={'vilkårsresultat-ikon'}>
-                    <span style={{ paddingBottom: '20%' }}>{resultatIkon(delvilkår.resultat)}</span>
-                </div>
-            </NonBreakingDiv>
-            <Vurderinger vurderinger={delvilkår.vurderinger} />
-        </React.Fragment>
-    ));
+const Delvilkår: React.FC<{ vilkår: Vilkår }> = ({ vilkår }) => (
+    <>
+        {vilkår.delvilkår.map((delvilkår, indexDelvilkår) => (
+            <React.Fragment key={indexDelvilkår}>
+                <NonBreakingDiv>
+                    <strong>Delvilkår</strong>:{' '}
+                    {tekstEllerFeil(resultatTilTekst, delvilkår.resultat)}{' '}
+                    <div className={'vilkårsresultat-ikon'}>
+                        <span style={{ paddingBottom: '20%' }}>
+                            {resultatIkon(delvilkår.resultat)}
+                        </span>
+                    </div>
+                </NonBreakingDiv>
+                <Vurderinger vurderinger={delvilkår.vurderinger} />
+            </React.Fragment>
+        ))}
+    </>
+);
 
 const Vurderinger: React.FC<{ vurderinger: Vurdering[] }> = ({ vurderinger }) =>
     vurderinger.map((vurdering, indexVurdering) => {
@@ -114,3 +126,46 @@ const Vurderinger: React.FC<{ vurderinger: Vurdering[] }> = ({ vurderinger }) =>
             </NonBreakingDiv>
         );
     });
+
+const Fakta: React.FC<{ fakta: Vilkår['fakta'] }> = ({ fakta }) => {
+    if (!fakta) return null;
+
+    switch (fakta.type) {
+        case VilkårFaktaType.DAGLIG_REISE_OFFENTLIG_TRANSPORT:
+            return (
+                <NonBreakingDiv>
+                    <h4 style={{ marginBottom: '0.3em' }}>Fakta offentlig transport</h4>
+                    <div className="fakta-vilkår">
+                        <p>Reisedager per uke: {fakta.reisedagerPerUke}</p>
+                        {fakta.prisEnkelbillett != null && (
+                            <p>Pris enkelbillett: {fakta.prisEnkelbillett} kr</p>
+                        )}
+                        {fakta.prisSyvdagersbillett != null && (
+                            <p>Pris 7-dagersbillett: {fakta.prisSyvdagersbillett} kr</p>
+                        )}
+                        {fakta.prisTrettidagersbillett != null && (
+                            <p>Pris 30-dagersbillett: {fakta.prisTrettidagersbillett} kr</p>
+                        )}
+                    </div>
+                </NonBreakingDiv>
+            );
+
+        case VilkårFaktaType.DAGLIG_REISE_PRIVAT_BIL:
+            return (
+                <NonBreakingDiv>
+                    <h4 style={{ marginBottom: '0.3em' }}>Fakta privat bil</h4>
+                    <p>Reisedager per uke: {fakta.reisedagerPerUke}</p>
+                    <p>Reiseavstand én vei: {fakta.reiseavstandEnVei} km</p>
+                    {fakta.prisBompengerPerDag != null && (
+                        <p>Bompenger per dag: {fakta.prisBompengerPerDag} kr</p>
+                    )}
+                    {fakta.prisFergekostandPerDag != null && (
+                        <p>Fergekostnad per dag: {fakta.prisFergekostandPerDag} kr</p>
+                    )}
+                </NonBreakingDiv>
+            );
+
+        default:
+            return null;
+    }
+};
