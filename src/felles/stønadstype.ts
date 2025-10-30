@@ -6,21 +6,16 @@ export enum Stønadstype {
     DAGLIG_REISE_TSR = 'DAGLIG_REISE_TSR',
 }
 
-export const stønadstypeTilTeXt: Record<Stønadstype, string> = {
-    BARNETILSYN: 'Tilsyn barn',
-    LÆREMIDLER: 'Læremidler',
-    BOUTGIFTER: 'Boutgifter',
-    DAGLIG_REISE_TSO: 'Daglig reise',
-    DAGLIG_REISE_TSR: 'Daglig reise',
+export const stønadstypeTilTekst: Record<Stønadstype, string> = {
+    BARNETILSYN: 'tilsyn barn',
+    LÆREMIDLER: 'læremidler',
+    BOUTGIFTER: 'boutgifter',
+    DAGLIG_REISE_TSO: 'daglig reise',
+    DAGLIG_REISE_TSR: 'daglig reise',
 };
 
-export function stønadstypeTekstTilSmåBokstav(stønadstype: Stønadstype): string {
-    const stønadstypeTilText = stønadstypeTilTeXt[stønadstype];
-    return stønadstypeTilText.toLowerCase();
-}
-
 export const tittelInterntVedtak = (stønadstype: Stønadstype): string => {
-    const tittel = stønadstypeTilTeXt[stønadstype];
+    const tittel = stønadstypeTilTekst[stønadstype];
     if (!tittel) {
         throw Error(`Finner ikke stønadstype=${stønadstype}`);
     }
