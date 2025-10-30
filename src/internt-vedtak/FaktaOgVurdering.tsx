@@ -3,7 +3,7 @@ import React from 'react';
 import { FaktaOgVurderinger, studienivåTilTekst } from './typer/vilkårperiode';
 import { Vurdering } from './vilkårperioder/Vurdering';
 import { notNullOrUndefined } from '../felles/nullOrUndefined';
-import { Stønadstype, stønadstypeTekstTilSmåBokstav } from '../felles/stønadstype';
+import { Stønadstype } from '../felles/stønadstype';
 
 export const FaktaOgVurdering: React.FC<{
     faktaOgVurderinger: FaktaOgVurderinger;
@@ -29,21 +29,32 @@ export const FaktaOgVurdering: React.FC<{
             {notNullOrUndefined(studienivå) && (
                 <div>Studienivå: {studienivåTilTekst[studienivå]}</div>
             )}
-            <Vurdering navn={'Mottar bruker ordinær lønn i tiltaket?'} vurdering={lønnet} />
+            <Vurdering tittel={'Mottar bruker ordinær lønn i tiltaket?'} vurdering={lønnet} />
             <Vurdering
-                navn={`Har bruker utgifter til ${stønadstypeTekstTilSmåBokstav(stønadstype)}?`}
+                tittel={mapStønadstypeTilHarUtgifterTekst(stønadstype)}
                 vurdering={harUtgifter}
             />
             <Vurdering
-                navn={'Har bruker rett til utsstyrsstipend?'}
+                tittel={'Har bruker rett til utsstyrsstipend?'}
                 vurdering={harRettTilUtstyrsstipend}
             />
-            <Vurdering navn={'Medlemskap i folketrygden?'} vurdering={medlemskap} />
+            <Vurdering tittel={'Medlemskap i folketrygden?'} vurdering={medlemskap} />
             <Vurdering
-                navn={'Dekkes utgiftene av annet regelverk?'}
+                tittel={'Dekkes utgiftene av annet regelverk?'}
                 vurdering={utgifterDekketAvAnnetRegelverk}
             />
-            <Vurdering navn={'Aldersvilkår'} vurdering={aldersvilkår} />
+            <Vurdering tittel={'Aldersvilkår'} vurdering={aldersvilkår} />
         </>
     );
 };
+
+function mapStønadstypeTilHarUtgifterTekst(stønadstype: Stønadstype) {
+    switch (stønadstype) {
+        case Stønadstype.LÆREMIDLER:
+            return 'Har bruker utgifter til læremidler?';
+        case Stønadstype.DAGLIG_REISE_TSO:
+            return 'Har bruker nødvendige utgifter til daglig reise?';
+        default:
+            return `FEIL: Skal ikke være harUtgifter-vurdering for ${stønadstype}`;
+    }
+}

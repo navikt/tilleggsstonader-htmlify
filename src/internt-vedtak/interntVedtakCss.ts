@@ -82,7 +82,7 @@ body {
 
 .fakta-vilkår p {
     margin: 0;
-    height: 1.3;
+    height: 1.3rem;
 }
 
 @page {
