@@ -170,7 +170,7 @@ const DagligReiseTsoBeregningsresultatTabell: React.FC<{
                                     const count7d =
                                         periode.billettdetaljer['SYVDAGERSBILLETT'] ?? 0;
                                     const count30d =
-                                        periode.billettdetaljer['30DAGERSBILLETT'] ?? 0;
+                                        periode.billettdetaljer['TRETTIDAGERSBILLETT'] ?? 0;
 
                                     return (
                                         <tr key={periodeIndex}>
