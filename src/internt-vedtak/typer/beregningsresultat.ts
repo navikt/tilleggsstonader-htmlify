@@ -41,8 +41,10 @@ export interface BeregningsresultatDagligReiseTso {
                 pris30dagersbillett: number;
                 antallReisedagerPerUke: number;
                 beløp: number;
-                billettdetaljer: Record<string, number>;
+                billettdetaljer: Record<BillettdetaljerEnum, number>;
             }[];
         }[];
     };
 }
+
+export type BillettdetaljerEnum = 'ENKELTBILLETT' | 'SYVDAGERSBILLETT' | 'TRETTIDAGERSBILLETT';
