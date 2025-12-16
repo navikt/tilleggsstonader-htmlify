@@ -42,6 +42,7 @@ export interface BeregningsresultatDagligReiseTso {
                 antallReisedagerPerUke: number;
                 beløp: number;
                 billettdetaljer: Record<BillettdetaljerEnum, number>;
+                brukersNavKontor?: string;
             }[];
         }[];
     };
