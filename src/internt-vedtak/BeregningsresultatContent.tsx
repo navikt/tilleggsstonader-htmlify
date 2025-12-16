@@ -138,6 +138,7 @@ const DagligReiseTsoBeregningsresultatTabell: React.FC<{
         <>
             {reiser.map((reise, reiseIndex) => {
                 const perioder = reise.perioder ?? [];
+                const medBrukersNavKontor = reise.perioder.some((p) => p.brukersNavKontor);
 
                 if (perioder.length === 0) {
                     return (
@@ -151,7 +152,7 @@ const DagligReiseTsoBeregningsresultatTabell: React.FC<{
                 return (
                     <div key={reiseIndex} style={{ marginBottom: '2rem' }}>
                         <h3>Reise {reiseIndex + 1}</h3>
-                        <table>
+                        <table style={{ fontSize: '90%' }}>
                             <thead>
                                 <tr>
                                     <th>Fom</th>
@@ -161,6 +162,7 @@ const DagligReiseTsoBeregningsresultatTabell: React.FC<{
                                     <th>30-dagersbillett</th>
                                     <th>Antall reisedager per uke</th>
                                     <th>Beløp</th>
+                                    {medBrukersNavKontor && <th>Brukers NAV-kontor</th>}
                                 </tr>
                             </thead>
                             <tbody>
@@ -196,6 +198,9 @@ const DagligReiseTsoBeregningsresultatTabell: React.FC<{
                                             </td>
                                             <td>{periode.antallReisedagerPerUke}</td>
                                             <td>{periode.beløp}</td>
+                                            {medBrukersNavKontor && (
+                                                <td>{periode.brukersNavKontor}</td>
+                                            )}
                                         </tr>
                                     );
                                 })}
