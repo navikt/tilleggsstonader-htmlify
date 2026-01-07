@@ -6,6 +6,7 @@ export enum MålgruppeType {
     NEDSATT_ARBEIDSEVNE = 'NEDSATT_ARBEIDSEVNE',
     UFØRETRYGD = 'UFØRETRYGD',
     SYKEPENGER_100_PROSENT = 'SYKEPENGER_100_PROSENT',
+    INNSATT_I_FENGSEL = 'INNSATT_I_FENGSEL',
     INGEN_MÅLGRUPPE = 'INGEN_MÅLGRUPPE',
 }
 
@@ -13,6 +14,7 @@ export enum FaktiskMålgruppeType {
     NEDSATT_ARBEIDSEVNE = 'NEDSATT_ARBEIDSEVNE',
     ENSLIG_FORSØRGER = 'ENSLIG_FORSØRGER',
     GJENLEVENDE = 'GJENLEVENDE',
+    ARBEIDSSØKER = 'ARBEIDSSØKER',
 }
 
 export enum AktivitetType {
@@ -30,6 +32,7 @@ export const målgruppeTilTekst: Record<MålgruppeType, string> = {
     OVERGANGSSTØNAD: 'Overgangsstønad',
     UFØRETRYGD: 'Uføretrygd',
     SYKEPENGER_100_PROSENT: '100% sykepenger',
+    INNSATT_I_FENGSEL: 'Innsatt i fengsel',
     INGEN_MÅLGRUPPE: 'Ingen målgruppe',
 };
 
@@ -37,6 +40,7 @@ export const faktiskMålgruppeTilTekst: Record<FaktiskMålgruppeType, string> = 
     NEDSATT_ARBEIDSEVNE: 'Nedsatt arbeidsevne',
     ENSLIG_FORSØRGER: 'Enslig forsørger',
     GJENLEVENDE: 'Gjenlevende',
+    ARBEIDSSØKER: 'Arbeidssøker',
 };
 
 export const aktivitetTilTekst: Record<AktivitetType, string> = {
