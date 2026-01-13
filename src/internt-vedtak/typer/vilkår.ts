@@ -64,7 +64,7 @@ export const vilkårtypeTilTekst: Record<Vilkårtype, string> = {
     LØPENDE_UTGIFTER_EN_BOLIG: 'Løpende utgifter én bolig',
     LØPENDE_UTGIFTER_TO_BOLIGER: 'Løpende utgifter to boliger',
     UTGIFTER_OVERNATTING: 'Utgifter til overnatting',
-    DAGLIG_REISE: 'Vilkår om daglig reise',
+    DAGLIG_REISE: 'Vilkår om daglige reiser',
 };
 
 export enum Vilkårsresultat {
@@ -89,7 +89,7 @@ export const resultatTilTekst: Record<Vilkårsresultat, string> = {
 
 export const vilkårTitle = (vilkår: Vilkår): string => {
     if (vilkår.type === Vilkårtype.DAGLIG_REISE && vilkår.fakta?.type) {
-        return `Vilkår om daglig reise ${vilkårFaktaTypeTilTeXt[vilkår.fakta.type] ?? 'ukjent type'}`;
+        return `Vilkår om daglige reiser ${vilkårFaktaTypeTilTeXt[vilkår.fakta.type] ?? 'ukjent type'}`;
     }
     return tekstEllerFeil(vilkårtypeTilTekst, vilkår.type) ?? 'Ukjent vilkår';
 };
