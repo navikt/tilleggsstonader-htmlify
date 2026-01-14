@@ -11,7 +11,7 @@ const VedtaksperiodeRad: React.FC<{ periode: Vedtaksperiode }> = ({ periode }) =
         <tr>
             <td>{tekstEllerFeil(faktiskMålgruppeTilTekst, periode.målgruppe)}</td>
             <td>{tekstEllerFeil(aktivitetTilTekst, periode.aktivitet)}</td>
-            {periode.tilltaksvariant && <td>{periode.tilltaksvariant}</td>}
+            {periode.tiltaksvariant && <td>{periode.tiltaksvariant}</td>}
             <td>{formaterNorskDato(periode.fom)}</td>
             <td>{formaterNorskDato(periode.tom)}</td>
         </tr>
@@ -29,7 +29,7 @@ const VedtaksperiodeContent: React.FC<{
                     <tr>
                         <th>Målgruppe</th>
                         <th>Aktivitet</th>
-                        {finnesTiltaksvariant(perioder) && <th>Tilltaksvariant</th>}
+                        {finnesTiltaksvariant(perioder) && <th>Tiltaksvariant</th>}
                         <th>Fra</th>
                         <th>Til</th>
                     </tr>
@@ -45,6 +45,6 @@ const VedtaksperiodeContent: React.FC<{
 };
 
 const finnesTiltaksvariant = (perioder: Vedtaksperiode[]) =>
-    perioder.some((periode) => periode.tilltaksvariant);
+    perioder.some((periode) => periode.tiltaksvariant);
 
 export default VedtaksperiodeContent;
