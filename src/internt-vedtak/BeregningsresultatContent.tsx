@@ -137,17 +137,29 @@ const DagligReiseTsoBeregningsresultatTabell: React.FC<{
     return (
         <>
             {reiser.map((reise, reiseIndex) => {
-                const perioder = reise.perioder ?? [];
+                const relevantePerioder = (reise.perioder ?? []).filter(
+                    (periode) => !periode.fraTidligereVedtak
+                );
                 const medBrukersNavKontor = reise.perioder.some((p) => p.brukersNavKontor);
 
-                if (perioder.length === 0) {
-                    return (
-                        <div key={reiseIndex}>
-                            <h3>Reise {reiseIndex + 1}</h3>
-                            <div>Ingen perioder funnet</div>
-                        </div>
-                    );
+                if (relevantePerioder.length === 0) {
+                    return null;
                 }
+
+                const hasEnkeltbillett = relevantePerioder.some(
+                    (p) => (p.billettdetaljer['ENKELTBILLETT'] ?? 0) > 0
+                );
+                const has7dagersbillett = relevantePerioder.some(
+                    (p) => (p.billettdetaljer['SYVDAGERSBILLETT'] ?? 0) > 0
+                );
+                const has30dagersbillett = relevantePerioder.some(
+                    (p) => (p.billettdetaljer['TRETTIDAGERSBILLETT'] ?? 0) > 0
+                );
+                const hasAntallReisedager = relevantePerioder.some(
+                    (p) => p.antallReisedager !== undefined
+                );
+
+                const antallDager = relevantePerioder[0]?.antallReisedagerPerUke;
 
                 return (
                     <div key={reiseIndex} style={{ marginBottom: '2rem' }}>
@@ -159,16 +171,16 @@ const DagligReiseTsoBeregningsresultatTabell: React.FC<{
                                 <tr>
                                     <th>Fom</th>
                                     <th>Tom</th>
-                                    <th>Enkeltbillett</th>
-                                    <th>7-dagersbillett</th>
-                                    <th>30-dagersbillett</th>
-                                    <th>Antall reisedager per uke</th>
+                                    {hasEnkeltbillett && <th>Enkeltb.</th>}
+                                    {has7dagersbillett && <th>7-dagersb.</th>}
+                                    {has30dagersbillett && <th>30-dagersb.</th>}
+                                    {hasAntallReisedager && <th>Reisedager</th>}
                                     <th>Beløp</th>
                                     {medBrukersNavKontor && <th>Brukers NAV-kontor</th>}
                                 </tr>
                             </thead>
                             <tbody>
-                                {perioder.map((periode, periodeIndex) => {
+                                {relevantePerioder.map((periode, periodeIndex) => {
                                     const countEnkelt =
                                         periode.billettdetaljer['ENKELTBILLETT'] ?? 0;
                                     const count7d =
@@ -180,25 +192,33 @@ const DagligReiseTsoBeregningsresultatTabell: React.FC<{
                                         <tr key={periodeIndex}>
                                             <td>{formaterNorskDato(periode.fom)}</td>
                                             <td>{formaterNorskDato(periode.tom)}</td>
-                                            <td>
-                                                {renderBillettPris(
-                                                    countEnkelt,
-                                                    periode.prisEnkeltbillett
-                                                )}
-                                            </td>
-                                            <td>
-                                                {renderBillettPris(
-                                                    count7d,
-                                                    periode.prisSyvdagersbillett
-                                                )}
-                                            </td>
-                                            <td>
-                                                {renderBillettPris(
-                                                    count30d,
-                                                    periode.pris30dagersbillett
-                                                )}
-                                            </td>
-                                            <td>{periode.antallReisedagerPerUke}</td>
+                                            {hasEnkeltbillett && (
+                                                <td>
+                                                    {renderBillettPris(
+                                                        countEnkelt,
+                                                        periode.prisEnkeltbillett
+                                                    )}
+                                                </td>
+                                            )}
+                                            {has7dagersbillett && (
+                                                <td>
+                                                    {renderBillettPris(
+                                                        count7d,
+                                                        periode.prisSyvdagersbillett
+                                                    )}
+                                                </td>
+                                            )}
+                                            {has30dagersbillett && (
+                                                <td>
+                                                    {renderBillettPris(
+                                                        count30d,
+                                                        periode.pris30dagersbillett
+                                                    )}
+                                                </td>
+                                            )}
+                                            {hasAntallReisedager && (
+                                                <td>{periode.antallReisedager}</td>
+                                            )}
                                             <td>{periode.beløp}</td>
                                             {medBrukersNavKontor && (
                                                 <td>{periode.brukersNavKontor}</td>
