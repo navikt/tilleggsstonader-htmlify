@@ -10,8 +10,8 @@ export const stønadstypeTilTekst: Record<Stønadstype, string> = {
     BARNETILSYN: 'tilsyn barn',
     LÆREMIDLER: 'læremidler',
     BOUTGIFTER: 'boutgifter',
-    DAGLIG_REISE_TSO: 'daglig reise',
-    DAGLIG_REISE_TSR: 'daglig reise',
+    DAGLIG_REISE_TSO: 'daglige reiser',
+    DAGLIG_REISE_TSR: 'daglige reiser',
 };
 
 export const tittelInterntVedtak = (stønadstype: Stønadstype): string => {
