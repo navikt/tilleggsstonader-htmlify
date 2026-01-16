@@ -77,6 +77,7 @@ export const VilkårContent: React.FC<{
                                 {tekstEllerFeil(resultatTilTekst, vilkår.resultat)}
                             </h4>
                             <div>Periode: {formaterDatoMedUtgift(vilkår)}</div>
+                            {vilkår.adresse && <p>Adresse aktivitet: {vilkår.adresse}</p>}
                             {vilkår.fakta && (
                                 <p>Type: {vilkårFaktaTypeTilTeXt[vilkår.fakta?.type]}</p>
                             )}

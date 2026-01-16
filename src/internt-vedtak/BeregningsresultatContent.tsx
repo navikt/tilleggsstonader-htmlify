@@ -151,7 +151,9 @@ const DagligReiseTsoBeregningsresultatTabell: React.FC<{
 
                 return (
                     <div key={reiseIndex} style={{ marginBottom: '2rem' }}>
-                        <h3>Reise {reiseIndex + 1}</h3>
+                        <h3>
+                            {reise.adresse} - Offentlig transport - {antallDager} dager/uke
+                        </h3>
                         <table style={{ fontSize: '90%' }}>
                             <thead>
                                 <tr>

@@ -33,6 +33,8 @@ export interface BeregningsresultatBoutgifter {
 export interface BeregningsresultatDagligReiseTso {
     offentligTransport: {
         reiser: {
+            reiseId: string;
+            adresse: string;
             perioder: {
                 fom: string;
                 tom: string;
