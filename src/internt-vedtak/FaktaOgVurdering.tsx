@@ -54,6 +54,8 @@ function mapStønadstypeTilHarUtgifterTekst(stønadstype: Stønadstype) {
             return 'Har bruker utgifter til læremidler?';
         case Stønadstype.DAGLIG_REISE_TSO:
             return 'Har bruker nødvendige utgifter til daglige reiser?';
+        case Stønadstype.DAGLIG_REISE_TSR:
+            return 'Har bruker nødvendige utgifter til daglige reiser?';
         default:
             return `FEIL: Skal ikke være harUtgifter-vurdering for ${stønadstype}`;
     }
