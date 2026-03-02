@@ -1,8 +1,11 @@
-FROM gcr.io/distroless/nodejs24-debian12
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-slim
 
-ADD ./build /app
+ENV NODE_ENV=production
+ENV NPM_CONFIG_CACHE=/tmp
 
 WORKDIR /app
 
+COPY build/ .
+
 EXPOSE 3000
-CMD ["--experimental-modules", "--es-module-specifier-resolution=node", "index.js"]
+CMD ["index.js"]
