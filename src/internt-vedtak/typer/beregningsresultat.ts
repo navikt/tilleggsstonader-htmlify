@@ -2,7 +2,7 @@ export interface Beregningsresultat {
     tilsynBarn?: BeregningsresultatTilsynBarn[];
     læremidler?: BeregningsresultatLæremidler[];
     boutgifter?: BeregningsresultatBoutgifter[];
-    dagligReiseTso?: BeregningsresultatDagligReiseTso;
+    dagligReise?: BeregningsresultatDagligReise;
 }
 
 export interface BeregningsresultatTilsynBarn {
@@ -30,22 +30,49 @@ export interface BeregningsresultatBoutgifter {
     antallMåneder: number;
     stønadsbeløp: number;
 }
-export interface BeregningsresultatDagligReiseTso {
+
+export interface BeregningsresultatDagligReise {
     offentligTransport: {
-        reiser: {
-            perioder: {
-                fom: string;
-                tom: string;
-                prisEnkeltbillett: number;
-                prisSyvdagersbillett: number;
-                pris30dagersbillett: number;
-                antallReisedagerPerUke: number;
-                beløp: number;
-                billettdetaljer: Record<BillettdetaljerEnum, number>;
-                brukersNavKontor?: string;
-            }[];
-        }[];
+        reiser: OffentligTransportReise[];
     };
+    privatBil: {
+        reiser: PrivatBilReise[];
+    };
+}
+
+export interface OffentligTransportReise {
+    perioder: OffentligTransportPeriode[];
+}
+
+export interface OffentligTransportPeriode {
+    fom: string;
+    tom: string;
+    prisEnkeltbillett: number;
+    prisSyvdagersbillett: number;
+    pris30dagersbillett: number;
+    antallReisedagerPerUke: number;
+    beløp: number;
+    billettdetaljer: Record<BillettdetaljerEnum, number>;
+    brukersNavKontor?: string;
+}
+
+export interface PrivatBilReise {
+    perioder: PrivatBilPeriode[];
+}
+
+export interface PrivatBilPeriode {
+    fom: string;
+    tom: string;
+    utbetalingsdato: string;
+    grunnlag: {
+        dager: {
+            dato: string;
+            parkeringskostnad: number;
+            stønadsbeløpForDag: number;
+        }[];
+        dagsatsUtenParkering: number;
+    };
+    stønadsbeløp: number;
 }
 
 export type BillettdetaljerEnum = 'ENKELTBILLETT' | 'SYVDAGERSBILLETT' | 'TRETTIDAGERSBILLETT';

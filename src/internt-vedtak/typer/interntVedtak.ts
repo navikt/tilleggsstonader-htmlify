@@ -1,4 +1,5 @@
 import { Beregningsresultat } from './beregningsresultat';
+import { RammevedtakPrivatBil } from './rammevedtakPrivatBil';
 import { Søknad } from './søknad';
 import { Vedtak } from './vedtak';
 import { Vedtaksperiode } from './vedtaksperiode';
@@ -15,6 +16,7 @@ export interface InterntVedtak {
     vilkår: Vilkår[];
     beregningsresultat?: Beregningsresultat;
     vedtak: Vedtak;
+    rammevedtakPrivatBil?: RammevedtakPrivatBil;
 }
 
 export interface Behandlinginfo {
