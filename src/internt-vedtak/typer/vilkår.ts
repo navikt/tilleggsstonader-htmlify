@@ -8,6 +8,7 @@ export interface Vilkår {
     fom?: string;
     tom?: string;
     utgift?: number;
+    adresse?: string;
     slettetKommentar?: string;
     fakta?: VilkårFakta;
 }

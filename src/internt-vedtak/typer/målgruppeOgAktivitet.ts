@@ -8,6 +8,8 @@ export enum MålgruppeType {
     SYKEPENGER_100_PROSENT = 'SYKEPENGER_100_PROSENT',
     INNSATT_I_FENGSEL = 'INNSATT_I_FENGSEL',
     INGEN_MÅLGRUPPE = 'INGEN_MÅLGRUPPE',
+    TILTAKSPENGER = 'TILTAKSPENGER',
+    KVALIFISERINGSSTØNAD = 'KVALIFISERINGSSTØNAD',
 }
 
 export enum FaktiskMålgruppeType {
@@ -34,6 +36,8 @@ export const målgruppeTilTekst: Record<MålgruppeType, string> = {
     SYKEPENGER_100_PROSENT: '100% sykepenger',
     INNSATT_I_FENGSEL: 'Innsatt i fengsel',
     INGEN_MÅLGRUPPE: 'Ingen målgruppe',
+    TILTAKSPENGER: 'Tiltakspenger',
+    KVALIFISERINGSSTØNAD: 'Kvalifiseringsstønad',
 };
 
 export const faktiskMålgruppeTilTekst: Record<FaktiskMålgruppeType, string> = {

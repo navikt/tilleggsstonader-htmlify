@@ -13,6 +13,7 @@ export interface Vilkårperiode extends Periode {
     resultat: ResultatVilkårperiode;
     begrunnelse?: string;
     slettetKommentar?: string;
+    tiltaksvariant?: string;
 }
 
 export interface FaktaOgVurderinger {

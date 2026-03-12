@@ -28,8 +28,6 @@ spec:
     autoInstrumentation:
       enabled: true
       runtime: nodejs
-  secureLogs:
-    enabled: true
   ingresses:
       - https://tilleggsstonader-htmlify.intern.dev.nav.no
   accessPolicy:

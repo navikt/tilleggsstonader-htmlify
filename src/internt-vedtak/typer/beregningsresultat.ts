@@ -41,6 +41,8 @@ export interface BeregningsresultatDagligReise {
 }
 
 export interface OffentligTransportReise {
+    reiseId: string;
+    adresse: string;
     perioder: OffentligTransportPeriode[];
 }
 
@@ -51,9 +53,11 @@ export interface OffentligTransportPeriode {
     prisSyvdagersbillett: number;
     pris30dagersbillett: number;
     antallReisedagerPerUke: number;
+    antallReisedager: number;
     beløp: number;
     billettdetaljer: Record<BillettdetaljerEnum, number>;
     brukersNavKontor?: string;
+    fraTidligereVedtak: boolean;
 }
 
 export interface PrivatBilReise {

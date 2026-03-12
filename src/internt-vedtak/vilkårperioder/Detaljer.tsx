@@ -16,6 +16,7 @@ export const Detaljer: React.FC<{
         <div className={'vilkaarperiode-rad-content'}>
             <div>Periode: {formaterPeriode(periode)}</div>
             <div>Kilde: {tekstEllerFeil(kildeVilkårperiodeTilTekst, periode.kilde)}</div>
+            {periode.tiltaksvariant && <div>Tiltaksvariant: {periode.tiltaksvariant}</div>}
             <Begrunnelse begrunnelse={periode.begrunnelse} />
             <KommentarSlettet data={periode} />
             <FaktaOgVurdering
