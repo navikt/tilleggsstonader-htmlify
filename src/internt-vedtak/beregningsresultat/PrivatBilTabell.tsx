@@ -6,6 +6,10 @@ import { PrivatBilReise } from '../typer/beregningsresultat';
 export const PrivatBilTabell: React.FC<{
     privatBilReiser: PrivatBilReise[];
 }> = ({ privatBilReiser }) => {
+    const medBrukersNavKontor = privatBilReiser.some((reise) =>
+        reise.perioder.some((periode) => periode.brukersNavKontor)
+    );
+
     return (
         <>
             {privatBilReiser.map((reise, reiseIndex) => {
@@ -17,8 +21,8 @@ export const PrivatBilTabell: React.FC<{
                                 <tr>
                                     <th>Fom</th>
                                     <th>Tom</th>
-                                    <th>Utbetalingsdato</th>
                                     <th>Stønadsbeløp</th>
+                                    {medBrukersNavKontor && <th>Brukers NAV-kontor</th>}
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,11 +31,13 @@ export const PrivatBilTabell: React.FC<{
                                         <tr style={{ backgroundColor: '#f0f0f0' }}>
                                             <td>{formaterNorskDato(periode.fom)}</td>
                                             <td>{formaterNorskDato(periode.tom)}</td>
-                                            <td>{formaterNorskDato(periode.utbetalingsdato)}</td>
                                             <td>
                                                 {periode.stønadsbeløp}
                                                 {' kr'}
                                             </td>
+                                            {medBrukersNavKontor && (
+                                                <td>{periode.brukersNavKontor}</td>
+                                            )}
                                         </tr>
                                         {periode.grunnlag?.dager &&
                                             periode.grunnlag.dager.length > 0 && (

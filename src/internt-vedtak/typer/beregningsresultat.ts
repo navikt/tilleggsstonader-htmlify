@@ -67,7 +67,6 @@ export interface PrivatBilReise {
 export interface PrivatBilPeriode {
     fom: string;
     tom: string;
-    utbetalingsdato: string;
     grunnlag: {
         dager: {
             dato: string;
@@ -77,6 +76,7 @@ export interface PrivatBilPeriode {
         dagsatsUtenParkering: number;
     };
     stønadsbeløp: number;
+    brukersNavKontor?: string;
 }
 
 export type BillettdetaljerEnum = 'ENKELTBILLETT' | 'SYVDAGERSBILLETT' | 'TRETTIDAGERSBILLETT';
