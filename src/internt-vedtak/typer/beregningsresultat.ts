@@ -61,6 +61,9 @@ export interface OffentligTransportPeriode {
 }
 
 export interface PrivatBilReise {
+    reiseId: string;
+    adresse: string;
+    reisedagerPerUke: number;
     perioder: PrivatBilPeriode[];
 }
 

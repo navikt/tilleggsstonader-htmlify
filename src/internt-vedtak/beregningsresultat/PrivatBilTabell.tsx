@@ -15,7 +15,9 @@ export const PrivatBilTabell: React.FC<{
             {privatBilReiser.map((reise, reiseIndex) => {
                 return (
                     <div key={reiseIndex} style={{ marginBottom: '2rem' }}>
-                        <h3>Reise {reiseIndex + 1} - Privat bil</h3>
+                        <h3>
+                            {reise.adresse} - Privat bil - {reise.reisedagerPerUke} dager/uke
+                        </h3>
                         <table style={{ fontSize: '90%', width: '100%' }}>
                             <thead>
                                 <tr>

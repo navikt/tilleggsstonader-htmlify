@@ -45,9 +45,9 @@ const asyncHtml = (data: InterntVedtak) => (
             />
             <VedtaksperioderContent perioder={data.vedtaksperioder} />
             <VilkårContent vilkårsett={data.vilkår} />
+            <RammevedtakContent rammevedtak={data.rammevedtakPrivatBil} />
             <BeregningsresultatContent beregningsresultat={data.beregningsresultat} />
             <VedtakContent vedtak={data.vedtak} />
-            <RammevedtakContent rammevedtak={data.rammevedtakPrivatBil} />
         </body>
     </html>
 );
