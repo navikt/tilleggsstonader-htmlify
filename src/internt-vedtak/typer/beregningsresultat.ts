@@ -2,7 +2,7 @@ export interface Beregningsresultat {
     tilsynBarn?: BeregningsresultatTilsynBarn[];
     læremidler?: BeregningsresultatLæremidler[];
     boutgifter?: BeregningsresultatBoutgifter[];
-    dagligReiseTso?: BeregningsresultatDagligReiseTso;
+    dagligReise?: BeregningsresultatDagligReise;
 }
 
 export interface BeregningsresultatTilsynBarn {
@@ -30,26 +30,56 @@ export interface BeregningsresultatBoutgifter {
     antallMåneder: number;
     stønadsbeløp: number;
 }
-export interface BeregningsresultatDagligReiseTso {
+
+export interface BeregningsresultatDagligReise {
     offentligTransport: {
-        reiser: {
-            reiseId: string;
-            adresse: string;
-            perioder: {
-                fom: string;
-                tom: string;
-                prisEnkeltbillett: number;
-                prisSyvdagersbillett: number;
-                pris30dagersbillett: number;
-                antallReisedagerPerUke: number;
-                antallReisedager: number;
-                beløp: number;
-                billettdetaljer: Record<BillettdetaljerEnum, number>;
-                brukersNavKontor?: string;
-                fraTidligereVedtak: boolean;
-            }[];
-        }[];
+        reiser: OffentligTransportReise[];
     };
+    privatBil: {
+        reiser: PrivatBilReise[];
+    };
+}
+
+export interface OffentligTransportReise {
+    reiseId: string;
+    adresse: string;
+    perioder: OffentligTransportPeriode[];
+}
+
+export interface OffentligTransportPeriode {
+    fom: string;
+    tom: string;
+    prisEnkeltbillett: number;
+    prisSyvdagersbillett: number;
+    pris30dagersbillett: number;
+    antallReisedagerPerUke: number;
+    antallReisedager: number;
+    beløp: number;
+    billettdetaljer: Record<BillettdetaljerEnum, number>;
+    brukersNavKontor?: string;
+    fraTidligereVedtak: boolean;
+}
+
+export interface PrivatBilReise {
+    reiseId: string;
+    adresse: string;
+    reisedagerPerUke: number;
+    perioder: PrivatBilPeriode[];
+}
+
+export interface PrivatBilPeriode {
+    fom: string;
+    tom: string;
+    grunnlag: {
+        dager: {
+            dato: string;
+            parkeringskostnad: number;
+            stønadsbeløpForDag: number;
+        }[];
+        dagsatsUtenParkering: number;
+    };
+    stønadsbeløp: number;
+    brukersNavKontor?: string;
 }
 
 export type BillettdetaljerEnum = 'ENKELTBILLETT' | 'SYVDAGERSBILLETT' | 'TRETTIDAGERSBILLETT';

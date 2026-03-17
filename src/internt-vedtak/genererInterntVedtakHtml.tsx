@@ -3,8 +3,9 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import Behandling from './Behandling';
-import { BeregningsresultatContent } from './BeregningsresultatContent';
+import { BeregningsresultatContent } from './beregningsresultat/BeregningsresultatContent';
 import interntVedtakCss from './interntVedtakCss';
+import { RammevedtakContent } from './RammevedtakContent';
 import Søknadsinformasjon from './Søknadsinformasjon';
 import { InterntVedtak } from './typer/interntVedtak';
 import { VedtakContent } from './VedtakContent';
@@ -44,6 +45,7 @@ const asyncHtml = (data: InterntVedtak) => (
             />
             <VedtaksperioderContent perioder={data.vedtaksperioder} />
             <VilkårContent vilkårsett={data.vilkår} />
+            <RammevedtakContent rammevedtak={data.rammevedtakPrivatBil} />
             <BeregningsresultatContent beregningsresultat={data.beregningsresultat} />
             <VedtakContent vedtak={data.vedtak} />
         </body>

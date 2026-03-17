@@ -1,142 +1,15 @@
-import React from 'react';
+import { formaterNorskDato } from '../../felles/datoFormat';
+import { OffentligTransportReise } from '../typer/beregningsresultat';
 
-import { NonBreakingDiv } from './felles';
-import {
-    Beregningsresultat,
-    BeregningsresultatBoutgifter,
-    BeregningsresultatDagligReiseTso,
-    BeregningsresultatLæremidler,
-    BeregningsresultatTilsynBarn,
-} from './typer/beregningsresultat';
-import { formaterNorskDato } from '../felles/datoFormat';
-
-export const BeregningsresultatContent: React.FC<{
-    beregningsresultat?: Beregningsresultat;
-}> = ({ beregningsresultat }) => {
-    if (!beregningsresultat) {
-        return null;
-    }
-    return (
-        <NonBreakingDiv>
-            <h2>Beregning</h2>
-            {beregningsresultat.tilsynBarn && (
-                <TilsynBarnBeregningsresultatTabell
-                    beregningsresultatTilsynBarn={beregningsresultat.tilsynBarn}
-                />
-            )}
-            {beregningsresultat.læremidler && (
-                <LæremidlerBeregningsresultatTabell
-                    beregningsresultatLæremidler={beregningsresultat.læremidler}
-                />
-            )}
-            {beregningsresultat.boutgifter && (
-                <BoutgifterBeregningsresultatTabell
-                    beregningsresultatBoutgifter={beregningsresultat.boutgifter}
-                />
-            )}
-            {beregningsresultat.dagligReiseTso && (
-                <DagligReiseTsoBeregningsresultatTabell
-                    beregningsresultatDagligReiseTso={beregningsresultat.dagligReiseTso}
-                />
-            )}
-        </NonBreakingDiv>
-    );
-};
-
-const TilsynBarnBeregningsresultatTabell: React.FC<{
-    beregningsresultatTilsynBarn: BeregningsresultatTilsynBarn[];
-}> = ({ beregningsresultatTilsynBarn }) => (
-    <table>
-        <thead>
-            <tr>
-                <th>Periode</th>
-                <th>Barn</th>
-                <th>Månedlige utgifter</th>
-                <th>Dagsats</th>
-                <th>Stønadsbeløp</th>
-            </tr>
-        </thead>
-        <tbody>
-            {beregningsresultatTilsynBarn.map((beregningsresultat, index) => (
-                <tr key={index}>
-                    <td>{beregningsresultat.grunnlag.måned}</td>
-                    <td>{beregningsresultat.grunnlag.antallBarn}</td>
-                    <td>{beregningsresultat.grunnlag.utgifterTotal}</td>
-                    <td>{beregningsresultat.dagsats}</td>
-                    <td>{beregningsresultat.månedsbeløp}</td>
-                </tr>
-            ))}
-        </tbody>
-    </table>
-);
-
-const LæremidlerBeregningsresultatTabell: React.FC<{
-    beregningsresultatLæremidler: BeregningsresultatLæremidler[];
-}> = ({ beregningsresultatLæremidler }) => (
-    <table>
-        <thead>
-            <tr>
-                <th>Fom</th>
-                <th>Tom</th>
-                <th>Ant. månder</th>
-                <th>Månedsbeløp</th>
-                <th>Stønadsbeløp</th>
-                <th>Utbetalingsdato</th>
-            </tr>
-        </thead>
-        <tbody>
-            {beregningsresultatLæremidler.map((beregningsresultat, index) => (
-                <tr key={index}>
-                    <td>{beregningsresultat.fom}</td>
-                    <td>{beregningsresultat.tom}</td>
-                    <td>{beregningsresultat.antallMåneder}</td>
-                    <td>{beregningsresultat.stønadsbeløpPerMåned}</td>
-                    <td>{beregningsresultat.stønadsbeløpForPeriode}</td>
-                    <td>{beregningsresultat.utbetalingsdato}</td>
-                </tr>
-            ))}
-        </tbody>
-    </table>
-);
-
-const BoutgifterBeregningsresultatTabell: React.FC<{
-    beregningsresultatBoutgifter: BeregningsresultatBoutgifter[];
-}> = ({ beregningsresultatBoutgifter }) => (
-    <table>
-        <thead>
-            <tr>
-                <th>Fom</th>
-                <th>Tom</th>
-                <th>Stønadsbeløp</th>
-            </tr>
-        </thead>
-        <tbody>
-            {beregningsresultatBoutgifter.map((beregningsresultat, index) => (
-                <tr key={index}>
-                    <td>{formaterNorskDato(beregningsresultat.fom)}</td>
-                    <td>{formaterNorskDato(beregningsresultat.tom)}</td>
-                    <td>{beregningsresultat.stønadsbeløp}</td>
-                </tr>
-            ))}
-        </tbody>
-    </table>
-);
-
-const DagligReiseTsoBeregningsresultatTabell: React.FC<{
-    beregningsresultatDagligReiseTso: BeregningsresultatDagligReiseTso;
-}> = ({ beregningsresultatDagligReiseTso }) => {
-    const reiser = beregningsresultatDagligReiseTso.offentligTransport?.reiser ?? [];
-
-    if (reiser.length === 0) {
-        return <div>Ingen reiser funnet</div>;
-    }
-
+export const OffentligTransportTabell: React.FC<{
+    offentligTransportReiser: OffentligTransportReise[];
+}> = ({ offentligTransportReiser }) => {
     const renderBillettPris = (count: number, pris: number) =>
         count > 0 ? `${count} × ${pris} = ${count * pris}` : '-';
 
     return (
         <>
-            {reiser.map((reise, reiseIndex) => {
+            {offentligTransportReiser.map((reise, reiseIndex) => {
                 const relevantePerioder = (reise.perioder ?? []).filter(
                     (periode) => !periode.fraTidligereVedtak
                 );
