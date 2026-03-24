@@ -21,8 +21,8 @@ export interface BeregningsgrunnlagForReiseMedPrivatBil {
 }
 
 export interface Ekstrakostnader {
-    bompengerEnVei?: number;
-    fergekostnadEnVei: number;
+    bompengerPerDag?: number;
+    fergekostnadPerDag: number;
 }
 export interface SatsForPeriodePrivatBil {
     fom: string;

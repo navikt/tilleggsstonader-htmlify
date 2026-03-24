@@ -53,11 +53,11 @@ export const RammevedtakContent: React.FC<{ rammevedtak: RammevedtakPrivatBil | 
                                     {' kr'}
                                 </td>
                                 <td>
-                                    {reise.grunnlag.ekstrakostnader.bompengerEnVei}
+                                    {reise.grunnlag.ekstrakostnader.bompengerPerDag}
                                     {' kr'}
                                 </td>
                                 <td>
-                                    {reise.grunnlag.ekstrakostnader.bompengerEnVei}
+                                    {reise.grunnlag.ekstrakostnader.fergekostnadPerDag}
                                     {' kr'}
                                 </td>
                                 <td>
