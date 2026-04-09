@@ -28,12 +28,12 @@ export interface Delperiode {
 
 export interface Ekstrakostnader {
     bompengerPerDag?: number;
-    fergekostnadPerDag: number;
+    fergekostnadPerDag?: number;
 }
 export interface SatsForPeriodePrivatBil {
     fom: string;
     tom: string;
-    satsBekreftetVedVedtakstidspunkt: boolean;
     kilometersats: number;
     dagsatsUtenParkering: number;
+    satsBekreftetVedVedtakstidspunkt: boolean;
 }
