@@ -13,11 +13,17 @@ export interface RammeForReiseMedPrivatBil {
 export interface BeregningsgrunnlagForReiseMedPrivatBil {
     fom: string;
     tom: string;
-    reisedagerPerUke: number;
+    delperioder: Delperiode[];
     reiseavstandEnVei: number;
-    ekstrakostnader: Ekstrakostnader;
-    satser: SatsForPeriodePrivatBil[];
     vedtaksperioder: Vedtaksperiode[];
+}
+
+export interface Delperiode {
+    fom: string;
+    tom: string;
+    satser: SatsForPeriodePrivatBil[];
+    reisedagerPerUke: number;
+    ekstrakostnader: Ekstrakostnader;
 }
 
 export interface Ekstrakostnader {
