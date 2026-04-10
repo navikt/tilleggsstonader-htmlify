@@ -26,6 +26,7 @@ const mapKjørelisteUker = (uker: Uke[]) => {
     return uker.map((uke) => (
         <div className={'uke'}>
             <h2>{uke.ukeLabel}</h2>
+            <div className={'label'}>{uke.reisedagerLabel}</div>
             <div className={'label'}>{uke.spørsmål}</div>
             {uke.dager.map((dag) => mapDag(dag))}
         </div>
