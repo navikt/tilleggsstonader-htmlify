@@ -11,6 +11,7 @@ export interface Kjøreliste {
 
 export interface Uke {
     ukeLabel: string;
+    reisedagerLabel: string;
     spørsmål: string;
     dager: Dag[];
 }
