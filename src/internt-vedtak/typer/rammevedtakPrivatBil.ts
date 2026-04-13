@@ -13,21 +13,27 @@ export interface RammeForReiseMedPrivatBil {
 export interface BeregningsgrunnlagForReiseMedPrivatBil {
     fom: string;
     tom: string;
-    reisedagerPerUke: number;
+    delperioder: Delperiode[];
     reiseavstandEnVei: number;
-    ekstrakostnader: Ekstrakostnader;
-    satser: SatsForPeriodePrivatBil[];
     vedtaksperioder: Vedtaksperiode[];
+}
+
+export interface Delperiode {
+    fom: string;
+    tom: string;
+    satser: SatsForPeriodePrivatBil[];
+    reisedagerPerUke: number;
+    ekstrakostnader: Ekstrakostnader;
 }
 
 export interface Ekstrakostnader {
     bompengerPerDag?: number;
-    fergekostnadPerDag: number;
+    fergekostnadPerDag?: number;
 }
 export interface SatsForPeriodePrivatBil {
     fom: string;
     tom: string;
-    satsBekreftetVedVedtakstidspunkt: boolean;
     kilometersats: number;
     dagsatsUtenParkering: number;
+    satsBekreftetVedVedtakstidspunkt: boolean;
 }

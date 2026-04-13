@@ -10,6 +10,10 @@ export const RammevedtakContent: React.FC<{ rammevedtak: RammevedtakPrivatBil | 
         return null;
     }
 
+    if (rammevedtak.reiser.length === 0) {
+        return null;
+    }
+
     return (
         <>
             <h2>Rammevedtak kjøring med privat bil</h2>
@@ -39,35 +43,37 @@ export const RammevedtakContent: React.FC<{ rammevedtak: RammevedtakPrivatBil | 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr key={reise.reiseId}>
-                                <td>{reise.grunnlag.reisedagerPerUke}</td>
-                                <td>
-                                    {reise.grunnlag.reiseavstandEnVei}
-                                    {' km'}
-                                </td>
-                                <td>
-                                    {
-                                        reise.grunnlag.satser[reise.grunnlag.satser.length - 1]
-                                            .kilometersats
-                                    }
-                                    {' kr'}
-                                </td>
-                                <td>
-                                    {reise.grunnlag.ekstrakostnader.bompengerPerDag}
-                                    {' kr'}
-                                </td>
-                                <td>
-                                    {reise.grunnlag.ekstrakostnader.fergekostnadPerDag}
-                                    {' kr'}
-                                </td>
-                                <td>
-                                    {
-                                        reise.grunnlag.satser[reise.grunnlag.satser.length - 1]
-                                            .dagsatsUtenParkering
-                                    }
-                                    {' kr'}
-                                </td>
-                            </tr>
+                            {reise.grunnlag.delperioder.map((delperiode) => (
+                                <tr key={reise.reiseId}>
+                                    <td>{delperiode.reisedagerPerUke}</td>
+                                    <td>
+                                        {reise.grunnlag.reiseavstandEnVei}
+                                        {' km'}
+                                    </td>
+                                    <td>
+                                        {
+                                            delperiode.satser[delperiode.satser.length - 1]
+                                                .kilometersats
+                                        }
+                                        {' kr'}
+                                    </td>
+                                    <td>
+                                        {delperiode.ekstrakostnader.bompengerPerDag}
+                                        {' kr'}
+                                    </td>
+                                    <td>
+                                        {delperiode.ekstrakostnader.fergekostnadPerDag}
+                                        {' kr'}
+                                    </td>
+                                    <td>
+                                        {
+                                            delperiode.satser[delperiode.satser.length - 1]
+                                                .dagsatsUtenParkering
+                                        }
+                                        {' kr'}
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
