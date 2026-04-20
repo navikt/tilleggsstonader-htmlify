@@ -42,6 +42,7 @@ export enum ÅrsakBehandling {
     SATSENDRING = 'SATSENDRING',
     MANUELT_OPPRETTET = 'MANUELT_OPPRETTET',
     KJØRELISTE = 'KJØRELISTE',
+    OMGJØRING_ETTER_KLAGE = 'OMGJØRING_ETTER_KLAGE',
 }
 
 export const årsakBehandlingTilTekst: Record<ÅrsakBehandling, string> = {
@@ -53,6 +54,7 @@ export const årsakBehandlingTilTekst: Record<ÅrsakBehandling, string> = {
     SATSENDRING: 'Satsendring',
     MANUELT_OPPRETTET: 'Manuelt opprettet',
     KJØRELISTE: 'Kjøreliste',
+    OMGJØRING_ETTER_KLAGE: 'Omgjøring etter klage',
 };
 
 export enum ResultatBehandling {
