@@ -11,3 +11,12 @@ export const tekstEllerFeil = <T extends string>(
     }
     return undefined;
 };
+
+const harTallverdi = (verdi: number | undefined | null | string): verdi is number =>
+    verdi !== undefined && verdi !== null;
+
+const tallMedTusenSkille = (verdi?: number): string | undefined =>
+    harTallverdi(verdi) ? Number(verdi).toLocaleString('no-NO', { currency: 'NOK' }) : undefined;
+
+export const kronerMedTusenSkilleEllerStrek = (tall: number | undefined): string =>
+    tallMedTusenSkille(tall) ? `${tallMedTusenSkille(tall)} kr` : '-';
