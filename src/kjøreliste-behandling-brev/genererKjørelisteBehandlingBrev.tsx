@@ -6,6 +6,7 @@ import { KjørelisteBehandlingBrevData } from './typer';
 import { HtmlLang } from '../felles/HtmlLang';
 import { Avslutning } from '../komponenter/Avslutning';
 import { Brevhode } from '../komponenter/Brevhode';
+import { Signatur } from '../komponenter/Signatur';
 
 export const genererKjørelisteBehandlingBrev = (data: KjørelisteBehandlingBrevData): string => {
     const html = (
@@ -27,6 +28,10 @@ export const genererKjørelisteBehandlingBrev = (data: KjørelisteBehandlingBrev
                 />
                 <Innhold data={data} />
                 <Avslutning />
+                <Signatur
+                    enhet={data.behandlendeEnhet}
+                    saksbehandlersignatur={data.saksbehandlersignatur}
+                />
             </body>
         </html>
     );
