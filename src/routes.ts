@@ -6,6 +6,8 @@ import genererInterntVedtakHtml from './internt-vedtak/genererInterntVedtakHtml'
 import { InterntVedtak } from './internt-vedtak/typer/interntVedtak';
 import { genererKjørelisteHtml } from './kjøreliste/genererKjørelisteHtml';
 import { Kjøreliste } from './kjøreliste/typer';
+import { genererKjørelisteBehandlingBrev } from './kjøreliste-behandling-brev/genererKjørelisteBehandlingBrev';
+import { KjørelisteBehandlingBrevData } from './kjøreliste-behandling-brev/typer';
 import { FritekstbrevMedSignatur } from './klage/fritekst/dokumentApiBrev';
 import { lagFritekstBrevKlage } from './klage/fritekst/lagFritekstBrevKlage';
 import { genererInterntVedtakKlage } from './klage/internt-vedtak/genererInterntVedtakKlage';
@@ -38,6 +40,22 @@ router.post('/kjoreliste', async (req: Request, res: Response) => {
     const data: Kjøreliste = req.body as Kjøreliste;
     try {
         const html = genererKjørelisteHtml(data);
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.end(html);
+    } catch (feil) {
+        const error = feil as Error;
+        logError(`Generering av dokument (pdf) feilet: Sjekk secure-logs`, req);
+        logSecureInfo(`Feilet håndtering av ${JSON.stringify(data)}`, req, feil);
+
+        res.status(500).send(`Generering av kjøreliste feilet: ${error.message}`);
+        return;
+    }
+});
+
+router.post('/kjoreliste-behandling-brev', async (req: Request, res: Response) => {
+    const data = req.body as KjørelisteBehandlingBrevData;
+    try {
+        const html = genererKjørelisteBehandlingBrev(data);
         res.setHeader('Content-Type', 'text/html; charset=utf-8');
         res.end(html);
     } catch (feil) {
