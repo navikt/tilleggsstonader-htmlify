@@ -12,8 +12,8 @@ export const BeregningsresultatTabell: React.FC<{
                     <th>Uke</th>
                     <th>Periode</th>
                     <th>Antall dager som dekkes</th>
-                    <th>Totale bompengekostnad</th>
-                    <th>Totale fergekostnad</th>
+                    <th>Totale bompengekostnader</th>
+                    <th>Totale fergekostnader</th>
                     <th>Totale parkeringsutgifter</th>
                     <th>Stønadsbeløp</th>
                 </tr>

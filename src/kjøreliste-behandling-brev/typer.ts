@@ -5,6 +5,7 @@ export interface KjørelisteBehandlingBrevData {
     behandlendeEnhet: string;
     saksbehandlerSignatur?: string;
     beregning: PrivatBilOppsummertBeregning;
+    satser: SatsDagligReisePrivatBil[];
 }
 
 export interface PrivatBilOppsummertBeregning {
@@ -37,4 +38,11 @@ export interface RammeForReiseMedPrivatBilSatsForDelperiode {
     kilometersats: number;
     dagsatsUtenParkering: number;
     satsBekreftetVedVedtakstidspunkt: boolean;
+}
+
+export interface SatsDagligReisePrivatBil {
+    fom: string;
+    tom: string;
+    beløp: number;
+    bekreftet: Boolean;
 }

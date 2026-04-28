@@ -20,3 +20,5 @@ const tallMedTusenSkille = (verdi?: number): string | undefined =>
 
 export const kronerMedTusenSkilleEllerStrek = (tall: number | undefined): string =>
     tallMedTusenSkille(tall) ? `${tallMedTusenSkille(tall)} kr` : '-';
+
+export const formaterTall = (verdi: number) => Number(verdi).toLocaleString('no-NO');

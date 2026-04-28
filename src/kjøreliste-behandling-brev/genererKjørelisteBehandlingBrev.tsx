@@ -3,7 +3,9 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import kjorelisteBehandlingBrevCss from './kjorelisteBehandlingBrevCss';
 import { OppsummertBeregningsresultat } from './OppsummertBeregningsresultat';
 import { KjørelisteBehandlingBrevData } from './typer';
+import { formaterNorskDato } from '../felles/datoFormat';
 import { HtmlLang } from '../felles/HtmlLang';
+import { formaterTall } from '../felles/tekstutils';
 import { Avslutning } from '../komponenter/Avslutning';
 import { Brevhode } from '../komponenter/Brevhode';
 import { Signatur } from '../komponenter/Signatur';
@@ -45,11 +47,20 @@ const Innhold: React.FC<{ data: KjørelisteBehandlingBrevData }> = ({ data }) =>
             <p>Du får utbetalt pengestøtte til daglige reiser med bil.</p>
             <h2>Slik har vi beregnet utbetalingen din:</h2>
             <OppsummertBeregningsresultat reiser={data.beregning.reiser} />
+            <p>Pengestøtten beregnes etter en fast sats per kilometer. Følgende satser gjelder:</p>
+            <ul>
+                {data.satser.map((sats, index) => (
+                    <li key={index}>
+                        {formaterTall(sats.beløp)} kr/km fra {formaterNorskDato(sats.fom)} til{' '}
+                        {formaterNorskDato(sats.tom)}
+                    </li>
+                ))}
+            </ul>
             <p>
-                Pengestøtten er beregnet etter en fast sats pr kilometer. Du kan ikke få pengestøtte
-                for flere dager enn det du er innvilget i vedtaket om pengestøtte til daglige
-                reiser. Ved høye parkeringsutgifter må du sende inn kvittering før beløpet blir
-                utbetalt. Du får pengene inn på konto i løpet av 2-3 virkedager.
+                Du kan ikke få pengestøtte for flere dager enn det du er innvilget i vedtaket om
+                pengestøtte til daglige reiser. Ved høye parkeringsutgifter må du sende inn
+                kvittering før beløpet blir utbetalt. Du får pengene inn på konto i løpet av 2-3
+                virkedager.
             </p>
         </div>
     );
