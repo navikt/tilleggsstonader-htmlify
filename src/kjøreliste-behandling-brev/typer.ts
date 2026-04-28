@@ -3,7 +3,7 @@ export interface KjørelisteBehandlingBrevData {
     ident: string;
     behandletDato: string;
     behandlendeEnhet: string;
-    saksbehandlersignatur?: string;
+    saksbehandlerSignatur?: string;
     beregning: PrivatBilOppsummertBeregning;
 }
 
