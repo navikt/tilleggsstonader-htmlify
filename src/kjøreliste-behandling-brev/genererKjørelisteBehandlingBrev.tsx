@@ -30,7 +30,7 @@ export const genererKjørelisteBehandlingBrev = (data: KjørelisteBehandlingBrev
                 <Avslutning />
                 <Signatur
                     enhet={data.behandlendeEnhet}
-                    saksbehandlersignatur={data.saksbehandlersignatur}
+                    saksbehandlersignatur={data.saksbehandlerSignatur}
                 />
             </body>
         </html>
