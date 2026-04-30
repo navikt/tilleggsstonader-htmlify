@@ -63,6 +63,22 @@ td, th {
     padding: 3px 10px;
 }
 
+th {
+    vertical-align: top;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.tabell-beskrivelse {
+    font-size: 80%;
+    margin-bottom: 4px;
+    line-height: 140%;
+}
+
+.høyrejustert {
+    text-align: right;
+}
+
 .avsnitt {
     margin-bottom: 2rem;
 }
