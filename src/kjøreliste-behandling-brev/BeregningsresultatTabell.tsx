@@ -30,9 +30,9 @@ export const BeregningsresultatTabell: React.FC<{
                 <tbody>
                     {oppsummertReise.perioder.map((periode, index) => (
                         <tr key={`${periode.fom}-${periode.tom}-${index}`}>
-                            <td>{periode.ukenummer}</td>
+                            <td className="høyrejustert">{periode.ukenummer}</td>
                             <td style={{ minWidth: '140px' }}>{formaterPeriode(periode)}</td>
-                            <td>{periode.antallGodkjenteReisedager}</td>
+                            <td className="høyrejustert">{periode.antallGodkjenteReisedager}</td>
                             {harBompengeutgifter && (
                                 <td className="høyrejustert">
                                     {kronerMedTusenSkilleEllerStrek(periode.bompengerTotalt)}
@@ -54,9 +54,8 @@ export const BeregningsresultatTabell: React.FC<{
                 </tbody>
             </table>
             <p className="tabell-beskrivelse">
-                Antall dager viser hvor mange dager innenfor perioden hvor kjøring med privat bil
-                dekkes. Parkeringskostnad, fergekostnad og bompenger er oppgitt som totalsum for
-                hele uken.
+                Antall dager viser hvor mange dager innenfor perioden hvor kjøring med bil dekkes.
+                Parkeringskostnad, fergekostnad og bompenger dekkes med en samlet sum per uke.
             </p>
         </div>
     );
