@@ -1,11 +1,11 @@
-import React from 'react';
-
-import { NonBreakingDiv } from '../felles';
-import { DagligReiseBeregningsresultatTabell } from './DagligReiseBeregningsresultatTabell';
 import { formaterNorskDato } from '../../felles/datoFormat';
+import { OffentligTransportTabell } from './OffentligTransportTabell';
+import { NonBreakingDiv } from '../felles';
+
 import {
     Beregningsresultat,
     BeregningsresultatBoutgifter,
+    BeregningsresultatDagligReise,
     BeregningsresultatLæremidler,
     BeregningsresultatTilsynBarn,
 } from '../typer/beregningsresultat';
@@ -121,3 +121,13 @@ const BoutgifterBeregningsresultatTabell: React.FC<{
         </tbody>
     </table>
 );
+
+const DagligReiseBeregningsresultatTabell: React.FC<{
+    beregningsresultatDagligReise: BeregningsresultatDagligReise;
+}> = ({ beregningsresultatDagligReise }) => {
+    const offentligTransport = beregningsresultatDagligReise.offentligTransport?.reiser ?? [];
+    if (offentligTransport.length === 0) {
+        return null;
+    }
+    return <OffentligTransportTabell offentligTransportReiser={offentligTransport} />;
+};
