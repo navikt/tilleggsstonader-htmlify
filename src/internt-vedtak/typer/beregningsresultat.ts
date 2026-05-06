@@ -35,9 +35,6 @@ export interface BeregningsresultatDagligReise {
     offentligTransport: {
         reiser: OffentligTransportReise[];
     };
-    privatBil: {
-        reiser: PrivatBilReise[];
-    };
 }
 
 export interface OffentligTransportReise {
@@ -58,28 +55,6 @@ export interface OffentligTransportPeriode {
     billettdetaljer: Record<BillettdetaljerEnum, number>;
     brukersNavKontor?: string;
     fraTidligereVedtak: boolean;
-}
-
-export interface PrivatBilReise {
-    reiseId: string;
-    adresse: string;
-    reisedagerPerUke: number;
-    perioder: PrivatBilPeriode[];
-}
-
-export interface PrivatBilPeriode {
-    fom: string;
-    tom: string;
-    grunnlag: {
-        dager: {
-            dato: string;
-            parkeringskostnad: number;
-            stønadsbeløpForDag: number;
-        }[];
-        dagsatsUtenParkering: number;
-    };
-    stønadsbeløp: number;
-    brukersNavKontor?: string;
 }
 
 export type BillettdetaljerEnum = 'ENKELTBILLETT' | 'SYVDAGERSBILLETT' | 'TRETTIDAGERSBILLETT';
