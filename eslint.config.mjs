@@ -49,19 +49,19 @@ export default [
                 { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' },
             ],
             'import/export': 'warn',
-            'import/order': [
-                'warn',
-                {
-                    alphabetize: { order: 'asc', caseInsensitive: true },
-                    'newlines-between': 'always',
-                    groups: [['builtin', 'external'], 'internal', ['parent', 'sibling'], 'index'],
-                    pathGroups: [
-                        { pattern: 'react', group: 'external', position: 'before' },
-                        { pattern: '@navikt/**', group: 'internal', position: 'before' },
-                    ],
-                    pathGroupsExcludedImportTypes: ['builtin'],
-                },
-            ],
+            // 'import/order': [
+            //     'warn',
+            //     {
+            //         alphabetize: { order: 'asc', caseInsensitive: true },
+            //         'newlines-between': 'always',
+            //         groups: [['builtin', 'external'], 'internal', ['parent', 'sibling'], 'index'],
+            //         pathGroups: [
+            //             { pattern: 'react', group: 'external', position: 'before' },
+            //             { pattern: '@navikt/**', group: 'internal', position: 'before' },
+            //         ],
+            //         pathGroupsExcludedImportTypes: ['builtin'],
+            //     },
+            // ],
 
             // Prettier
             'prettier/prettier': 'warn',
