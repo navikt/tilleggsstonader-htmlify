@@ -6,6 +6,7 @@ export interface KjørelisteBehandlingBrevData {
     saksbehandlerSignatur?: string;
     beregning: PrivatBilOppsummertBeregning;
     satser: SatsDagligReisePrivatBil[];
+    begrunnelse?: string;
 }
 
 export interface PrivatBilOppsummertBeregning {

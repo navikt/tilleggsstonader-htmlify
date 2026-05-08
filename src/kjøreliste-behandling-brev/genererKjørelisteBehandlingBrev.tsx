@@ -62,6 +62,12 @@ const Innhold: React.FC<{ data: KjørelisteBehandlingBrevData }> = ({ data }) =>
                 kvittering før beløpet blir utbetalt. Du får pengene inn på konto i løpet av 2-3
                 virkedager.
             </p>
+            {data.begrunnelse && (
+                <div>
+                    <h3>Begrunnelse for vedtaket:</h3>
+                    <p>{data.begrunnelse}</p>
+                </div>
+            )}
         </div>
     );
 };
