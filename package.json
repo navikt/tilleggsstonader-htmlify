@@ -27,7 +27,7 @@
     "@typescript-eslint/eslint-plugin": "^8.59.0",
     "@typescript-eslint/parser": "^8.59.0",
     "@vercel/ncc": "^0.38.3",
-    "eslint": "^10.2.0",
+    "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -47,7 +47,7 @@
     "date-fns": "^4.1.0",
     "dotenv": "^17.4.1",
     "express": "^5.2.1",
-    "globals": "^17.5.0",
+    "globals": "^17.6.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "winston": "^3.19.0"
