@@ -23,7 +23,7 @@ export const genererKjørelisteBehandlingBrev = (data: KjørelisteBehandlingBrev
             </head>
             <body>
                 <Brevhode
-                    tittel="Vi har behandlet kjørelisten(e) din(e)"
+                    tittel="Vi har behandlet kjørelisten din"
                     navn={data.navn}
                     fodselsnummer={data.ident}
                     dato={data.behandletDato}
@@ -41,30 +41,55 @@ export const genererKjørelisteBehandlingBrev = (data: KjørelisteBehandlingBrev
     return renderToStaticMarkup(html);
 };
 
+export const Body: React.FC<{ data: KjørelisteBehandlingBrevData }> = ({ data }) => {
+    return (
+        <>
+            <Brevhode
+                tittel="Vi har behandlet kjørelisten din"
+                navn={data.navn}
+                fodselsnummer={data.ident}
+                dato={data.behandletDato}
+            />
+            <Innhold data={data} />
+            <Avslutning />
+            <Signatur
+                enhet={data.behandlendeEnhet}
+                saksbehandlersignatur={data.saksbehandlerSignatur}
+            />
+        </>
+    );
+};
+
 const Innhold: React.FC<{ data: KjørelisteBehandlingBrevData }> = ({ data }) => {
     return (
         <div>
-            <p>Du får utbetalt pengestøtte til daglige reiser med bil.</p>
-            <h2>Slik har vi beregnet utbetalingen din:</h2>
-            <OppsummertBeregningsresultat reiser={data.beregning.reiser} />
-            <p>Pengestøtten beregnes etter en fast sats per kilometer. Følgende satser gjelder:</p>
-            <ul>
-                {data.satser.map((sats, index) => (
-                    <li key={index}>
-                        {formaterTall(sats.beløp)} kr/km fra {formaterNorskDato(sats.fom)} til{' '}
-                        {formaterNorskDato(sats.tom)}
-                    </li>
-                ))}
-            </ul>
-            <p>
-                Du kan ikke få pengestøtte for flere dager enn det du er innvilget i vedtaket om
-                pengestøtte til daglige reiser. Ved høye parkeringsutgifter må du sende inn
-                kvittering før beløpet blir utbetalt. Du får pengene inn på konto i løpet av 2-3
-                virkedager.
-            </p>
+            <div className="avsnitt">
+                <p>Du får utbetalt pengestøtte til daglige reiser med bil.</p>
+                <h2>Slik har vi beregnet utbetalingen din</h2>
+                <OppsummertBeregningsresultat reiser={data.beregning.reiser} />
+                <p>
+                    Antall dager viser hvor mange dager innenfor perioden hvor kjøring med bil
+                    dekkes. Parkeringskostnad, fergekostnad og bompenger dekkes med en samlet sum
+                    per uke. Du kan ikke få pengestøtte for flere dager enn det du er innvilget i
+                    vedtaket om pengestøtte til daglige reiser. Ved høye parkeringsutgifter må du
+                    sende inn kvittering før beløpet blir utbetalt. Du får pengene inn på konto i
+                    løpet av 2-3 virkedager.
+                </p>
+                <p>
+                    Pengestøtten beregnes etter en fast sats per kilometer. Følgende satser gjelder:
+                </p>
+                <ul>
+                    {data.satser.map((sats, index) => (
+                        <li key={index}>
+                            {formaterTall(sats.beløp)} kr/km fra {formaterNorskDato(sats.fom)} til{' '}
+                            {formaterNorskDato(sats.tom)}
+                        </li>
+                    ))}
+                </ul>
+            </div>
             {data.begrunnelse && (
-                <div>
-                    <h3>Begrunnelse for vedtaket:</h3>
+                <div className="avsnitt">
+                    <h3>Begrunnelse for utbetalingen:</h3>
                     <p>{data.begrunnelse}</p>
                 </div>
             )}
