@@ -53,10 +53,6 @@ export const BeregningsresultatTabell: React.FC<{
                     ))}
                 </tbody>
             </table>
-            <p className="tabell-beskrivelse">
-                Antall dager viser hvor mange dager innenfor perioden hvor kjøring med bil dekkes.
-                Parkeringskostnad, fergekostnad og bompenger dekkes med en samlet sum per uke.
-            </p>
         </div>
     );
 };

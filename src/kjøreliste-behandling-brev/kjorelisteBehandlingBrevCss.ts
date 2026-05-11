@@ -69,12 +69,6 @@ th {
     hyphens: auto;
 }
 
-.tabell-beskrivelse {
-    font-size: 80%;
-    margin-bottom: 4px;
-    line-height: 140%;
-}
-
 .høyrejustert {
     text-align: right;
 }
