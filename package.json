@@ -41,7 +41,7 @@
     "typescript": "^6.0.2"
   },
   "dependencies": {
-    "@eslint/compat": "^2.0.0",
+    "@eslint/compat": "^2.1.0",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^10.0.1",
     "date-fns": "^4.1.0",
