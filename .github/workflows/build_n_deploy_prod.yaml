@@ -25,6 +25,7 @@ jobs:
     permissions:
       id-token: write  # Trengs for deploy til GCP
     with:
+      node-version: "24"
       prod-cluster: 'prod-gcp'
       prod-manifest: '.nais/prod.yaml'
       dev-cluster: 'dev-gcp'
