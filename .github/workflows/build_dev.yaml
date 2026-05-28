@@ -8,5 +8,3 @@ jobs:
   build:
     name: "Bygger appen"
     uses: navikt/tilleggsstonader/.github/workflows/ts-build.yml@main
-    with:
-      node-version: "24"
