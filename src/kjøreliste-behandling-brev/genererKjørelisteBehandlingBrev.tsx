@@ -89,7 +89,7 @@ const Innhold: React.FC<{ data: KjørelisteBehandlingBrevData }> = ({ data }) =>
             </div>
             {data.begrunnelse && (
                 <div className="avsnitt">
-                    <h3>Begrunnelse for utbetalingen</h3>
+                    <h3>Vurderingen vår</h3>
                     <p>{data.begrunnelse}</p>
                 </div>
             )}
