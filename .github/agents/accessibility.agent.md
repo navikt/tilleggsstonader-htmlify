@@ -1,6 +1,7 @@
 ---
 name: accessibility-agent
 description: WCAG 2.1/2.2, universell utforming, Aksel-tilgjengelighet og automatisert UU-testing
+model: Claude Sonnet 4.6
 tools:
   - execute
   - read
@@ -198,7 +199,7 @@ test("page should be accessible", async ({ page }) => {
 ### Lighthouse CI
 
 ```bash
-npx lighthouse http://localhost:3000 \
+pnpm dlx lighthouse http://localhost:3000 \
   --only-categories=accessibility \
   --output=json \
   --chrome-flags="--headless"

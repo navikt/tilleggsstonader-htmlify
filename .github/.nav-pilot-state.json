@@ -1,12 +1,12 @@
 {
   "collection": "nextjs-frontend",
-  "version": "2025.07",
-  "source_sha": "c9a1348",
+  "version": "2026.06.12-113744-10c4a25",
+  "source_sha": "10c4a25",
   "installed_at": "2026-04-13T14:19:17Z",
   "files": [
     {
       "path": ".github/agents/accessibility.agent.md",
-      "hash": "98867df3e31b8cd4"
+      "hash": "c35b6db4d15e6f9f"
     },
     {
       "path": ".github/agents/accessibility.metadata.json",
@@ -14,15 +14,15 @@
     },
     {
       "path": ".github/agents/aksel.agent.md",
-      "hash": "9a80d306394a0cf4"
+      "hash": "5619d05aa37ec8f9"
     },
     {
       "path": ".github/agents/aksel.metadata.json",
-      "hash": "019ce826aad4c5e9"
+      "hash": "8eada8fad9d3b868"
     },
     {
       "path": ".github/agents/forfatter.agent.md",
-      "hash": "acc16aca57ed5f30"
+      "hash": "3dd47103e9bf04a8"
     },
     {
       "path": ".github/agents/forfatter.metadata.json",
@@ -30,7 +30,7 @@
     },
     {
       "path": ".github/agents/nav-pilot.agent.md",
-      "hash": "a27c3d1ffee76b0a"
+      "hash": "f490eb3f9ca1e9a3"
     },
     {
       "path": ".github/agents/nav-pilot.metadata.json",
@@ -38,35 +38,35 @@
     },
     {
       "path": ".github/skills/aksel-spacing/",
-      "hash": "5c7a8fe6dc1027ff"
+      "hash": "177594fc5ae8d7e3"
     },
     {
       "path": ".github/skills/playwright-testing/",
-      "hash": "2b2fa6a6440ecccd"
+      "hash": "5c618cd99c79df64"
     },
     {
       "path": ".github/skills/web-design-reviewer/",
-      "hash": "6a734ef4c3d544d9"
+      "hash": "07b2096b77bf5ae3"
     },
     {
       "path": ".github/skills/nav-plan/",
-      "hash": "2925082d080c712e"
+      "hash": "0a160744cf2b4e82"
     },
     {
       "path": ".github/skills/nav-deep-interview/",
-      "hash": "db67aa1434fb4610"
+      "hash": "eeb3399ecd4e352c"
     },
     {
       "path": ".github/skills/nav-architecture-review/",
-      "hash": "3210c935f870aa0a"
+      "hash": "4618dec566442509"
     },
     {
       "path": ".github/skills/nav-troubleshoot/",
-      "hash": "a836d38dbcabe99e"
+      "hash": "e9900d58d91ee0ee"
     },
     {
       "path": ".github/instructions/nextjs-aksel.instructions.md",
-      "hash": "3fe8feeb1459e760"
+      "hash": "9283252e55829ca2"
     },
     {
       "path": ".github/instructions/testing.instructions.md",
@@ -78,7 +78,7 @@
     },
     {
       "path": ".github/instructions/accessibility.instructions.md",
-      "hash": "aba24163f0a00c75"
+      "hash": "3f682e93474bfdd8"
     },
     {
       "path": ".github/instructions/github-actions.instructions.md",
@@ -90,19 +90,19 @@
     },
     {
       "path": ".github/prompts/aksel-component.prompt.md",
-      "hash": "9da00ddfc10aefc4"
+      "hash": "8f6e07fff457bc3d"
     },
     {
       "path": ".github/prompts/nextjs-api-route.prompt.md",
-      "hash": "6dc6506e5264a67b"
+      "hash": "691c380aa1e47757"
     },
     {
       "path": ".github/prompts/nais-manifest.prompt.md",
-      "hash": "7b1e6ac5b4115c3f"
+      "hash": "8576571223ffef8a"
     },
     {
       "path": ".github/copilot-instructions.md",
-      "hash": "cf4b65a73c6b9ede"
+      "hash": "9b76cfe5eb048e75"
     }
   ]
 }

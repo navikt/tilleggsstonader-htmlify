@@ -1,6 +1,11 @@
 ---
 name: playwright-testing
 description: Generer og kjør Playwright E2E-tester for webapplikasjoner med page objects, auth fixtures og tilgjengelighetstester
+license: MIT
+compatibility: Node.js with Playwright
+metadata:
+  domain: testing
+  tags: playwright e2e testing accessibility responsive
 ---
 
 # Playwright E2E Testing Skill
@@ -20,10 +25,10 @@ Generate Playwright tests for Nav web applications. Covers page object pattern, 
 ```bash
 # Install Playwright
 pnpm add -D @playwright/test
-npx playwright install --with-deps chromium
+pnpm exec playwright install --with-deps chromium
 
 # Create configuration
-npx playwright init
+pnpm exec playwright init
 ```
 
 ### playwright.config.ts
@@ -233,7 +238,7 @@ e2e:
         node-version: 22
         cache: pnpm
     - run: pnpm install --frozen-lockfile
-    - run: npx playwright install --with-deps chromium
+    - run: pnpm exec playwright install --with-deps chromium
     - run: pnpm exec playwright test
     - uses: actions/upload-artifact@v4
       if: failure()
