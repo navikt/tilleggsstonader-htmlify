@@ -1,7 +1,8 @@
 import { Stønadstype } from '../felles/stønadstype';
+import { Skjematype } from '../felles/søknadstype';
 
 export interface Søknad {
-    type: Stønadstype;
+    type: Skjematype;
     tittel: string;
     skjemanummer: string;
     mottattTidspunkt: string;
