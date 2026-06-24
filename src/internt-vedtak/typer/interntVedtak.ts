@@ -41,6 +41,7 @@ export enum ÅrsakBehandling {
     PAPIRSØKNAD = 'PAPIRSØKNAD',
     SATSENDRING = 'SATSENDRING',
     MANUELT_OPPRETTET = 'MANUELT_OPPRETTET',
+    MANUELT_OPPRETTET_UTEN_BREV = 'MANUELT_OPPRETTET_UTEN_BREV',
     KJØRELISTE = 'KJØRELISTE',
     OMGJØRING_ETTER_KLAGE = 'OMGJØRING_ETTER_KLAGE',
 }
@@ -53,6 +54,7 @@ export const årsakBehandlingTilTekst: Record<ÅrsakBehandling, string> = {
     PAPIRSØKNAD: 'Papirsøknad',
     SATSENDRING: 'Satsendring',
     MANUELT_OPPRETTET: 'Manuelt opprettet',
+    MANUELT_OPPRETTET_UTEN_BREV: 'Manuelt opprettet uten brev',
     KJØRELISTE: 'Kjøreliste',
     OMGJØRING_ETTER_KLAGE: 'Omgjøring etter klage',
 };
