@@ -5,6 +5,7 @@ import importPlugin from 'eslint-plugin-import';
 import prettierPlugin from 'eslint-plugin-prettier';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+import { fixupPluginRules } from '@eslint/compat';
 import globals from 'globals';
 
 export default [
@@ -25,7 +26,7 @@ export default [
         },
         plugins: {
             '@typescript-eslint': typescriptEslintPlugin,
-            import: importPlugin,
+            import: fixupPluginRules(importPlugin),
             prettier: prettierPlugin,
             'react-hooks': reactHooksPlugin,
             'jsx-a11y': jsxA11yPlugin,
@@ -49,19 +50,19 @@ export default [
                 { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' },
             ],
             'import/export': 'warn',
-            // 'import/order': [
-            //     'warn',
-            //     {
-            //         alphabetize: { order: 'asc', caseInsensitive: true },
-            //         'newlines-between': 'always',
-            //         groups: [['builtin', 'external'], 'internal', ['parent', 'sibling'], 'index'],
-            //         pathGroups: [
-            //             { pattern: 'react', group: 'external', position: 'before' },
-            //             { pattern: '@navikt/**', group: 'internal', position: 'before' },
-            //         ],
-            //         pathGroupsExcludedImportTypes: ['builtin'],
-            //     },
-            // ],
+            'import/order': [
+                'warn',
+                {
+                    alphabetize: { order: 'asc', caseInsensitive: true },
+                    'newlines-between': 'always',
+                    groups: [['builtin', 'external'], 'internal', ['parent', 'sibling'], 'index'],
+                    pathGroups: [
+                        { pattern: 'react', group: 'external', position: 'before' },
+                        { pattern: '@navikt/**', group: 'internal', position: 'before' },
+                    ],
+                    pathGroupsExcludedImportTypes: ['builtin'],
+                },
+            ],
 
             // Prettier
             'prettier/prettier': 'warn',
