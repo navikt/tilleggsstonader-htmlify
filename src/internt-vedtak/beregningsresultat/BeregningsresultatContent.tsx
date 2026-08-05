@@ -1,7 +1,6 @@
-import { formaterNorskDato } from '../../felles/datoFormat';
 import { OffentligTransportTabell } from './OffentligTransportTabell';
+import { formaterNorskDato } from '../../felles/datoFormat';
 import { NonBreakingDiv } from '../felles';
-
 import {
     Beregningsresultat,
     BeregningsresultatBoutgifter,
