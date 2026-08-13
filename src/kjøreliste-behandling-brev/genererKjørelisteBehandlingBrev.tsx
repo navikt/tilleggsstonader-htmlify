@@ -70,10 +70,8 @@ const Innhold: React.FC<{ data: KjørelisteBehandlingBrevData }> = ({ data }) =>
                 <p>
                     Antall dager viser hvor mange dager i perioden kjøring med bil er dekket.
                     Parkeringskostnad, fergekostnad og bompenger dekkes med en samlet sum per uke.
-                    Du kan ikke få pengestøtte for flere dager enn det du er innvilget i vedtaket om
-                    pengestøtte til daglige reiser. Ved høye parkeringsutgifter må du sende inn
-                    kvittering før beløpet blir utbetalt. Du får pengene inn på konto i løpet av 2-3
-                    virkedager.
+                    Ved høye parkeringsutgifter må du sende inn kvittering før beløpet blir
+                    utbetalt. Du får pengene inn på konto i løpet av 2-3 virkedager.
                 </p>
                 <p>
                     Pengestøtten beregnes etter en fast sats per kilometer. Følgende satser gjelder:
