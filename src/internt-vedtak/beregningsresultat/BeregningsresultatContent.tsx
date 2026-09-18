@@ -1,11 +1,13 @@
 import { OffentligTransportTabell } from './OffentligTransportTabell';
 import { formaterNorskDato } from '../../felles/datoFormat';
 import { NonBreakingDiv } from '../felles';
+import { BeregnReiseTilSamlingTabell } from './BeregnReiseTilSamlingTabell';
 import {
     Beregningsresultat,
     BeregningsresultatBoutgifter,
     BeregningsresultatDagligReise,
     BeregningsresultatLæremidler,
+    BeregningsresultatReiseTilSamling,
     BeregningsresultatTilsynBarn,
 } from '../typer/beregningsresultat';
 
@@ -36,6 +38,11 @@ export const BeregningsresultatContent: React.FC<{
             {beregningsresultat.dagligReise && (
                 <DagligReiseBeregningsresultatTabell
                     beregningsresultatDagligReise={beregningsresultat.dagligReise}
+                />
+            )}
+            {beregningsresultat.reiseTilSamling && (
+                <ReiseTilSamlingBeregningsresultatTabell
+                    beregningsresultatReiseTilSamling={beregningsresultat.reiseTilSamling}
                 />
             )}
         </NonBreakingDiv>
@@ -129,4 +136,13 @@ const DagligReiseBeregningsresultatTabell: React.FC<{
         return null;
     }
     return <OffentligTransportTabell offentligTransportReiser={offentligTransport} />;
+};
+const ReiseTilSamlingBeregningsresultatTabell: React.FC<{
+    beregningsresultatReiseTilSamling: BeregningsresultatReiseTilSamling;
+}> = ({ beregningsresultatReiseTilSamling }) => {
+    return (
+        <BeregnReiseTilSamlingTabell
+            beregningsresultatReiseTilSamling={beregningsresultatReiseTilSamling}
+        />
+    );
 };

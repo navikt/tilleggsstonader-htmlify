@@ -13,7 +13,11 @@ export interface Vilkår {
     fakta?: VilkårFakta;
 }
 
-export type VilkårFakta = FaktaDagligReiseOffentligTransport | FaktaDagligReisePrivatBil;
+export type VilkårFakta =
+    | FaktaDagligReiseOffentligTransport
+    | FaktaDagligReisePrivatBil
+    | FaktaReiseTilSamlingOffentligTransport
+    | FaktaReiseTilSamlingPrivatBil;
 
 export interface FaktaDagligReiseOffentligTransport {
     type: VilkårFaktaType.DAGLIG_REISE_OFFENTLIG_TRANSPORT;
@@ -30,15 +34,39 @@ export interface FaktaDagligReisePrivatBil {
     prisBompengerPerDag?: number | null;
     prisFergekostandPerDag?: number | null;
 }
+export interface FaktaReiseTilSamlingOffentligTransport {
+    type: VilkårFaktaType.REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT;
+    utgifterOffentligTransport: number | null;
+}
+export interface FaktaReiseTilSamlingPrivatBil {
+    type: VilkårFaktaType.REISE_TIL_SAMLING_PRIVAT_BIL;
+    reiseavstand: number;
+    bompenger?: number | null;
+    fergekostnad?: number | null;
+    parkering?: number | null;
+    piggdekkavgift?: number | null;
+}
+
+// FaktaReiseTilSamlingOffentligTransport(
+//     reiseId = dummyReiseId,
+//     adresse = "Tiltaksgata 1",
+//     utgifterOffentligTransport = 2000.toBigDecimal(),
+//     begrunnelse = "Begrunnelse",
+//     aktivitetId = dummyAktivitetId,
+// ),
 
 export enum VilkårFaktaType {
     DAGLIG_REISE_PRIVAT_BIL = 'DAGLIG_REISE_PRIVAT_BIL',
     DAGLIG_REISE_OFFENTLIG_TRANSPORT = 'DAGLIG_REISE_OFFENTLIG_TRANSPORT',
+    REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT = 'REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT',
+    REISE_TIL_SAMLING_PRIVAT_BIL = 'REISE_TIL_SAMLING_PRIVAT_BIL',
 }
 
 export const vilkårFaktaTypeTilTeXt: Record<VilkårFaktaType, string> = {
     DAGLIG_REISE_OFFENTLIG_TRANSPORT: 'Offentlig transport',
     DAGLIG_REISE_PRIVAT_BIL: 'Privat bil',
+    REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT: 'Offentlig transport',
+    REISE_TIL_SAMLING_PRIVAT_BIL: 'Privat bil',
 };
 
 export interface DelvilkårInternt {
@@ -58,6 +86,7 @@ export enum Vilkårtype {
     LØPENDE_UTGIFTER_EN_BOLIG = 'LØPENDE_UTGIFTER_EN_BOLIG',
     LØPENDE_UTGIFTER_TO_BOLIGER = 'LØPENDE_UTGIFTER_TO_BOLIGER',
     DAGLIG_REISE = 'DAGLIG_REISE',
+    REISE_TIL_SAMLING = 'REISE_TIL_SAMLING',
 }
 
 export const vilkårtypeTilTekst: Record<Vilkårtype, string> = {
@@ -66,6 +95,7 @@ export const vilkårtypeTilTekst: Record<Vilkårtype, string> = {
     LØPENDE_UTGIFTER_TO_BOLIGER: 'Løpende utgifter to boliger',
     UTGIFTER_OVERNATTING: 'Utgifter til overnatting',
     DAGLIG_REISE: 'Vilkår om daglige reiser',
+    REISE_TIL_SAMLING: 'Vilkår om reise til samling',
 };
 
 export enum Vilkårsresultat {

@@ -3,6 +3,7 @@ export interface Beregningsresultat {
     læremidler?: BeregningsresultatLæremidler[];
     boutgifter?: BeregningsresultatBoutgifter[];
     dagligReise?: BeregningsresultatDagligReise;
+    reiseTilSamling?: BeregningsresultatReiseTilSamling;
 }
 
 export interface BeregningsresultatTilsynBarn {
@@ -35,6 +36,31 @@ export interface BeregningsresultatDagligReise {
     offentligTransport: {
         reiser: OffentligTransportReise[];
     };
+}
+
+export interface BeregningsresultatReiseTilSamling {
+    offentligTransport: BeregningsresultatOffentligTransport[];
+    privatBil: BeregningsresultatPrivatBil[];
+}
+export interface BeregningsresultatOffentligTransport {
+    reiseId: string;
+    adresse: string;
+    fom: string;
+    tom: string;
+    beløp: number;
+}
+export interface BeregningsresultatPrivatBil {
+    reiseId: string;
+    adresse: string;
+    fom: string;
+    tom: string;
+    sats: number;
+    totaltReiseavstand: number;
+    bompenger: number;
+    fergekostnad: number;
+    parkering: number;
+    piggdekkavgift: number;
+    beløp: number;
 }
 
 export interface OffentligTransportReise {
