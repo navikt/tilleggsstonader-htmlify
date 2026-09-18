@@ -8,7 +8,7 @@ export const PrivatBilSamlingTabell: React.FC<{
         <>
             {samlinger.map((samling, reiseIndex) => (
                 <div key={reiseIndex} style={{ marginBottom: '2rem' }}>
-                    <h3>{samling.adresse}</h3>
+                    <h3>{samling.adresse}- Privat bil</h3>
 
                     <table style={{ fontSize: '75%' }}>
                         <thead>

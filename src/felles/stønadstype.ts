@@ -14,8 +14,8 @@ export const stønadstypeTilTekst: Record<Stønadstype, string> = {
     BOUTGIFTER: 'boutgifter',
     DAGLIG_REISE_TSO: 'daglige reiser',
     DAGLIG_REISE_TSR: 'daglige reiser',
-    REISE_TIL_SAMLING_TSO: 'reiser til samlingsaktiviteter',
-    REISE_TIL_SAMLING_TSR: 'reiser til samlingsaktiviteter',
+    REISE_TIL_SAMLING_TSO: 'reise til samling',
+    REISE_TIL_SAMLING_TSR: 'reise til samling',
 };
 
 export const tittelInterntVedtak = (stønadstype: Stønadstype): string => {
