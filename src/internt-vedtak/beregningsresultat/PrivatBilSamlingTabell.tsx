@@ -29,7 +29,7 @@ export const PrivatBilSamlingTabell: React.FC<{
                             <tr>
                                 <td>{formaterNorskDato(samling.fom)}</td>
                                 <td>{formaterNorskDato(samling.tom)}</td>
-                                <td>{samling.totaltReiseavstand}</td>
+                                <td>{samling.reiseavstand}</td>
                                 <td>{samling.sats}</td>
                                 {samling.bompenger != null && <td>{samling.bompenger}</td>}
                                 {samling.parkering != null && <td>{samling.parkering}</td>}
