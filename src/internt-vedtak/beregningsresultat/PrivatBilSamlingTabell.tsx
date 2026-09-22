@@ -15,7 +15,7 @@ export const PrivatBilSamlingTabell: React.FC<{
                             <tr>
                                 <th>Fom</th>
                                 <th>Tom</th>
-                                <th>Reiseavstand</th>
+                                <th>Total reiseavstand</th>
                                 <th>Sats</th>
                                 {samling.bompenger != null && <th>Bompenger</th>}
                                 {samling.parkering != null && <th>Parkering</th>}
