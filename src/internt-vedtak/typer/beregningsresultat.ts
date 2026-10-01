@@ -48,6 +48,7 @@ export interface BeregningsresultatOffentligTransport {
     fom: string;
     tom: string;
     beløp: number;
+    begrunnelse: string;
 }
 export interface BeregningsresultatPrivatBil {
     reiseId: string;
@@ -56,10 +57,11 @@ export interface BeregningsresultatPrivatBil {
     tom: string;
     sats: number;
     totalReiseavstand: number;
+    parkering: number;
     bompenger: number;
     fergekostnad: number;
-    parkering: number;
     piggdekkavgift: number;
+    ekstrakostnader: number;
     beløp: number;
 }
 
