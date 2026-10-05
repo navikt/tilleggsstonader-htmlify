@@ -21,6 +21,7 @@ export const PrivatBilSamlingTabell: React.FC<{
                                 {samling.parkering != null && <th>Parkering</th>}
                                 {samling.fergekostnad != null && <th>Fergekostnad</th>}
                                 {samling.piggdekkavgift != null && <th>Piggdekkavgift</th>}
+                                <th>Ekstrakostnader</th>
                                 <th>Beløp.</th>
                             </tr>
                         </thead>
@@ -37,6 +38,7 @@ export const PrivatBilSamlingTabell: React.FC<{
                                 {samling.piggdekkavgift != null && (
                                     <td>{samling.piggdekkavgift}</td>
                                 )}
+                                <td>{samling.ekstrakostnader}</td>
                                 <td>{samling.beløp}</td>
                             </tr>
                         </tbody>

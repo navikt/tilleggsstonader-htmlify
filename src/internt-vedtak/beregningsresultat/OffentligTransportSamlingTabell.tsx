@@ -16,6 +16,7 @@ export const OffentligTransportSamlingTabell: React.FC<{
                                 <th>Fom</th>
                                 <th>Tom</th>
                                 {samling.beløp && <th>Beløp.</th>}
+                                <th>Spesifikasjon av utgift</th>
                             </tr>
                         </thead>
 
@@ -24,6 +25,7 @@ export const OffentligTransportSamlingTabell: React.FC<{
                                 <td>{formaterNorskDato(samling.fom)}</td>
                                 <td>{formaterNorskDato(samling.tom)}</td>
                                 <td>{samling.beløp}</td>
+                                <td>{samling.begrunnelse}</td>
                             </tr>
                         </tbody>
                     </table>
