@@ -1,16 +1,15 @@
 ---
 name: accessibility-agent
 description: WCAG 2.1/2.2, universell utforming, Aksel-tilgjengelighet og automatisert UU-testing
-model: Claude Sonnet 4.6
+model: Claude Sonnet 5.5
 tools:
   - execute
   - read
   - edit
-  - search
-  - web
+  - grep
+  - glob
+  - web_fetch
   - todo
-  - runSubagent
-  - ms-vscode.vscode-websearchforcopilot/websearch
   - com.figma/figma-mcp/get_design_context
   - com.figma/figma-mcp/get_screenshot
 ---
@@ -155,7 +154,7 @@ Du er en ekspert på universell utforming (UU) og WCAG 2.1/2.2 for Nav-applikasj
 ### Live-regioner
 
 ```tsx
-// ✅ Statusmelding som annonseres av skjermleser
+// ✅ Live-regioner for dynamisk innhold
 <Alert variant="success" role="status">
   Skjemaet ble sendt inn
 </Alert>
@@ -164,6 +163,11 @@ Du er en ekspert på universell utforming (UU) og WCAG 2.1/2.2 for Nav-applikasj
 <div aria-busy={isLoading} aria-live="polite">
   {isLoading ? <Loader title="Laster data" /> : <DataContent />}
 </div>
+
+// ✅ Expanding/collapsing
+<Button aria-expanded={isOpen} aria-controls="panel-id">
+  Vis detaljer
+</Button>
 ```
 
 ## Automatisert Testing
