@@ -58,7 +58,7 @@ export interface FaktaReiseTilSamlingOffentligTransport extends VilkårFaktaBase
 export interface FaktaReiseTilSamlingPrivatBil extends VilkårFaktaBase {
     type: VilkårFaktaType.REISE_TIL_SAMLING_PRIVAT_BIL;
     nødvendigUtgift: NødvendigUtgiftReiseTilSamling;
-    reiseavstand: number;
+    reiseAvstand: number;
     bompenger?: number | null;
     fergekostnad?: number | null;
     parkering?: number | null;

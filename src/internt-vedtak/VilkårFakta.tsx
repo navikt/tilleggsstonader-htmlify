@@ -117,7 +117,7 @@ const FaktaReiseTilSamlingPrivatBilOppsummering: React.FC<{
             <>
                 {fakta.aktivitetId != null && <div>Aktivitet ID: {fakta.aktivitetId}</div>}
                 <NødvendigUtgiftOppsummering nødvendigUtgift={fakta.nødvendigUtgift} />
-                <div>Samlet kjøreavstand tur/retur i km: {fakta.reiseavstand}</div>
+                <div>Samlet kjøreavstand tur/retur i km: {fakta.reiseAvstand}</div>
                 <div>Bompenger: {kronerMedTusenSkilleEllerStrek(fakta.bompenger)}</div>
                 <div>Fergekostnad: {kronerMedTusenSkilleEllerStrek(fakta.fergekostnad)}</div>
                 <div>Parkering: {kronerMedTusenSkilleEllerStrek(fakta.parkering)}</div>
