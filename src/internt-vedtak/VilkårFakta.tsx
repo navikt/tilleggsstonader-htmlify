@@ -113,7 +113,7 @@ const FaktaReiseTilSamlingPrivatBilOppsummering: React.FC<{
     fakta: FaktaReiseTilSamlingPrivatBil;
 }> = ({ fakta }) => {
     return (
-        <FaktaContainer tittel="Fakta offentlig transport">
+        <FaktaContainer tittel="Fakta privat bil">
             <>
                 {fakta.aktivitetId != null && <div>Aktivitet ID: {fakta.aktivitetId}</div>}
                 <NødvendigUtgiftOppsummering nødvendigUtgift={fakta.nødvendigUtgift} />
