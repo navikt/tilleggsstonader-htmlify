@@ -15,10 +15,10 @@ export const tekstEllerFeil = <T extends string>(
 const harTallverdi = (verdi: number | undefined | null | string): verdi is number =>
     verdi !== undefined && verdi !== null;
 
-const tallMedTusenSkille = (verdi?: number): string | undefined =>
+const tallMedTusenSkille = (verdi?: number | null): string | undefined =>
     harTallverdi(verdi) ? Number(verdi).toLocaleString('no-NO', { currency: 'NOK' }) : undefined;
 
-export const kronerMedTusenSkilleEllerStrek = (tall: number | undefined): string =>
+export const kronerMedTusenSkilleEllerStrek = (tall: number | undefined | null): string =>
     tallMedTusenSkille(tall) ? `${tallMedTusenSkille(tall)} kr` : '-';
 
 export const formaterTall = (verdi: number) => Number(verdi).toLocaleString('no-NO');
