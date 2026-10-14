@@ -44,8 +44,8 @@ export interface FaktaDelperiodeDagligReisePrivatBil extends VilkårFaktaBase {
     fom: string;
     tom: string;
     reisedagerPerUke: number;
-    prisBompengerPerDag?: number;
-    prisFergekostandPerDag?: number;
+    bompengerPerDag?: number;
+    fergekostnadPerDag?: number;
 }
 export interface FaktaReiseTilSamlingOffentligTransport extends VilkårFaktaBase {
     type: VilkårFaktaType.REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT;

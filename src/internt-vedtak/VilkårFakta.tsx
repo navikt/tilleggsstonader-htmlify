@@ -1,4 +1,3 @@
-import { NonBreakingDiv } from './felles';
 import { formaterPeriode } from '../felles/datoFormat';
 import { kronerMedTusenSkilleEllerStrek } from '../felles/tekstutils';
 import {
@@ -44,14 +43,22 @@ export const FaktaDagligReiseOffentligTransportOppsummering: React.FC<{
         <FaktaContainer tittel="Fakta offentlig transport">
             <>
                 <div>Reisedager per uke: {fakta.reisedagerPerUke}</div>
-                {fakta.prisEnkelbillett != null && (
-                    <div>Pris enkelbillett: {fakta.prisEnkelbillett} kr</div>
+                {fakta.prisEnkelbillett && (
+                    <div>
+                        Pris enkelbillett: {kronerMedTusenSkilleEllerStrek(fakta.prisEnkelbillett)}
+                    </div>
                 )}
                 {fakta.prisSyvdagersbillett != null && (
-                    <div>Pris 7-dagersbillett: {fakta.prisSyvdagersbillett} kr</div>
+                    <div>
+                        Pris 7-dagersbillett:{' '}
+                        {kronerMedTusenSkilleEllerStrek(fakta.prisSyvdagersbillett)}
+                    </div>
                 )}
                 {fakta.prisTrettidagersbillett != null && (
-                    <div>Pris 30-dagersbillett: {fakta.prisTrettidagersbillett} kr</div>
+                    <div>
+                        Pris 30-dagersbillett:{' '}
+                        {kronerMedTusenSkilleEllerStrek(fakta.prisTrettidagersbillett)}
+                    </div>
                 )}
             </>
         </FaktaContainer>
@@ -78,12 +85,8 @@ export const FaktaDagligReisePrivatBilOppsummering: React.FC<{
                         <tr key={index}>
                             <td>{formaterPeriode({ fom: delperiode.fom, tom: delperiode.tom })}</td>
                             <td>{delperiode.reisedagerPerUke}</td>
-                            <td>
-                                {kronerMedTusenSkilleEllerStrek(delperiode.prisBompengerPerDag)}
-                            </td>
-                            <td>
-                                {kronerMedTusenSkilleEllerStrek(delperiode.prisFergekostandPerDag)}
-                            </td>
+                            <td>{kronerMedTusenSkilleEllerStrek(delperiode.bompengerPerDag)}</td>
+                            <td>{kronerMedTusenSkilleEllerStrek(delperiode.fergekostnadPerDag)}</td>
                         </tr>
                     ))}
                 </tbody>
