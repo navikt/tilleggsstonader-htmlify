@@ -13,6 +13,7 @@ export const PrivatBilSamlingTabell: React.FC<{
                     <h4>
                         {formaterPeriode(samling)} - {samling.adresse ?? 'Ukjent adresse'}
                     </h4>
+                    {samling.fraTidligereVedtak && <p>Fra tidligere vedtak</p>}
                     <table style={{ verticalAlign: 'top' }}>
                         <colgroup>
                             <col style={{ width: '15%' }} />

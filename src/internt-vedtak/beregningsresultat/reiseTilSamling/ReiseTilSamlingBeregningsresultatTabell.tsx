@@ -5,17 +5,14 @@ import { BeregningsresultatReiseTilSamling } from '../../typer/beregningsresulta
 export const ReiseTilSamlingBeregningsresultatTabell: React.FC<{
     beregningsresultat: BeregningsresultatReiseTilSamling;
 }> = ({ beregningsresultat }) => {
-    const offentligTransport = (beregningsresultat.offentligTransport ?? []).filter(
-        (samling) => !samling.fraTidligereVedtak
-    );
-    const privatBil = (beregningsresultat.privatBil ?? []).filter(
-        (samling) => !samling.fraTidligereVedtak
-    );
+    const { offentligTransport, privatBil } = beregningsresultat;
 
     return (
         <>
-            <OffentligTransportSamlingTabell samlinger={offentligTransport} />
-            <PrivatBilSamlingTabell samlinger={privatBil} />
+            {offentligTransport && (
+                <OffentligTransportSamlingTabell samlinger={offentligTransport} />
+            )}
+            {privatBil && <PrivatBilSamlingTabell samlinger={privatBil} />}
         </>
     );
 };
