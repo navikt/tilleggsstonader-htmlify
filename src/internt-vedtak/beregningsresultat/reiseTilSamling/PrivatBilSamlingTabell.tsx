@@ -1,4 +1,5 @@
-import { formaterNorskDato } from '../../../felles/datoFormat';
+import { formaterPeriode } from '../../../felles/datoFormat';
+import { kronerMedTusenSkilleEllerStrek } from '../../../felles/tekstutils';
 import { BeregningsresultatPrivatBil } from '../../typer/beregningsresultat';
 
 export const PrivatBilSamlingTabell: React.FC<{
@@ -6,21 +7,25 @@ export const PrivatBilSamlingTabell: React.FC<{
 }> = ({ samlinger }) => {
     return (
         <>
+            <h3>Privat bil</h3>
             {samlinger.map((samling, reiseIndex) => (
-                <div key={reiseIndex} style={{ marginBottom: '2rem' }}>
-                    <h3>{samling.adresse}- Privat bil</h3>
-
-                    <table style={{ fontSize: '75%' }}>
+                <div key={reiseIndex}>
+                    <h4>
+                        {formaterPeriode(samling)} - {samling.adresse ?? 'Ukjent adresse'}
+                    </h4>
+                    <table style={{ verticalAlign: 'top' }}>
+                        <colgroup>
+                            <col style={{ width: '15%' }} />
+                            <col style={{ width: '10%' }} />
+                            <col style={{ width: '20%' }} />
+                            <col style={{ width: '30%' }} />
+                            <col style={{ width: '15%' }} />
+                        </colgroup>
                         <thead>
                             <tr>
-                                <th>Fom</th>
-                                <th>Tom</th>
                                 <th>Total reiseavstand</th>
-                                <th>Sats</th>
-                                {/* {samling.bompenger != null && <th>Bompenger</th>}
-                                {samling.parkering != null && <th>Parkering</th>}
-                                {samling.fergekostnad != null && <th>Fergekostnad</th>}
-                                {samling.piggdekkavgift != null && <th>Piggdekkavgift</th>} */}
+                                <th>Kilometersats</th>
+                                <th>Kjøreutgift</th>
                                 <th>Ekstrakostnader</th>
                                 <th>Stønadsbeløp</th>
                             </tr>
@@ -28,18 +33,40 @@ export const PrivatBilSamlingTabell: React.FC<{
 
                         <tbody>
                             <tr>
-                                <td>{formaterNorskDato(samling.fom)}</td>
-                                <td>{formaterNorskDato(samling.tom)}</td>
-                                <td>{samling.totalReiseavstand}</td>
-                                <td>{samling.sats}</td>
-                                {samling.bompenger != null && <td>{samling.bompenger}</td>}
-                                {samling.parkering != null && <td>{samling.parkering}</td>}
-                                {samling.fergekostnad != null && <td>{samling.fergekostnad}</td>}
-                                {samling.piggdekkavgift != null && (
-                                    <td>{samling.piggdekkavgift}</td>
-                                )}
-                                <td>{samling.ekstrakostnader}</td>
-                                <td>{samling.beløp}</td>
+                                <td>{samling.totalReiseavstand} km</td>
+                                <td>{samling.sats} kr/km</td>
+                                <td>
+                                    {kronerMedTusenSkilleEllerStrek(
+                                        samling.beløpUtenAndreKostnader
+                                    )}
+                                </td>
+                                <td>
+                                    {samling.bompenger != null && (
+                                        <div>
+                                            Bompenger:{' '}
+                                            {kronerMedTusenSkilleEllerStrek(samling.bompenger)}
+                                        </div>
+                                    )}
+                                    {samling.parkering != null && (
+                                        <div>
+                                            Parkering:{' '}
+                                            {kronerMedTusenSkilleEllerStrek(samling.parkering)}
+                                        </div>
+                                    )}
+                                    {samling.fergekostnad != null && (
+                                        <div>
+                                            Fergekostnad:{' '}
+                                            {kronerMedTusenSkilleEllerStrek(samling.fergekostnad)}
+                                        </div>
+                                    )}
+                                    {samling.piggdekkavgift != null && (
+                                        <div>
+                                            Piggdekkavgift:{' '}
+                                            {kronerMedTusenSkilleEllerStrek(samling.piggdekkavgift)}
+                                        </div>
+                                    )}
+                                </td>
+                                <td>{kronerMedTusenSkilleEllerStrek(samling.beløp)}</td>
                             </tr>
                         </tbody>
                     </table>

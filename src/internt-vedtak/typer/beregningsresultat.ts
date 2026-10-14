@@ -39,30 +39,49 @@ export interface BeregningsresultatDagligReise {
 }
 
 export interface BeregningsresultatReiseTilSamling {
-    offentligTransport: BeregningsresultatOffentligTransport[];
-    privatBil: BeregningsresultatPrivatBil[];
+    offentligTransport?: BeregningsresultatOffentligTransport[] | null;
+    privatBil?: BeregningsresultatPrivatBil[] | null;
+    beregningsplan: Beregningsplan;
 }
+
+export interface Beregningsplan {
+    omfang: Beregningsomfang;
+    fraDato?: string;
+    tidligsteEndring?: string;
+}
+
+enum Beregningsomfang {
+    ALLE_PERIODER = 'ALLE_PERIODER',
+    FRA_DATO = 'FRA_DATO',
+    GJENBRUK_FORRIGE_RESULTAT = 'GJENBRUK_FORRIGE_RESULTAT',
+    KUN_NYE_KJORELISTE_UKER = 'KUN_NYE_KJORELISTE_UKER',
+}
+
 export interface BeregningsresultatOffentligTransport {
     reiseId: string;
-    adresse: string;
+    adresse: string | null;
     fom: string;
     tom: string;
     beløp: number;
     begrunnelse: string;
+    aktivitetId: string | null;
+    fraTidligereVedtak: boolean;
 }
 export interface BeregningsresultatPrivatBil {
     reiseId: string;
-    adresse: string;
+    adresse: string | null;
     fom: string;
     tom: string;
     sats: number;
     totalReiseavstand: number;
-    parkering: number;
-    bompenger: number;
-    fergekostnad: number;
-    piggdekkavgift: number;
-    ekstrakostnader: number;
+    parkering: number | null;
+    bompenger: number | null;
+    fergekostnad: number | null;
+    piggdekkavgift: number | null;
+    beløpUtenAndreKostnader: number;
     beløp: number;
+    aktivitetId: string | null;
+    fraTidligereVedtak: boolean;
 }
 
 export interface OffentligTransportReise {
