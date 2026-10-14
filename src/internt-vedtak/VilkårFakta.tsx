@@ -63,6 +63,7 @@ export const FaktaDagligReisePrivatBilOppsummering: React.FC<{
 }> = ({ fakta }) => {
     return (
         <FaktaContainer tittel="Fakta privat bil">
+            <p>Reiseavstand én vei: {fakta.reiseavstandEnVei} km</p>
             <table>
                 <thead>
                     <tr>
