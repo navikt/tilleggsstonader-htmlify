@@ -1,13 +1,11 @@
-import { OffentligTransportTabell } from './OffentligTransportTabell';
-import { formaterNorskDato } from '../../felles/datoFormat';
 import { NonBreakingDiv } from '../felles';
-import { BeregnReiseTilSamlingTabell } from './BeregnReiseTilSamlingTabell';
+import { DagligReiseBeregningsresultatTabell } from './dagligeReiser/DagligeReiserBeregningsresultatTabell';
+import { ReiseTilSamlingBeregningsresultatTabell } from './reiseTilSamling/ReiseTilSamlingBeregningsresultatTabell';
+import { formaterNorskDato } from '../../felles/datoFormat';
 import {
     Beregningsresultat,
     BeregningsresultatBoutgifter,
-    BeregningsresultatDagligReise,
     BeregningsresultatLæremidler,
-    BeregningsresultatReiseTilSamling,
     BeregningsresultatTilsynBarn,
 } from '../typer/beregningsresultat';
 
@@ -37,12 +35,12 @@ export const BeregningsresultatContent: React.FC<{
             )}
             {beregningsresultat.dagligReise && (
                 <DagligReiseBeregningsresultatTabell
-                    beregningsresultatDagligReise={beregningsresultat.dagligReise}
+                    beregningsresultat={beregningsresultat.dagligReise}
                 />
             )}
             {beregningsresultat.reiseTilSamling && (
                 <ReiseTilSamlingBeregningsresultatTabell
-                    beregningsresultatReiseTilSamling={beregningsresultat.reiseTilSamling}
+                    beregningsresultat={beregningsresultat.reiseTilSamling}
                 />
             )}
         </NonBreakingDiv>
@@ -127,22 +125,3 @@ const BoutgifterBeregningsresultatTabell: React.FC<{
         </tbody>
     </table>
 );
-
-const DagligReiseBeregningsresultatTabell: React.FC<{
-    beregningsresultatDagligReise: BeregningsresultatDagligReise;
-}> = ({ beregningsresultatDagligReise }) => {
-    const offentligTransport = beregningsresultatDagligReise.offentligTransport?.reiser ?? [];
-    if (offentligTransport.length === 0) {
-        return null;
-    }
-    return <OffentligTransportTabell offentligTransportReiser={offentligTransport} />;
-};
-const ReiseTilSamlingBeregningsresultatTabell: React.FC<{
-    beregningsresultatReiseTilSamling: BeregningsresultatReiseTilSamling;
-}> = ({ beregningsresultatReiseTilSamling }) => {
-    return (
-        <BeregnReiseTilSamlingTabell
-            beregningsresultatReiseTilSamling={beregningsresultatReiseTilSamling}
-        />
-    );
-};

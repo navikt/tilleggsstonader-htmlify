@@ -1,5 +1,5 @@
-import { formaterNorskDato } from '../../felles/datoFormat';
-import { BeregningsresultatOffentligTransport } from '../typer/beregningsresultat';
+import { formaterNorskDato } from '../../../felles/datoFormat';
+import { BeregningsresultatOffentligTransport } from '../../typer/beregningsresultat';
 
 export const OffentligTransportSamlingTabell: React.FC<{
     samlinger: BeregningsresultatOffentligTransport[];

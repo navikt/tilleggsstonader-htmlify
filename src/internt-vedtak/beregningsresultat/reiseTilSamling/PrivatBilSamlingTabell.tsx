@@ -1,5 +1,5 @@
-import { formaterNorskDato } from '../../felles/datoFormat';
-import { BeregningsresultatPrivatBil } from '../typer/beregningsresultat';
+import { formaterNorskDato } from '../../../felles/datoFormat';
+import { BeregningsresultatPrivatBil } from '../../typer/beregningsresultat';
 
 export const PrivatBilSamlingTabell: React.FC<{
     samlinger: BeregningsresultatPrivatBil[];
@@ -17,12 +17,12 @@ export const PrivatBilSamlingTabell: React.FC<{
                                 <th>Tom</th>
                                 <th>Total reiseavstand</th>
                                 <th>Sats</th>
-                                {samling.bompenger != null && <th>Bompenger</th>}
+                                {/* {samling.bompenger != null && <th>Bompenger</th>}
                                 {samling.parkering != null && <th>Parkering</th>}
                                 {samling.fergekostnad != null && <th>Fergekostnad</th>}
-                                {samling.piggdekkavgift != null && <th>Piggdekkavgift</th>}
+                                {samling.piggdekkavgift != null && <th>Piggdekkavgift</th>} */}
                                 <th>Ekstrakostnader</th>
-                                <th>Beløp.</th>
+                                <th>Stønadsbeløp</th>
                             </tr>
                         </thead>
 
