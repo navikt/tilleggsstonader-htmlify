@@ -148,9 +148,13 @@ enum TilleggsstønadforskriftenHjemmel {
     FS_TILL_ST_1_3_MOBILITET = 'FS_TILL_ST_1_3_MOBILITET',
     FS_TILL_ST_3_REISE = 'FS_TILL_ST_3_REISE',
     FS_TILL_ST_6_FLYTTING = 'FS_TILL_ST_6_FLYTTING',
+    FS_TILL_ST_7_BEREGNING_FLYTTING = 'FS_TILL_ST_7_BEREGNING_FLYTTING',
     FS_TILL_ST_8_BOLIG = 'FS_TILL_ST_8_BOLIG',
+    FS_TILL_ST_9_BEREGNING_BOUTGIFTER = 'FS_TILL_ST_9_BEREGNING_BOUTGIFTER',
     FS_TILL_ST_10_TILSYN = 'FS_TILL_ST_10_TILSYN',
+    FS_TILL_ST_11_BEREGNING_TILSYN = 'FS_TILL_ST_11_BEREGNING_TILSYN',
     FS_TILL_ST_12_LAEREMIDLER = 'FS_TILL_ST_12_LAEREMIDLER',
+    FS_TILL_ST_13_BEREGNING_LAEREMIDLER = 'FS_TILL_ST_13_BEREGNING_LAEREMIDLER',
     FS_TILL_ST_15_2 = 'FS_TILL_ST_15_2',
     FS_TILL_ST_15_3 = 'FS_TILL_ST_15_3',
 }
@@ -206,12 +210,16 @@ const folketrygdlovenTSVisningstekster: Record<FolketrygdlovenHjemmelTS, string>
 
 const tilleggsstønadforskriftenVisningstekster: Record<TilleggsstønadforskriftenHjemmel, string> = {
     FS_TILL_ST_1_3_MOBILITET: 'Til.st.forskr. § 1 3. ledd',
-    FS_TILL_ST_3_REISE: 'Til.st.forskr § 3',
+    FS_TILL_ST_3_REISE: 'Til.st.forskr. § 3',
     FS_TILL_ST_6_FLYTTING: 'Til.st.forskr. § 6',
+    FS_TILL_ST_7_BEREGNING_FLYTTING: 'Til.st.forskr. § 7',
     FS_TILL_ST_8_BOLIG: 'Til.st.forskr. § 8',
+    FS_TILL_ST_9_BEREGNING_BOUTGIFTER: 'Til.st.forskr. § 9',
     FS_TILL_ST_10_TILSYN: 'Til.st.forskr. § 10',
+    FS_TILL_ST_11_BEREGNING_TILSYN: 'Til.st.forskr. § 11',
     FS_TILL_ST_12_LAEREMIDLER: 'Til.st.forskr. § 12',
-    FS_TILL_ST_15_2: 'Til.st.forskr § 15 2. ledd',
+    FS_TILL_ST_13_BEREGNING_LAEREMIDLER: 'Til.st.forskr. § 13',
+    FS_TILL_ST_15_2: 'Til.st.forskr. § 15 2. ledd',
     FS_TILL_ST_15_3: 'Til.st.forskr. § 15 3. ledd',
 };
 
