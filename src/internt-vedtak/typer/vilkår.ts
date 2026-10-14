@@ -1,14 +1,14 @@
+import { SvarVurdering } from './vilkårperiode';
 import { tekstEllerFeil } from '../../felles/tekstutils';
 
 export interface Vilkår {
-    resultat: Vilkårsresultat;
     type: Vilkårtype;
+    resultat: Vilkårsresultat;
     delvilkår: DelvilkårInternt[];
     fødselsdatoBarn?: string;
     fom?: string;
     tom?: string;
     utgift?: number;
-    adresse?: string;
     slettetKommentar?: string;
     fakta?: VilkårFakta;
 }
@@ -19,7 +19,13 @@ export type VilkårFakta =
     | FaktaReiseTilSamlingOffentligTransport
     | FaktaReiseTilSamlingPrivatBil;
 
-export interface FaktaDagligReiseOffentligTransport {
+export interface VilkårFaktaBase {
+    reiseId: string;
+    adresse?: string;
+    type: VilkårFaktaType;
+}
+
+export interface FaktaDagligReiseOffentligTransport extends VilkårFaktaBase {
     type: VilkårFaktaType.DAGLIG_REISE_OFFENTLIG_TRANSPORT;
     reisedagerPerUke: number;
     prisEnkelbillett?: number | null;
@@ -27,33 +33,43 @@ export interface FaktaDagligReiseOffentligTransport {
     prisTrettidagersbillett?: number | null;
 }
 
-export interface FaktaDagligReisePrivatBil {
+export interface FaktaDagligReisePrivatBil extends VilkårFaktaBase {
     type: VilkårFaktaType.DAGLIG_REISE_PRIVAT_BIL;
-    reisedagerPerUke: number;
     reiseavstandEnVei: number;
-    prisBompengerPerDag?: number | null;
-    prisFergekostandPerDag?: number | null;
+    faktaDelperioder: FaktaDelperiodeDagligReisePrivatBil[];
+    aktivitetId: string;
 }
-export interface FaktaReiseTilSamlingOffentligTransport {
+
+export interface FaktaDelperiodeDagligReisePrivatBil extends VilkårFaktaBase {
+    fom: string;
+    tom: string;
+    reisedagerPerUke: number;
+    bompengerPerDag?: number;
+    fergekostnadPerDag?: number;
+}
+export interface FaktaReiseTilSamlingOffentligTransport extends VilkårFaktaBase {
     type: VilkårFaktaType.REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT;
-    utgifterOffentligTransport: number | null;
+    nødvendigUtgift: NødvendigUtgiftReiseTilSamling;
+    utgifterOffentligTransport: number;
+    begrunnelse?: string;
+    aktivitetId?: string;
 }
-export interface FaktaReiseTilSamlingPrivatBil {
+export interface FaktaReiseTilSamlingPrivatBil extends VilkårFaktaBase {
     type: VilkårFaktaType.REISE_TIL_SAMLING_PRIVAT_BIL;
-    reiseavstand: number;
+    nødvendigUtgift: NødvendigUtgiftReiseTilSamling;
+    reiseAvstand: number;
     bompenger?: number | null;
     fergekostnad?: number | null;
     parkering?: number | null;
     piggdekkavgift?: number | null;
+    begrunnelse?: string;
+    aktivitetId?: string;
 }
 
-// FaktaReiseTilSamlingOffentligTransport(
-//     reiseId = dummyReiseId,
-//     adresse = "Tiltaksgata 1",
-//     utgifterOffentligTransport = 2000.toBigDecimal(),
-//     begrunnelse = "Begrunnelse",
-//     aktivitetId = dummyAktivitetId,
-// ),
+export interface NødvendigUtgiftReiseTilSamling {
+    erUtgiftenNødvendig: SvarVurdering;
+    begrunnelse?: string;
+}
 
 export enum VilkårFaktaType {
     DAGLIG_REISE_PRIVAT_BIL = 'DAGLIG_REISE_PRIVAT_BIL',
@@ -124,3 +140,22 @@ export const vilkårTitle = (vilkår: Vilkår): string => {
     }
     return tekstEllerFeil(vilkårtypeTilTekst, vilkår.type) ?? 'Ukjent vilkår';
 };
+
+export const erFaktaDagligReiseOffentligTransport = (
+    fakta: VilkårFakta
+): fakta is FaktaDagligReiseOffentligTransport =>
+    fakta.type === VilkårFaktaType.DAGLIG_REISE_OFFENTLIG_TRANSPORT;
+
+export const erFaktaDagligReisePrivatBil = (
+    fakta: VilkårFakta
+): fakta is FaktaDagligReisePrivatBil => fakta.type === VilkårFaktaType.DAGLIG_REISE_PRIVAT_BIL;
+
+export const erFaktaReiseTilSamlingOffentligTransport = (
+    fakta: VilkårFakta
+): fakta is FaktaReiseTilSamlingOffentligTransport =>
+    fakta.type === VilkårFaktaType.REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT;
+
+export const erFaktaReiseTilSamlingPrivatBil = (
+    fakta: VilkårFakta
+): fakta is FaktaReiseTilSamlingPrivatBil =>
+    fakta.type === VilkårFaktaType.REISE_TIL_SAMLING_PRIVAT_BIL;

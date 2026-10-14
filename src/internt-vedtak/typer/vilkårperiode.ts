@@ -65,7 +65,7 @@ export const kildeVilkårperiodeTilTekst: Record<KildeVilkårperiode, string> = 
     MANUELL: 'Manuell',
 };
 
-enum SvarVurdering {
+export enum SvarVurdering {
     JA = 'JA',
     JA_IMPLISITT = 'JA_IMPLISITT',
     NEI = 'NEI',
