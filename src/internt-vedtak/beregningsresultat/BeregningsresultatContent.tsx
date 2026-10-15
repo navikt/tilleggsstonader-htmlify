@@ -1,7 +1,8 @@
 import { NonBreakingDiv } from '../felles';
 import { DagligReiseBeregningsresultatTabell } from './dagligeReiser/DagligeReiserBeregningsresultatTabell';
 import { ReiseTilSamlingBeregningsresultatTabell } from './reiseTilSamling/ReiseTilSamlingBeregningsresultatTabell';
-import { formaterNorskDato } from '../../felles/datoFormat';
+import { formaterPeriode } from '../../felles/datoFormat';
+import { booleanTilJaNei } from '../../felles/tekstutils';
 import {
     Beregningsresultat,
     BeregningsresultatBoutgifter,
@@ -54,7 +55,7 @@ const TilsynBarnBeregningsresultatTabell: React.FC<{
         <thead>
             <tr>
                 <th>Periode</th>
-                <th>Barn</th>
+                <th>Antall barn</th>
                 <th>Månedlige utgifter</th>
                 <th>Dagsats</th>
                 <th>Stønadsbeløp</th>
@@ -80,23 +81,32 @@ const LæremidlerBeregningsresultatTabell: React.FC<{
     <table>
         <thead>
             <tr>
-                <th>Fom</th>
-                <th>Tom</th>
+                <th>Periode</th>
                 <th>Ant. månder</th>
                 <th>Månedsbeløp</th>
                 <th>Stønadsbeløp</th>
                 <th>Utbetalingsdato</th>
+                <th>Ekstrainformasjon</th>
             </tr>
         </thead>
         <tbody>
             {beregningsresultatLæremidler.map((beregningsresultat, index) => (
                 <tr key={index}>
-                    <td>{beregningsresultat.fom}</td>
-                    <td>{beregningsresultat.tom}</td>
+                    <td>{formaterPeriode(beregningsresultat)}</td>
                     <td>{beregningsresultat.antallMåneder}</td>
                     <td>{beregningsresultat.stønadsbeløpPerMåned}</td>
                     <td>{beregningsresultat.stønadsbeløpForPeriode}</td>
                     <td>{beregningsresultat.utbetalingsdato}</td>
+                    <td style={{ fontSize: '75%' }}>
+                        <div>Studienivå: {beregningsresultat.studienivå}</div>
+                        <div>Studieprosent: {beregningsresultat.studieprosent}</div>
+                        <div>Aktivitet: {beregningsresultat.aktivitet}</div>
+                        <div>Faktisk målgruppe: {beregningsresultat.målgruppe}</div>
+                        <div>
+                            Del av tidligere utbetaling:{' '}
+                            {booleanTilJaNei(beregningsresultat.delAvTidligereUtbetaling)}
+                        </div>
+                    </td>
                 </tr>
             ))}
         </tbody>
@@ -109,17 +119,39 @@ const BoutgifterBeregningsresultatTabell: React.FC<{
     <table>
         <thead>
             <tr>
-                <th>Fom</th>
-                <th>Tom</th>
+                <th>Periode</th>
+                <th>Sum utgifter</th>
                 <th>Stønadsbeløp</th>
+                <th>Ekstrainformasjon</th>
             </tr>
         </thead>
         <tbody>
             {beregningsresultatBoutgifter.map((beregningsresultat, index) => (
                 <tr key={index}>
-                    <td>{formaterNorskDato(beregningsresultat.fom)}</td>
-                    <td>{formaterNorskDato(beregningsresultat.tom)}</td>
+                    <td>{formaterPeriode(beregningsresultat)}</td>
+                    <td>{beregningsresultat.sumUtgifter}</td>
                     <td>{beregningsresultat.stønadsbeløp}</td>
+                    <td style={{ fontSize: '75%' }}>
+                        <div>
+                            Del av tidligere utbetaling:{' '}
+                            {booleanTilJaNei(beregningsresultat.delAvTidligereUtbetaling)}
+                        </div>
+                        <div>
+                            Makssats bekreftet:{' '}
+                            {booleanTilJaNei(beregningsresultat.makssatsBekreftet)}
+                        </div>
+                        <div>
+                            {' '}
+                            Får dekt faktiske utgifter:{' '}
+                            {booleanTilJaNei(beregningsresultat.skalFåDekketFaktiskeUtgifter)}
+                        </div>
+                        <div>
+                            Inneholder utgifter overnatting:{' '}
+                            {booleanTilJaNei(beregningsresultat.inneholderUtgifterOvernatting)}
+                        </div>
+                        <div>Aktivitet: {beregningsresultat.aktivitet}</div>
+                        <div>Faktisk målgruppe: {beregningsresultat.målgruppe}</div>
+                    </td>
                 </tr>
             ))}
         </tbody>

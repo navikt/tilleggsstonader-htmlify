@@ -1,6 +1,6 @@
 import { formaterPeriode } from '../../../felles/datoFormat';
 import { kronerMedTusenSkilleEllerStrek } from '../../../felles/tekstutils';
-import { BeregningsresultatOffentligTransport } from '../../typer/beregningsresultat';
+import { BeregningsresultatOffentligTransport } from '../../typer/beregningsresultatReiseTilSamling';
 
 export const OffentligTransportSamlingTabell: React.FC<{
     samlinger: BeregningsresultatOffentligTransport[];

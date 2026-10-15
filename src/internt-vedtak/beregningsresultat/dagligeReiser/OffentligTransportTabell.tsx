@@ -1,44 +1,47 @@
 import { formaterNorskDato } from '../../../felles/datoFormat';
-import { OffentligTransportReise } from '../../typer/beregningsresultat';
+import { booleanTilJaNei } from '../../../felles/tekstutils';
+import { NonBreakingDiv } from '../../felles';
+import { BeregningsresultatForReiseOffentlig } from '../../typer/beregningsresultatDagligeReiser';
 
 export const OffentligTransportTabell: React.FC<{
-    offentligTransportReiser: OffentligTransportReise[];
+    offentligTransportReiser: BeregningsresultatForReiseOffentlig[];
 }> = ({ offentligTransportReiser }) => {
-    const renderBillettPris = (count: number, pris: number) =>
-        count > 0 ? `${count} × ${pris} = ${count * pris}` : '-';
+    const renderBillettPris = (count: number, pris?: number) => {
+        if (!pris) return '-';
+
+        return count > 0 ? `${count} × ${pris} = ${count * pris}` : '-';
+    };
 
     return (
-        <>
+        <NonBreakingDiv>
+            <h3>Offentlig transport</h3>
             {offentligTransportReiser.map((reise, reiseIndex) => {
-                const relevantePerioder = (reise.perioder ?? []).filter(
-                    (periode) => !periode.fraTidligereVedtak
-                );
                 const medBrukersNavKontor = reise.perioder.some((p) => p.brukersNavKontor);
 
-                if (relevantePerioder.length === 0) {
+                if (reise.perioder.length === 0) {
                     return null;
                 }
 
-                const hasEnkeltbillett = relevantePerioder.some(
+                const hasEnkeltbillett = reise.perioder.some(
                     (p) => (p.billettdetaljer['ENKELTBILLETT'] ?? 0) > 0
                 );
-                const has7dagersbillett = relevantePerioder.some(
+                const has7dagersbillett = reise.perioder.some(
                     (p) => (p.billettdetaljer['SYVDAGERSBILLETT'] ?? 0) > 0
                 );
-                const has30dagersbillett = relevantePerioder.some(
+                const has30dagersbillett = reise.perioder.some(
                     (p) => (p.billettdetaljer['TRETTIDAGERSBILLETT'] ?? 0) > 0
                 );
-                const hasAntallReisedager = relevantePerioder.some(
+                const hasAntallReisedager = reise.perioder.some(
                     (p) => p.antallReisedager !== undefined
                 );
 
-                const antallDager = relevantePerioder[0]?.antallReisedagerPerUke;
+                const antallDager = reise.perioder[0]?.antallReisedagerPerUke;
 
                 return (
                     <div key={reiseIndex} style={{ marginBottom: '2rem' }}>
-                        <h3>
-                            {reise.adresse} - Offentlig transport - {antallDager} dager/uke
-                        </h3>
+                        <h4>
+                            {reise.adresse} - {antallDager} dager/uke
+                        </h4>
                         <table style={{ fontSize: '90%' }}>
                             <thead>
                                 <tr>
@@ -50,10 +53,11 @@ export const OffentligTransportTabell: React.FC<{
                                     {hasAntallReisedager && <th>Reisedager</th>}
                                     <th>Beløp</th>
                                     {medBrukersNavKontor && <th>Brukers NAV-kontor</th>}
+                                    <th>Fra tidligere vedtak</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {relevantePerioder.map((periode, periodeIndex) => {
+                                {reise.perioder.map((periode, periodeIndex) => {
                                     const countEnkelt =
                                         periode.billettdetaljer['ENKELTBILLETT'] ?? 0;
                                     const count7d =
@@ -96,6 +100,7 @@ export const OffentligTransportTabell: React.FC<{
                                             {medBrukersNavKontor && (
                                                 <td>{periode.brukersNavKontor}</td>
                                             )}
+                                            <td>{booleanTilJaNei(periode.fraTidligereVedtak)}</td>
                                         </tr>
                                     );
                                 })}
@@ -104,6 +109,6 @@ export const OffentligTransportTabell: React.FC<{
                     </div>
                 );
             })}
-        </>
+        </NonBreakingDiv>
     );
 };

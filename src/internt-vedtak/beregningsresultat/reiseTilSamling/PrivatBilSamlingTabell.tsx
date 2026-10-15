@@ -1,6 +1,6 @@
 import { formaterPeriode } from '../../../felles/datoFormat';
 import { kronerMedTusenSkilleEllerStrek } from '../../../felles/tekstutils';
-import { BeregningsresultatPrivatBil } from '../../typer/beregningsresultat';
+import { BeregningsresultatPrivatBil } from '../../typer/beregningsresultatReiseTilSamling';
 
 export const PrivatBilSamlingTabell: React.FC<{
     samlinger: BeregningsresultatPrivatBil[];
@@ -14,7 +14,7 @@ export const PrivatBilSamlingTabell: React.FC<{
                         {formaterPeriode(samling)} - {samling.adresse ?? 'Ukjent adresse'}
                     </h4>
                     {samling.fraTidligereVedtak && <p>Fra tidligere vedtak</p>}
-                    <table style={{ verticalAlign: 'top' }}>
+                    <table style={{ fontSize: '80%' }}>
                         <colgroup>
                             <col style={{ width: '15%' }} />
                             <col style={{ width: '10%' }} />

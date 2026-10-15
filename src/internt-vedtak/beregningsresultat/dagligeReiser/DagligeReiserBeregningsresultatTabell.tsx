@@ -1,13 +1,18 @@
 import { OffentligTransportTabell } from './OffentligTransportTabell';
-import { BeregningsresultatDagligReise } from '../../typer/beregningsresultat';
+import { PrivatBilTabell } from './PrivatBilTabell';
+import { BeregningsresultatDagligReise } from '../../typer/beregningsresultatDagligeReiser';
 
 export const DagligReiseBeregningsresultatTabell: React.FC<{
     beregningsresultat: BeregningsresultatDagligReise;
-}> = ({ beregningsresultat: beregningsresultatDagligReise }) => {
-    const offentligTransport = beregningsresultatDagligReise.offentligTransport?.reiser ?? [];
-    if (offentligTransport.length === 0) {
-        return null;
-    }
-    // TODO: Legg til bil
-    return <OffentligTransportTabell offentligTransportReiser={offentligTransport} />;
+}> = ({ beregningsresultat }) => {
+    const { offentligTransport, privatBil } = beregningsresultat;
+
+    return (
+        <>
+            {offentligTransport && (
+                <OffentligTransportTabell offentligTransportReiser={offentligTransport.reiser} />
+            )}
+            {privatBil && <PrivatBilTabell reiser={privatBil} />}
+        </>
+    );
 };
