@@ -31,7 +31,7 @@ export const PrivatBilTabell: React.FC<{
                         </thead>
                         <tbody>
                             {reise.perioder.map((periode, indeks) => (
-                                <tr>
+                                <tr key={indeks}>
                                     <td>{formaterPeriode(periode)}</td>
                                     <td>{periode.antallGodkjenteReisedager}</td>
                                     <td>
