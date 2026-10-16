@@ -147,6 +147,7 @@ table, td, th {
 
 td, th {
     text-align: left;
+    vertical-align: top;
     padding: 3px 10px;
 }
 

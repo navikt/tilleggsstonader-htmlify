@@ -1,13 +1,12 @@
-import { OffentligTransportTabell } from './OffentligTransportTabell';
-import { formaterNorskDato } from '../../felles/datoFormat';
 import { NonBreakingDiv } from '../felles';
-import { BeregnReiseTilSamlingTabell } from './BeregnReiseTilSamlingTabell';
+import { DagligReiseBeregningsresultatTabell } from './dagligeReiser/DagligeReiserBeregningsresultatTabell';
+import { ReiseTilSamlingBeregningsresultatTabell } from './reiseTilSamling/ReiseTilSamlingBeregningsresultatTabell';
+import { formaterPeriode } from '../../felles/datoFormat';
+import { booleanTilJaNei } from '../../felles/tekstutils';
 import {
     Beregningsresultat,
     BeregningsresultatBoutgifter,
-    BeregningsresultatDagligReise,
     BeregningsresultatLæremidler,
-    BeregningsresultatReiseTilSamling,
     BeregningsresultatTilsynBarn,
 } from '../typer/beregningsresultat';
 
@@ -37,12 +36,12 @@ export const BeregningsresultatContent: React.FC<{
             )}
             {beregningsresultat.dagligReise && (
                 <DagligReiseBeregningsresultatTabell
-                    beregningsresultatDagligReise={beregningsresultat.dagligReise}
+                    beregningsresultat={beregningsresultat.dagligReise}
                 />
             )}
             {beregningsresultat.reiseTilSamling && (
                 <ReiseTilSamlingBeregningsresultatTabell
-                    beregningsresultatReiseTilSamling={beregningsresultat.reiseTilSamling}
+                    beregningsresultat={beregningsresultat.reiseTilSamling}
                 />
             )}
         </NonBreakingDiv>
@@ -56,7 +55,7 @@ const TilsynBarnBeregningsresultatTabell: React.FC<{
         <thead>
             <tr>
                 <th>Periode</th>
-                <th>Barn</th>
+                <th>Antall barn</th>
                 <th>Månedlige utgifter</th>
                 <th>Dagsats</th>
                 <th>Stønadsbeløp</th>
@@ -82,23 +81,32 @@ const LæremidlerBeregningsresultatTabell: React.FC<{
     <table>
         <thead>
             <tr>
-                <th>Fom</th>
-                <th>Tom</th>
+                <th>Periode</th>
                 <th>Ant. månder</th>
                 <th>Månedsbeløp</th>
                 <th>Stønadsbeløp</th>
                 <th>Utbetalingsdato</th>
+                <th>Ekstrainformasjon</th>
             </tr>
         </thead>
         <tbody>
             {beregningsresultatLæremidler.map((beregningsresultat, index) => (
                 <tr key={index}>
-                    <td>{beregningsresultat.fom}</td>
-                    <td>{beregningsresultat.tom}</td>
+                    <td>{formaterPeriode(beregningsresultat)}</td>
                     <td>{beregningsresultat.antallMåneder}</td>
                     <td>{beregningsresultat.stønadsbeløpPerMåned}</td>
                     <td>{beregningsresultat.stønadsbeløpForPeriode}</td>
                     <td>{beregningsresultat.utbetalingsdato}</td>
+                    <td style={{ fontSize: '75%' }}>
+                        <div>Studienivå: {beregningsresultat.studienivå}</div>
+                        <div>Studieprosent: {beregningsresultat.studieprosent}</div>
+                        <div>Aktivitet: {beregningsresultat.aktivitet}</div>
+                        <div>Faktisk målgruppe: {beregningsresultat.målgruppe}</div>
+                        <div>
+                            Del av tidligere utbetaling:{' '}
+                            {booleanTilJaNei(beregningsresultat.delAvTidligereUtbetaling)}
+                        </div>
+                    </td>
                 </tr>
             ))}
         </tbody>
@@ -111,38 +119,41 @@ const BoutgifterBeregningsresultatTabell: React.FC<{
     <table>
         <thead>
             <tr>
-                <th>Fom</th>
-                <th>Tom</th>
+                <th>Periode</th>
+                <th>Sum utgifter</th>
                 <th>Stønadsbeløp</th>
+                <th>Ekstrainformasjon</th>
             </tr>
         </thead>
         <tbody>
             {beregningsresultatBoutgifter.map((beregningsresultat, index) => (
                 <tr key={index}>
-                    <td>{formaterNorskDato(beregningsresultat.fom)}</td>
-                    <td>{formaterNorskDato(beregningsresultat.tom)}</td>
+                    <td>{formaterPeriode(beregningsresultat)}</td>
+                    <td>{beregningsresultat.sumUtgifter}</td>
                     <td>{beregningsresultat.stønadsbeløp}</td>
+                    <td style={{ fontSize: '75%' }}>
+                        <div>
+                            Del av tidligere utbetaling:{' '}
+                            {booleanTilJaNei(beregningsresultat.delAvTidligereUtbetaling)}
+                        </div>
+                        <div>
+                            Makssats bekreftet:{' '}
+                            {booleanTilJaNei(beregningsresultat.makssatsBekreftet)}
+                        </div>
+                        <div>
+                            {' '}
+                            Får dekt faktiske utgifter:{' '}
+                            {booleanTilJaNei(beregningsresultat.skalFåDekketFaktiskeUtgifter)}
+                        </div>
+                        <div>
+                            Inneholder utgifter overnatting:{' '}
+                            {booleanTilJaNei(beregningsresultat.inneholderUtgifterOvernatting)}
+                        </div>
+                        <div>Aktivitet: {beregningsresultat.aktivitet}</div>
+                        <div>Faktisk målgruppe: {beregningsresultat.målgruppe}</div>
+                    </td>
                 </tr>
             ))}
         </tbody>
     </table>
 );
-
-const DagligReiseBeregningsresultatTabell: React.FC<{
-    beregningsresultatDagligReise: BeregningsresultatDagligReise;
-}> = ({ beregningsresultatDagligReise }) => {
-    const offentligTransport = beregningsresultatDagligReise.offentligTransport?.reiser ?? [];
-    if (offentligTransport.length === 0) {
-        return null;
-    }
-    return <OffentligTransportTabell offentligTransportReiser={offentligTransport} />;
-};
-const ReiseTilSamlingBeregningsresultatTabell: React.FC<{
-    beregningsresultatReiseTilSamling: BeregningsresultatReiseTilSamling;
-}> = ({ beregningsresultatReiseTilSamling }) => {
-    return (
-        <BeregnReiseTilSamlingTabell
-            beregningsresultatReiseTilSamling={beregningsresultatReiseTilSamling}
-        />
-    );
-};

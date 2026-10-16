@@ -1,3 +1,7 @@
+import { BeregningsresultatDagligReise } from './beregningsresultatDagligeReiser';
+import { BeregningsresultatReiseTilSamling } from './beregningsresultatReiseTilSamling';
+import { AktivitetType } from './målgruppeOgAktivitet';
+
 export interface Beregningsresultat {
     tilsynBarn?: BeregningsresultatTilsynBarn[];
     læremidler?: BeregningsresultatLæremidler[];
@@ -20,69 +24,40 @@ export interface BeregningsresultatLæremidler {
     fom: string;
     tom: string;
     antallMåneder: number;
+    studienivå: string;
+    studieprosent: number;
     stønadsbeløpPerMåned: number;
     stønadsbeløpForPeriode: number;
     utbetalingsdato: string;
+    delAvTidligereUtbetaling: boolean;
+    aktivitet: AktivitetType;
+    målgruppe: string; // Faktisk målgruppe
 }
 
 export interface BeregningsresultatBoutgifter {
     fom: string;
     tom: string;
-    antallMåneder: number;
     stønadsbeløp: number;
+    makssatsBekreftet: boolean;
+    delAvTidligereUtbetaling: boolean;
+    skalFåDekketFaktiskeUtgifter: boolean;
+    inneholderUtgifterOvernatting: boolean;
+    sumUtgifter: number;
+    målgruppe: string; // Faktisk målgruppe
+    aktivitet: AktivitetType;
 }
 
-export interface BeregningsresultatDagligReise {
-    offentligTransport: {
-        reiser: OffentligTransportReise[];
-    };
+export interface Beregningsplan {
+    omfang: Beregningsomfang;
+    fraDato?: string;
+    tidligsteEndring?: string;
 }
 
-export interface BeregningsresultatReiseTilSamling {
-    offentligTransport: BeregningsresultatOffentligTransport[];
-    privatBil: BeregningsresultatPrivatBil[];
-}
-export interface BeregningsresultatOffentligTransport {
-    reiseId: string;
-    adresse: string;
-    fom: string;
-    tom: string;
-    beløp: number;
-    begrunnelse: string;
-}
-export interface BeregningsresultatPrivatBil {
-    reiseId: string;
-    adresse: string;
-    fom: string;
-    tom: string;
-    sats: number;
-    totalReiseavstand: number;
-    parkering: number;
-    bompenger: number;
-    fergekostnad: number;
-    piggdekkavgift: number;
-    ekstrakostnader: number;
-    beløp: number;
-}
-
-export interface OffentligTransportReise {
-    reiseId: string;
-    adresse: string;
-    perioder: OffentligTransportPeriode[];
-}
-
-export interface OffentligTransportPeriode {
-    fom: string;
-    tom: string;
-    prisEnkeltbillett: number;
-    prisSyvdagersbillett: number;
-    pris30dagersbillett: number;
-    antallReisedagerPerUke: number;
-    antallReisedager: number;
-    beløp: number;
-    billettdetaljer: Record<BillettdetaljerEnum, number>;
-    brukersNavKontor?: string;
-    fraTidligereVedtak: boolean;
+enum Beregningsomfang {
+    ALLE_PERIODER = 'ALLE_PERIODER',
+    FRA_DATO = 'FRA_DATO',
+    GJENBRUK_FORRIGE_RESULTAT = 'GJENBRUK_FORRIGE_RESULTAT',
+    KUN_NYE_KJORELISTE_UKER = 'KUN_NYE_KJORELISTE_UKER',
 }
 
 export type BillettdetaljerEnum = 'ENKELTBILLETT' | 'SYVDAGERSBILLETT' | 'TRETTIDAGERSBILLETT';
