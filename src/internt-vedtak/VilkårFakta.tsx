@@ -1,16 +1,16 @@
 import { formaterPeriode } from '../felles/datoFormat';
 import { kronerMedTusenSkilleEllerStrek } from '../felles/tekstutils';
 import {
-    erFaktaDagligReisePrivatBil,
-    VilkårFakta,
-    FaktaDagligReisePrivatBil,
     erFaktaDagligReiseOffentligTransport,
-    FaktaDagligReiseOffentligTransport,
-    FaktaReiseTilSamlingOffentligTransport,
+    erFaktaDagligReisePrivatBil,
     erFaktaReiseTilSamlingOffentligTransport,
+    erFaktaReiseTilSamlingPrivatBil,
+    FaktaDagligReiseOffentligTransport,
+    FaktaDagligReisePrivatBil,
+    FaktaReiseTilSamlingOffentligTransport,
     FaktaReiseTilSamlingPrivatBil,
     NødvendigUtgiftReiseTilSamling,
-    erFaktaReiseTilSamlingPrivatBil,
+    VilkårFakta,
 } from './typer/vilkår';
 import { svarVurderingTilTekst } from './typer/vilkårperiode';
 
@@ -141,11 +141,12 @@ const NødvendigUtgiftOppsummering: React.FC<{
     return (
         <div style={{ marginTop: '16px', marginBottom: '16px' }}>
             <div>
-                Er utgiften nødvendig: {svarVurderingTilTekst[nødvendigUtgift.erUtgiftenNødvendig]}
+                Er hele utgiften nødvendig:{' '}
+                {svarVurderingTilTekst[nødvendigUtgift.erUtgiftenNødvendig]}
             </div>
             {nødvendigUtgift.begrunnelse && (
                 <>
-                    <div>Hvorfor var ikke utgiften nødvendig?</div>
+                    <div>Hvorfor vurderes ikke hele eller deler av utgiften som nødvendig?</div>
                     <div>{nødvendigUtgift.begrunnelse}</div>
                 </>
             )}
