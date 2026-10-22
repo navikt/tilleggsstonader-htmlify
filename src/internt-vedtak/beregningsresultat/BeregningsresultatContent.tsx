@@ -2,13 +2,15 @@ import { NonBreakingDiv } from '../felles';
 import { DagligReiseBeregningsresultatTabell } from './dagligeReiser/DagligeReiserBeregningsresultatTabell';
 import { ReiseTilSamlingBeregningsresultatTabell } from './reiseTilSamling/ReiseTilSamlingBeregningsresultatTabell';
 import { formaterPeriode } from '../../felles/datoFormat';
-import { booleanTilJaNei } from '../../felles/tekstutils';
+import { booleanTilJaNei, kronerMedTusenSkilleEllerStrek } from '../../felles/tekstutils';
 import {
     Beregningsresultat,
     BeregningsresultatBoutgifter,
+    BeregningsresultatFlytting,
     BeregningsresultatLæremidler,
     BeregningsresultatTilsynBarn,
 } from '../typer/beregningsresultat';
+import { faktiskMålgruppeTilTekst } from '../typer/målgruppeOgAktivitet';
 
 export const BeregningsresultatContent: React.FC<{
     beregningsresultat?: Beregningsresultat;
@@ -44,9 +46,84 @@ export const BeregningsresultatContent: React.FC<{
                     beregningsresultat={beregningsresultat.reiseTilSamling}
                 />
             )}
+            {beregningsresultat.flytting && (
+                <FlyttingBeregningsresultatTabell
+                    beregningsresultat={beregningsresultat.flytting}
+                />
+            )}
         </NonBreakingDiv>
     );
 };
+
+const FlyttingBeregningsresultatTabell: React.FC<{
+    beregningsresultat: BeregningsresultatFlytting;
+}> = ({ beregningsresultat }) => (
+    <table>
+        <thead>
+            <tr>
+                <th>Periode</th>
+                <th>Målgruppe</th>
+                <th>Stønadsbeløp</th>
+                <th>Beregningsgrunnlag</th>
+            </tr>
+        </thead>
+        <tbody>
+            {beregningsresultat.resultater.map((resultat, index) => (
+                <tr key={index}>
+                    <td>{formaterPeriode(resultat)}</td>
+                    <td>{faktiskMålgruppeTilTekst[resultat.målgruppe]}</td>
+                    <td>{kronerMedTusenSkilleEllerStrek(resultat.beløp)}</td>
+                    <td style={{ fontSize: '75%' }}>
+                        {resultat.grunnlag.type === 'FLYTTEBYRÅ' ? (
+                            <>
+                                {resultat.grunnlag.tilbud.map((tilbud, tilbudIndex) => (
+                                    <div key={tilbudIndex}>
+                                        Tilbud {tilbudIndex + 1}: {tilbud.navn},{' '}
+                                        {kronerMedTusenSkilleEllerStrek(tilbud.pris)}
+                                        {tilbud.erValgt ? ' (valgt)' : ''}
+                                    </div>
+                                ))}
+                                <div>
+                                    Betaling dokumentert:{' '}
+                                    {booleanTilJaNei(resultat.grunnlag.erBetalingDokumentert)}
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div>Avstand én vei: {resultat.grunnlag.avstandEnVei} km</div>
+                                <div>
+                                    Sats: {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.sats)}
+                                </div>
+                                <div>
+                                    Sats bekreftet:{' '}
+                                    {booleanTilJaNei(resultat.grunnlag.satsBekreftet)}
+                                </div>
+                                <div>
+                                    Henger:{' '}
+                                    {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.henger)}
+                                </div>
+                                <div>
+                                    Bompenger:{' '}
+                                    {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.bompenger)}
+                                </div>
+                                <div>
+                                    Ferge: {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.ferge)}
+                                </div>
+                                <div>
+                                    Parkering:{' '}
+                                    {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.parkering)}
+                                </div>
+                            </>
+                        )}
+                        <div>
+                            Fra tidligere vedtak: {booleanTilJaNei(resultat.fraTidligereVedtak)}
+                        </div>
+                    </td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+);
 
 const TilsynBarnBeregningsresultatTabell: React.FC<{
     beregningsresultatTilsynBarn: BeregningsresultatTilsynBarn[];

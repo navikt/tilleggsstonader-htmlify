@@ -6,6 +6,8 @@ export enum Stønadstype {
     DAGLIG_REISE_TSR = 'DAGLIG_REISE_TSR',
     REISE_TIL_SAMLING_TSO = 'REISE_TIL_SAMLING_TSO',
     REISE_TIL_SAMLING_TSR = 'REISE_TIL_SAMLING_TSR',
+    FLYTTING_TSO = 'FLYTTING_TSO',
+    FLYTTING_TSR = 'FLYTTING_TSR',
 }
 
 export const stønadstypeTilTekst: Record<Stønadstype, string> = {
@@ -16,6 +18,8 @@ export const stønadstypeTilTekst: Record<Stønadstype, string> = {
     DAGLIG_REISE_TSR: 'daglige reiser',
     REISE_TIL_SAMLING_TSO: 'reise til samling',
     REISE_TIL_SAMLING_TSR: 'reise til samling',
+    FLYTTING_TSO: 'flytting',
+    FLYTTING_TSR: 'flytting',
 };
 
 export const tittelInterntVedtak = (stønadstype: Stønadstype): string => {

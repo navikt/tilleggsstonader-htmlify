@@ -1,6 +1,6 @@
 import { BeregningsresultatDagligReise } from './beregningsresultatDagligeReiser';
 import { BeregningsresultatReiseTilSamling } from './beregningsresultatReiseTilSamling';
-import { AktivitetType } from './målgruppeOgAktivitet';
+import { AktivitetType, FaktiskMålgruppeType } from './målgruppeOgAktivitet';
 
 export interface Beregningsresultat {
     tilsynBarn?: BeregningsresultatTilsynBarn[];
@@ -8,6 +8,46 @@ export interface Beregningsresultat {
     boutgifter?: BeregningsresultatBoutgifter[];
     dagligReise?: BeregningsresultatDagligReise;
     reiseTilSamling?: BeregningsresultatReiseTilSamling;
+    flytting?: BeregningsresultatFlytting;
+}
+
+export interface BeregningsresultatFlytting {
+    resultater: BeregningsresultatFlyttevilkår[];
+}
+
+export interface BeregningsresultatFlyttevilkår {
+    fraTidligereVedtak: boolean;
+    fom: string;
+    tom: string;
+    grunnlag: BeregningsgrunnlagFlytting;
+    beløp: number;
+    målgruppe: FaktiskMålgruppeType;
+}
+
+export type BeregningsgrunnlagFlytting =
+    BeregningsgrunnlagFlyttebyrå | BeregningsgrunnlagFlytteSelv;
+
+export interface BeregningsgrunnlagFlyttebyrå {
+    type: 'FLYTTEBYRÅ';
+    tilbud: BeregningsgrunnlagFlyttebyråTilbud[];
+    erBetalingDokumentert: boolean;
+}
+
+export interface BeregningsgrunnlagFlyttebyråTilbud {
+    navn: string;
+    pris: number;
+    erValgt: boolean;
+}
+
+export interface BeregningsgrunnlagFlytteSelv {
+    type: 'FLYTTE_SELV';
+    avstandEnVei: number;
+    sats: number;
+    satsBekreftet: boolean;
+    henger: number;
+    bompenger: number;
+    ferge: number;
+    parkering: number;
 }
 
 export interface BeregningsresultatTilsynBarn {
