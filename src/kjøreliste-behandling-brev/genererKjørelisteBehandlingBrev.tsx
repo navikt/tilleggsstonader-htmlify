@@ -84,6 +84,9 @@ const Innhold: React.FC<{ data: KjørelisteBehandlingBrevData }> = ({ data }) =>
                         </li>
                     ))}
                 </ul>
+                <p>
+                    Utbetalingen er beregnet i henhold til forskrift om tilleggsstønader §§ 3 og 5.
+                </p>
             </div>
             {data.begrunnelse && (
                 <div className="avsnitt">
