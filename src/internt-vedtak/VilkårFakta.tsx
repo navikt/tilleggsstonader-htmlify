@@ -3,10 +3,12 @@ import { kronerMedTusenSkilleEllerStrek } from '../felles/tekstutils';
 import {
     erFaktaDagligReiseOffentligTransport,
     erFaktaDagligReisePrivatBil,
+    erFaktaReiseTilSamlingDrosje,
     erFaktaReiseTilSamlingOffentligTransport,
     erFaktaReiseTilSamlingPrivatBil,
     FaktaDagligReiseOffentligTransport,
     FaktaDagligReisePrivatBil,
+    FaktaReiseTilSamlingDrosje,
     FaktaReiseTilSamlingOffentligTransport,
     FaktaReiseTilSamlingPrivatBil,
     NødvendigUtgiftReiseTilSamling,
@@ -31,6 +33,10 @@ export const Fakta: React.FC<{ fakta: VilkårFakta }> = ({ fakta }) => {
 
     if (erFaktaReiseTilSamlingPrivatBil(fakta)) {
         return <FaktaReiseTilSamlingPrivatBilOppsummering fakta={fakta} />;
+    }
+
+    if (erFaktaReiseTilSamlingDrosje(fakta)) {
+        return <FaktaReiseTilSamlingDrosjeOppsummering fakta={fakta} />;
     }
 
     return null;
@@ -106,6 +112,22 @@ const FaktaReiseTilSamlingOffentligTransportOppsummering: React.FC<{
                 <div>
                     Utgifter: {kronerMedTusenSkilleEllerStrek(fakta.utgifterOffentligTransport)}
                 </div>
+
+                <div>Spesifikasjon av utgift (obligatorisk): {fakta.begrunnelse || '-'}</div>
+            </>
+        </FaktaContainer>
+    );
+};
+
+const FaktaReiseTilSamlingDrosjeOppsummering: React.FC<{
+    fakta: FaktaReiseTilSamlingDrosje;
+}> = ({ fakta }) => {
+    return (
+        <FaktaContainer tittel="Fakta drosje">
+            <>
+                {fakta.aktivitetId != null && <div>Aktivitet ID: {fakta.aktivitetId}</div>}
+                <NødvendigUtgiftOppsummering nødvendigUtgift={fakta.nødvendigUtgift} />
+                <div>Utgifter: {kronerMedTusenSkilleEllerStrek(fakta.utgifterDrosje)}</div>
 
                 <div>Spesifikasjon av utgift (obligatorisk): {fakta.begrunnelse || '-'}</div>
             </>
