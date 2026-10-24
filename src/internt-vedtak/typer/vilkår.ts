@@ -17,7 +17,8 @@ export type VilkårFakta =
     | FaktaDagligReiseOffentligTransport
     | FaktaDagligReisePrivatBil
     | FaktaReiseTilSamlingOffentligTransport
-    | FaktaReiseTilSamlingPrivatBil;
+    | FaktaReiseTilSamlingPrivatBil
+    | FaktaReiseTilSamlingDrosje;
 
 export interface VilkårFaktaBase {
     reiseId: string;
@@ -66,6 +67,14 @@ export interface FaktaReiseTilSamlingPrivatBil extends VilkårFaktaBase {
     aktivitetId?: string;
 }
 
+export interface FaktaReiseTilSamlingDrosje extends VilkårFaktaBase {
+    type: VilkårFaktaType.REISE_TIL_SAMLING_DROSJE;
+    nødvendigUtgift: NødvendigUtgiftReiseTilSamling;
+    utgifterDrosje: number;
+    begrunnelse: string;
+    aktivitetId?: string;
+}
+
 export interface NødvendigUtgiftReiseTilSamling {
     erUtgiftenNødvendig: SvarVurdering;
     begrunnelse?: string;
@@ -76,6 +85,7 @@ export enum VilkårFaktaType {
     DAGLIG_REISE_OFFENTLIG_TRANSPORT = 'DAGLIG_REISE_OFFENTLIG_TRANSPORT',
     REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT = 'REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT',
     REISE_TIL_SAMLING_PRIVAT_BIL = 'REISE_TIL_SAMLING_PRIVAT_BIL',
+    REISE_TIL_SAMLING_DROSJE = 'REISE_TIL_SAMLING_DROSJE',
 }
 
 export const vilkårFaktaTypeTilTeXt: Record<VilkårFaktaType, string> = {
@@ -83,6 +93,7 @@ export const vilkårFaktaTypeTilTeXt: Record<VilkårFaktaType, string> = {
     DAGLIG_REISE_PRIVAT_BIL: 'Privat bil',
     REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT: 'Offentlig transport',
     REISE_TIL_SAMLING_PRIVAT_BIL: 'Privat bil',
+    REISE_TIL_SAMLING_DROSJE: 'Drosje',
 };
 
 export interface DelvilkårInternt {
@@ -159,3 +170,7 @@ export const erFaktaReiseTilSamlingPrivatBil = (
     fakta: VilkårFakta
 ): fakta is FaktaReiseTilSamlingPrivatBil =>
     fakta.type === VilkårFaktaType.REISE_TIL_SAMLING_PRIVAT_BIL;
+
+export const erFaktaReiseTilSamlingDrosje = (
+    fakta: VilkårFakta
+): fakta is FaktaReiseTilSamlingDrosje => fakta.type === VilkårFaktaType.REISE_TIL_SAMLING_DROSJE;

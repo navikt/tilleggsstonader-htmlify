@@ -1,3 +1,4 @@
+import { DrosjeSamlingTabell } from './DrosjeSamlingTabell';
 import { OffentligTransportSamlingTabell } from './OffentligTransportSamlingTabell';
 import { PrivatBilSamlingTabell } from './PrivatBilSamlingTabell';
 import { BeregningsresultatReiseTilSamling } from '../../typer/beregningsresultatReiseTilSamling';
@@ -5,7 +6,7 @@ import { BeregningsresultatReiseTilSamling } from '../../typer/beregningsresulta
 export const ReiseTilSamlingBeregningsresultatTabell: React.FC<{
     beregningsresultat: BeregningsresultatReiseTilSamling;
 }> = ({ beregningsresultat }) => {
-    const { offentligTransport, privatBil } = beregningsresultat;
+    const { offentligTransport, privatBil, drosje } = beregningsresultat;
 
     return (
         <>
@@ -13,6 +14,7 @@ export const ReiseTilSamlingBeregningsresultatTabell: React.FC<{
                 <OffentligTransportSamlingTabell samlinger={offentligTransport} />
             )}
             {privatBil && <PrivatBilSamlingTabell samlinger={privatBil} />}
+            {drosje && <DrosjeSamlingTabell samlinger={drosje} />}
         </>
     );
 };
