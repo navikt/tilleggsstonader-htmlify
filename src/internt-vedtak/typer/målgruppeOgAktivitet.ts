@@ -17,6 +17,8 @@ export enum FaktiskMålgruppeType {
     ENSLIG_FORSØRGER = 'ENSLIG_FORSØRGER',
     GJENLEVENDE = 'GJENLEVENDE',
     ARBEIDSSØKER = 'ARBEIDSSØKER',
+    UNGDOMSPROGRAMMET = 'UNGDOMSPROGRAMMET',
+    AKTIVITETSPENGER = 'AKTIVITETSPENGER',
 }
 
 export enum AktivitetType {
@@ -45,6 +47,8 @@ export const faktiskMålgruppeTilTekst: Record<FaktiskMålgruppeType, string> = 
     ENSLIG_FORSØRGER: 'Enslig forsørger',
     GJENLEVENDE: 'Gjenlevende',
     ARBEIDSSØKER: 'Arbeidssøker',
+    UNGDOMSPROGRAMMET: 'Ungdomsprogrammet',
+    AKTIVITETSPENGER: 'Aktivitetspenger',
 };
 
 export const aktivitetTilTekst: Record<AktivitetType, string> = {
