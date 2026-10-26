@@ -92,7 +92,12 @@ const FlyttingBeregningsresultatTabell: React.FC<{
                             <>
                                 <div>Avstand én vei: {resultat.grunnlag.avstandEnVei} km</div>
                                 <div>
-                                    Sats: {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.sats)}
+                                    Sats:{' '}
+                                    {resultat.grunnlag.sats.toLocaleString('nb-NO', {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2,
+                                    })}{' '}
+                                    kr
                                 </div>
                                 <div>
                                     Sats bekreftet:{' '}
