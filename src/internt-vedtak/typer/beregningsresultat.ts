@@ -30,7 +30,7 @@ export type BeregningsgrunnlagFlytting =
 export interface BeregningsgrunnlagFlyttebyrå {
     type: 'FLYTTEBYRÅ';
     tilbud: BeregningsgrunnlagFlyttebyråTilbud[];
-    erBetalingDokumentert: boolean;
+    erUtgifterDokumentert: boolean;
 }
 
 export interface BeregningsgrunnlagFlyttebyråTilbud {
@@ -41,6 +41,7 @@ export interface BeregningsgrunnlagFlyttebyråTilbud {
 
 export interface BeregningsgrunnlagFlytteSelv {
     type: 'FLYTTE_SELV';
+    erUtgifterDokumentert: boolean;
     avstandEnVei: number;
     sats: number;
     satsBekreftet: boolean;
