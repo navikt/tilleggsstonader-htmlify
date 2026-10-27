@@ -84,8 +84,8 @@ const FlyttingBeregningsresultatTabell: React.FC<{
                                     </div>
                                 ))}
                                 <div>
-                                    Betaling dokumentert:{' '}
-                                    {booleanTilJaNei(resultat.grunnlag.erBetalingDokumentert)}
+                                    Utgifter dokumentert:{' '}
+                                    {booleanTilJaNei(resultat.grunnlag.erUtgifterDokumentert)}
                                 </div>
                             </>
                         ) : (
@@ -117,6 +117,10 @@ const FlyttingBeregningsresultatTabell: React.FC<{
                                 <div>
                                     Parkering:{' '}
                                     {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.parkering)}
+                                </div>
+                                <div>
+                                    Utgifter dokumentert:{' '}
+                                    {booleanTilJaNei(resultat.grunnlag.erUtgifterDokumentert)}
                                 </div>
                             </>
                         )}

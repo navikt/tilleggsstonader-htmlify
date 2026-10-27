@@ -89,12 +89,13 @@ export interface NødvendigUtgiftReiseTilSamling {
 export interface FaktaFlyttebyrå extends VilkårFaktaBase {
     type: VilkårFaktaType.FLYTTING_FLYTTEBYRÅ;
     tilbud: TilbudFlyttebyrå[];
-    erBetalingDokumentert: boolean;
+    erUtgifterDokumentert: boolean;
     nødvendigUtgift: NødvendigUtgiftReiseTilSamling;
 }
 
 export interface FaktaFlyttingSelv extends VilkårFaktaBase {
     type: VilkårFaktaType.FLYTTING_FLYTTE_SELV;
+    erUtgifterDokumentert: boolean;
     avstandEnVei: number | null;
     henger: number | null;
     bompenger: number | null;
