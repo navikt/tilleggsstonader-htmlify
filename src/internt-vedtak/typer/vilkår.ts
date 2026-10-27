@@ -18,15 +18,21 @@ export type VilkårFakta =
     | FaktaDagligReisePrivatBil
     | FaktaReiseTilSamlingOffentligTransport
     | FaktaReiseTilSamlingPrivatBil
-    | FaktaReiseTilSamlingDrosje;
+    | FaktaReiseTilSamlingDrosje
+    | FaktaFlyttebyrå
+    | FaktaFlyttingSelv
+    | FaktaFlyttingUbestemt;
 
 export interface VilkårFaktaBase {
-    reiseId: string;
     adresse?: string;
     type: VilkårFaktaType;
 }
 
-export interface FaktaDagligReiseOffentligTransport extends VilkårFaktaBase {
+export interface ReiseVilkårFaktaBase extends VilkårFaktaBase {
+    reiseId: string;
+}
+
+export interface FaktaDagligReiseOffentligTransport extends ReiseVilkårFaktaBase {
     type: VilkårFaktaType.DAGLIG_REISE_OFFENTLIG_TRANSPORT;
     reisedagerPerUke: number;
     prisEnkelbillett?: number | null;
@@ -34,28 +40,28 @@ export interface FaktaDagligReiseOffentligTransport extends VilkårFaktaBase {
     prisTrettidagersbillett?: number | null;
 }
 
-export interface FaktaDagligReisePrivatBil extends VilkårFaktaBase {
+export interface FaktaDagligReisePrivatBil extends ReiseVilkårFaktaBase {
     type: VilkårFaktaType.DAGLIG_REISE_PRIVAT_BIL;
     reiseavstandEnVei: number;
     faktaDelperioder: FaktaDelperiodeDagligReisePrivatBil[];
     aktivitetId: string;
 }
 
-export interface FaktaDelperiodeDagligReisePrivatBil extends VilkårFaktaBase {
+export interface FaktaDelperiodeDagligReisePrivatBil {
     fom: string;
     tom: string;
     reisedagerPerUke: number;
     bompengerPerDag?: number;
     fergekostnadPerDag?: number;
 }
-export interface FaktaReiseTilSamlingOffentligTransport extends VilkårFaktaBase {
+export interface FaktaReiseTilSamlingOffentligTransport extends ReiseVilkårFaktaBase {
     type: VilkårFaktaType.REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT;
     nødvendigUtgift: NødvendigUtgiftReiseTilSamling;
     utgifterOffentligTransport: number;
     begrunnelse?: string;
     aktivitetId?: string;
 }
-export interface FaktaReiseTilSamlingPrivatBil extends VilkårFaktaBase {
+export interface FaktaReiseTilSamlingPrivatBil extends ReiseVilkårFaktaBase {
     type: VilkårFaktaType.REISE_TIL_SAMLING_PRIVAT_BIL;
     nødvendigUtgift: NødvendigUtgiftReiseTilSamling;
     reiseAvstand: number;
@@ -80,12 +86,41 @@ export interface NødvendigUtgiftReiseTilSamling {
     begrunnelse?: string;
 }
 
+export interface FaktaFlyttebyrå extends VilkårFaktaBase {
+    type: VilkårFaktaType.FLYTTING_FLYTTEBYRÅ;
+    tilbud: TilbudFlyttebyrå[];
+    erBetalingDokumentert: boolean;
+    nødvendigUtgift: NødvendigUtgiftReiseTilSamling;
+}
+
+export interface FaktaFlyttingSelv extends VilkårFaktaBase {
+    type: VilkårFaktaType.FLYTTING_FLYTTE_SELV;
+    avstandEnVei: number | null;
+    henger: number | null;
+    bompenger: number | null;
+    ferge: number | null;
+    parkering: number | null;
+    nødvendigUtgift: NødvendigUtgiftReiseTilSamling;
+}
+
+export interface FaktaFlyttingUbestemt extends VilkårFaktaBase {
+    type: VilkårFaktaType.FLYTTING_UBESTEMT;
+}
+
+export interface TilbudFlyttebyrå {
+    navn: string | null;
+    pris: number | null;
+}
+
 export enum VilkårFaktaType {
     DAGLIG_REISE_PRIVAT_BIL = 'DAGLIG_REISE_PRIVAT_BIL',
     DAGLIG_REISE_OFFENTLIG_TRANSPORT = 'DAGLIG_REISE_OFFENTLIG_TRANSPORT',
     REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT = 'REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT',
     REISE_TIL_SAMLING_PRIVAT_BIL = 'REISE_TIL_SAMLING_PRIVAT_BIL',
     REISE_TIL_SAMLING_DROSJE = 'REISE_TIL_SAMLING_DROSJE',
+    FLYTTING_FLYTTEBYRÅ = 'FLYTTING_FLYTTEBYRÅ',
+    FLYTTING_FLYTTE_SELV = 'FLYTTING_FLYTTE_SELV',
+    FLYTTING_UBESTEMT = 'FLYTTING_UBESTEMT',
 }
 
 export const vilkårFaktaTypeTilTeXt: Record<VilkårFaktaType, string> = {
@@ -94,6 +129,9 @@ export const vilkårFaktaTypeTilTeXt: Record<VilkårFaktaType, string> = {
     REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT: 'Offentlig transport',
     REISE_TIL_SAMLING_PRIVAT_BIL: 'Privat bil',
     REISE_TIL_SAMLING_DROSJE: 'Drosje',
+    FLYTTING_FLYTTEBYRÅ: 'Flyttebyrå',
+    FLYTTING_FLYTTE_SELV: 'Flytting selv',
+    FLYTTING_UBESTEMT: 'Ubestemt flytting',
 };
 
 export interface DelvilkårInternt {
@@ -114,6 +152,7 @@ export enum Vilkårtype {
     LØPENDE_UTGIFTER_TO_BOLIGER = 'LØPENDE_UTGIFTER_TO_BOLIGER',
     DAGLIG_REISE = 'DAGLIG_REISE',
     REISE_TIL_SAMLING = 'REISE_TIL_SAMLING',
+    FLYTTING = 'FLYTTING',
 }
 
 export const vilkårtypeTilTekst: Record<Vilkårtype, string> = {
@@ -123,6 +162,7 @@ export const vilkårtypeTilTekst: Record<Vilkårtype, string> = {
     UTGIFTER_OVERNATTING: 'Utgifter til overnatting',
     DAGLIG_REISE: 'Vilkår om daglige reiser',
     REISE_TIL_SAMLING: 'Vilkår om reise til samling',
+    FLYTTING: 'Vilkår om flytting',
 };
 
 export enum Vilkårsresultat {
@@ -174,3 +214,12 @@ export const erFaktaReiseTilSamlingPrivatBil = (
 export const erFaktaReiseTilSamlingDrosje = (
     fakta: VilkårFakta
 ): fakta is FaktaReiseTilSamlingDrosje => fakta.type === VilkårFaktaType.REISE_TIL_SAMLING_DROSJE;
+
+export const erFaktaFlyttebyrå = (fakta: VilkårFakta): fakta is FaktaFlyttebyrå =>
+    fakta.type === VilkårFaktaType.FLYTTING_FLYTTEBYRÅ;
+
+export const erFaktaFlyttingSelv = (fakta: VilkårFakta): fakta is FaktaFlyttingSelv =>
+    fakta.type === VilkårFaktaType.FLYTTING_FLYTTE_SELV;
+
+export const erFaktaFlyttingUbestemt = (fakta: VilkårFakta): fakta is FaktaFlyttingUbestemt =>
+    fakta.type === VilkårFaktaType.FLYTTING_UBESTEMT;

@@ -1,16 +1,22 @@
 import { formaterPeriode } from '../felles/datoFormat';
-import { kronerMedTusenSkilleEllerStrek } from '../felles/tekstutils';
+import { booleanTilJaNei, kronerMedTusenSkilleEllerStrek } from '../felles/tekstutils';
 import {
     erFaktaDagligReiseOffentligTransport,
     erFaktaDagligReisePrivatBil,
     erFaktaReiseTilSamlingDrosje,
     erFaktaReiseTilSamlingOffentligTransport,
     erFaktaReiseTilSamlingPrivatBil,
+    erFaktaFlyttebyrå,
+    erFaktaFlyttingSelv,
+    erFaktaFlyttingUbestemt,
     FaktaDagligReiseOffentligTransport,
     FaktaDagligReisePrivatBil,
     FaktaReiseTilSamlingDrosje,
     FaktaReiseTilSamlingOffentligTransport,
     FaktaReiseTilSamlingPrivatBil,
+    FaktaFlyttebyrå,
+    FaktaFlyttingSelv,
+    FaktaFlyttingUbestemt,
     NødvendigUtgiftReiseTilSamling,
     VilkårFakta,
 } from './typer/vilkår';
@@ -37,6 +43,18 @@ export const Fakta: React.FC<{ fakta: VilkårFakta }> = ({ fakta }) => {
 
     if (erFaktaReiseTilSamlingDrosje(fakta)) {
         return <FaktaReiseTilSamlingDrosjeOppsummering fakta={fakta} />;
+    }
+
+    if (erFaktaFlyttebyrå(fakta)) {
+        return <FaktaFlyttebyråOppsummering fakta={fakta} />;
+    }
+
+    if (erFaktaFlyttingSelv(fakta)) {
+        return <FaktaFlyttingSelvOppsummering fakta={fakta} />;
+    }
+
+    if (erFaktaFlyttingUbestemt(fakta)) {
+        return <FaktaFlyttingUbestemtOppsummering fakta={fakta} />;
     }
 
     return null;
@@ -175,6 +193,39 @@ const NødvendigUtgiftOppsummering: React.FC<{
         </div>
     );
 };
+
+const FaktaFlyttebyråOppsummering: React.FC<{ fakta: FaktaFlyttebyrå }> = ({ fakta }) => (
+    <FaktaContainer tittel="Fakta flyttebyrå">
+        {fakta.tilbud.map((tilbud, index) => (
+            <div key={index}>
+                Tilbud {index + 1}: {tilbud.navn || '-'} (
+                {kronerMedTusenSkilleEllerStrek(tilbud.pris)})
+            </div>
+        ))}
+
+        <div>Betaling dokumentert: {booleanTilJaNei(fakta.erBetalingDokumentert)}</div>
+        <NødvendigUtgiftOppsummering nødvendigUtgift={fakta.nødvendigUtgift} />
+    </FaktaContainer>
+);
+
+const FaktaFlyttingSelvOppsummering: React.FC<{ fakta: FaktaFlyttingSelv }> = ({ fakta }) => (
+    <FaktaContainer tittel="Fakta flytting selv">
+        <div>Avstand én vei: {fakta.avstandEnVei == null ? '-' : `${fakta.avstandEnVei} km`}</div>
+        <div>Henger: {kronerMedTusenSkilleEllerStrek(fakta.henger)}</div>
+        <div>Bompenger: {kronerMedTusenSkilleEllerStrek(fakta.bompenger)}</div>
+        <div>Ferge: {kronerMedTusenSkilleEllerStrek(fakta.ferge)}</div>
+        <div>Parkering: {kronerMedTusenSkilleEllerStrek(fakta.parkering)}</div>
+        <NødvendigUtgiftOppsummering nødvendigUtgift={fakta.nødvendigUtgift} />
+    </FaktaContainer>
+);
+
+const FaktaFlyttingUbestemtOppsummering: React.FC<{ fakta: FaktaFlyttingUbestemt }> = ({
+    fakta,
+}) => (
+    <FaktaContainer tittel="Fakta flytting">
+        <div>Adresse: {fakta.adresse || '-'}</div>
+    </FaktaContainer>
+);
 
 const FaktaContainer: React.FC<{ tittel: string; children: React.ReactNode }> = ({
     tittel,
