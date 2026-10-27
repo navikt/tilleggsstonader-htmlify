@@ -180,7 +180,7 @@ const FaktaFlyttebyråOppsummering: React.FC<{ fakta: FaktaFlyttebyrå }> = ({ f
                 {kronerMedTusenSkilleEllerStrek(tilbud.pris)})
             </div>
         ))}
-        <div>Betaling dokumentert: {booleanTilJaNei(fakta.erBetalingDokumentert)}</div>
+        <div>Utgifter dokumentert: {booleanTilJaNei(fakta.erUtgifterDokumentert)}</div>
         <NødvendigUtgiftOppsummering nødvendigUtgift={fakta.nødvendigUtgift} />
     </FaktaContainer>
 );
@@ -192,6 +192,7 @@ const FaktaFlyttingSelvOppsummering: React.FC<{ fakta: FaktaFlyttingSelv }> = ({
         <div>Bompenger: {kronerMedTusenSkilleEllerStrek(fakta.bompenger)}</div>
         <div>Ferge: {kronerMedTusenSkilleEllerStrek(fakta.ferge)}</div>
         <div>Parkering: {kronerMedTusenSkilleEllerStrek(fakta.parkering)}</div>
+        <div>Utgifter dokumentert: {booleanTilJaNei(fakta.erUtgifterDokumentert)}</div>
         <NødvendigUtgiftOppsummering nødvendigUtgift={fakta.nødvendigUtgift} />
     </FaktaContainer>
 );
