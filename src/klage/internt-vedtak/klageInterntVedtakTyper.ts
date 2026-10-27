@@ -157,6 +157,7 @@ enum TilleggsstønadforskriftenHjemmel {
     FS_TILL_ST_13_BEREGNING_LAEREMIDLER = 'FS_TILL_ST_13_BEREGNING_LAEREMIDLER',
     FS_TILL_ST_15_2 = 'FS_TILL_ST_15_2',
     FS_TILL_ST_15_3 = 'FS_TILL_ST_15_3',
+    FS_TILL_ST_5 = 'FS_TILL_ST_5',
 }
 
 enum ForeldeseslovenHjemmel {
@@ -221,6 +222,7 @@ const tilleggsstønadforskriftenVisningstekster: Record<Tilleggsstønadforskrift
     FS_TILL_ST_13_BEREGNING_LAEREMIDLER: 'Til.st.forskr. § 13',
     FS_TILL_ST_15_2: 'Til.st.forskr. § 15 2. ledd',
     FS_TILL_ST_15_3: 'Til.st.forskr. § 15 3. ledd',
+    FS_TILL_ST_5: 'Til.st.forskr. § 5',
 };
 
 const foreldeseslovenVisningstekster: Record<ForeldeseslovenHjemmel, string> = {
