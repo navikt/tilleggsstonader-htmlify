@@ -89,9 +89,11 @@ export interface FaktaFlyttingSelv extends VilkårFaktaBase {
     erUtgifterDokumentert: boolean;
     avstandEnVei: number | null;
     henger: number | null;
+    leiebil: number | null;
     bompenger: number | null;
     ferge: number | null;
     parkering: number | null;
+    annet: number | null;
     nødvendigUtgift: NødvendigUtgiftReiseTilSamling;
 }
 

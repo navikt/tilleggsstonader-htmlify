@@ -108,6 +108,10 @@ const FlyttingBeregningsresultatTabell: React.FC<{
                                     {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.henger)}
                                 </div>
                                 <div>
+                                    Leiebil:{' '}
+                                    {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.leiebil)}
+                                </div>
+                                <div>
                                     Bompenger:{' '}
                                     {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.bompenger)}
                                 </div>
@@ -117,6 +121,9 @@ const FlyttingBeregningsresultatTabell: React.FC<{
                                 <div>
                                     Parkering:{' '}
                                     {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.parkering)}
+                                </div>
+                                <div>
+                                    Annet: {kronerMedTusenSkilleEllerStrek(resultat.grunnlag.annet)}
                                 </div>
                                 <div>
                                     Utgifter dokumentert:{' '}
