@@ -189,9 +189,11 @@ const FaktaFlyttingSelvOppsummering: React.FC<{ fakta: FaktaFlyttingSelv }> = ({
     <FaktaContainer tittel="Fakta flytting selv">
         <div>Avstand én vei: {fakta.avstandEnVei == null ? '-' : `${fakta.avstandEnVei} km`}</div>
         <div>Henger: {kronerMedTusenSkilleEllerStrek(fakta.henger)}</div>
+        <div>Leiebil: {kronerMedTusenSkilleEllerStrek(fakta.leiebil)}</div>
         <div>Bompenger: {kronerMedTusenSkilleEllerStrek(fakta.bompenger)}</div>
         <div>Ferge: {kronerMedTusenSkilleEllerStrek(fakta.ferge)}</div>
         <div>Parkering: {kronerMedTusenSkilleEllerStrek(fakta.parkering)}</div>
+        <div>Annet: {kronerMedTusenSkilleEllerStrek(fakta.annet)}</div>
         <div>Utgifter dokumentert: {booleanTilJaNei(fakta.erUtgifterDokumentert)}</div>
         <NødvendigUtgiftOppsummering nødvendigUtgift={fakta.nødvendigUtgift} />
     </FaktaContainer>
