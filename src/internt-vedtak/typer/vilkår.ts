@@ -18,6 +18,7 @@ export type VilkårFakta =
     | FaktaDagligReisePrivatBil
     | FaktaReiseTilSamlingOffentligTransport
     | FaktaReiseTilSamlingPrivatBil
+    | FaktaReiseTilSamlingDrosje
     | FaktaFlyttebyrå
     | FaktaFlyttingSelv
     | FaktaFlyttingUbestemt;
@@ -72,6 +73,14 @@ export interface FaktaReiseTilSamlingPrivatBil extends ReiseVilkårFaktaBase {
     aktivitetId?: string;
 }
 
+export interface FaktaReiseTilSamlingDrosje extends VilkårFaktaBase {
+    type: VilkårFaktaType.REISE_TIL_SAMLING_DROSJE;
+    nødvendigUtgift: NødvendigUtgiftReiseTilSamling;
+    utgifterDrosje: number;
+    begrunnelse: string;
+    aktivitetId?: string;
+}
+
 export interface NødvendigUtgiftReiseTilSamling {
     erUtgiftenNødvendig: SvarVurdering;
     begrunnelse?: string;
@@ -111,6 +120,7 @@ export enum VilkårFaktaType {
     DAGLIG_REISE_OFFENTLIG_TRANSPORT = 'DAGLIG_REISE_OFFENTLIG_TRANSPORT',
     REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT = 'REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT',
     REISE_TIL_SAMLING_PRIVAT_BIL = 'REISE_TIL_SAMLING_PRIVAT_BIL',
+    REISE_TIL_SAMLING_DROSJE = 'REISE_TIL_SAMLING_DROSJE',
     FLYTTING_FLYTTEBYRÅ = 'FLYTTING_FLYTTEBYRÅ',
     FLYTTING_FLYTTE_SELV = 'FLYTTING_FLYTTE_SELV',
     FLYTTING_UBESTEMT = 'FLYTTING_UBESTEMT',
@@ -121,6 +131,7 @@ export const vilkårFaktaTypeTilTeXt: Record<VilkårFaktaType, string> = {
     DAGLIG_REISE_PRIVAT_BIL: 'Privat bil',
     REISE_TIL_SAMLING_OFFENTLIG_TRANSPORT: 'Offentlig transport',
     REISE_TIL_SAMLING_PRIVAT_BIL: 'Privat bil',
+    REISE_TIL_SAMLING_DROSJE: 'Drosje',
     FLYTTING_FLYTTEBYRÅ: 'Flyttebyrå',
     FLYTTING_FLYTTE_SELV: 'Flytting selv',
     FLYTTING_UBESTEMT: 'Ubestemt flytting',
@@ -202,6 +213,10 @@ export const erFaktaReiseTilSamlingPrivatBil = (
     fakta: VilkårFakta
 ): fakta is FaktaReiseTilSamlingPrivatBil =>
     fakta.type === VilkårFaktaType.REISE_TIL_SAMLING_PRIVAT_BIL;
+
+export const erFaktaReiseTilSamlingDrosje = (
+    fakta: VilkårFakta
+): fakta is FaktaReiseTilSamlingDrosje => fakta.type === VilkårFaktaType.REISE_TIL_SAMLING_DROSJE;
 
 export const erFaktaFlyttebyrå = (fakta: VilkårFakta): fakta is FaktaFlyttebyrå =>
     fakta.type === VilkårFaktaType.FLYTTING_FLYTTEBYRÅ;

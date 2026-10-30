@@ -3,6 +3,7 @@ import { booleanTilJaNei, kronerMedTusenSkilleEllerStrek } from '../felles/tekst
 import {
     erFaktaDagligReiseOffentligTransport,
     erFaktaDagligReisePrivatBil,
+    erFaktaReiseTilSamlingDrosje,
     erFaktaReiseTilSamlingOffentligTransport,
     erFaktaReiseTilSamlingPrivatBil,
     erFaktaFlyttebyrå,
@@ -10,6 +11,7 @@ import {
     erFaktaFlyttingUbestemt,
     FaktaDagligReiseOffentligTransport,
     FaktaDagligReisePrivatBil,
+    FaktaReiseTilSamlingDrosje,
     FaktaReiseTilSamlingOffentligTransport,
     FaktaReiseTilSamlingPrivatBil,
     FaktaFlyttebyrå,
@@ -37,6 +39,10 @@ export const Fakta: React.FC<{ fakta: VilkårFakta }> = ({ fakta }) => {
 
     if (erFaktaReiseTilSamlingPrivatBil(fakta)) {
         return <FaktaReiseTilSamlingPrivatBilOppsummering fakta={fakta} />;
+    }
+
+    if (erFaktaReiseTilSamlingDrosje(fakta)) {
+        return <FaktaReiseTilSamlingDrosjeOppsummering fakta={fakta} />;
     }
 
     if (erFaktaFlyttebyrå(fakta)) {
@@ -131,6 +137,22 @@ const FaktaReiseTilSamlingOffentligTransportOppsummering: React.FC<{
     );
 };
 
+const FaktaReiseTilSamlingDrosjeOppsummering: React.FC<{
+    fakta: FaktaReiseTilSamlingDrosje;
+}> = ({ fakta }) => {
+    return (
+        <FaktaContainer tittel="Fakta drosje">
+            <>
+                {fakta.aktivitetId != null && <div>Aktivitet ID: {fakta.aktivitetId}</div>}
+                <NødvendigUtgiftOppsummering nødvendigUtgift={fakta.nødvendigUtgift} />
+                <div>Utgifter: {kronerMedTusenSkilleEllerStrek(fakta.utgifterDrosje)}</div>
+
+                <div>Spesifikasjon av utgift (obligatorisk): {fakta.begrunnelse || '-'}</div>
+            </>
+        </FaktaContainer>
+    );
+};
+
 const FaktaReiseTilSamlingPrivatBilOppsummering: React.FC<{
     fakta: FaktaReiseTilSamlingPrivatBil;
 }> = ({ fakta }) => {
@@ -180,6 +202,7 @@ const FaktaFlyttebyråOppsummering: React.FC<{ fakta: FaktaFlyttebyrå }> = ({ f
                 {kronerMedTusenSkilleEllerStrek(tilbud.pris)})
             </div>
         ))}
+
         <div>Utgifter dokumentert: {booleanTilJaNei(fakta.erUtgifterDokumentert)}</div>
         <NødvendigUtgiftOppsummering nødvendigUtgift={fakta.nødvendigUtgift} />
     </FaktaContainer>

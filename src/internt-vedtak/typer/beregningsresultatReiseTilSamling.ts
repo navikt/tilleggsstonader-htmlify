@@ -3,10 +3,21 @@ import { Beregningsplan } from './beregningsresultat';
 export interface BeregningsresultatReiseTilSamling {
     offentligTransport?: BeregningsresultatOffentligTransport[];
     privatBil?: BeregningsresultatPrivatBil[];
+    drosje?: BeregningsresultatDrosje[];
     beregningsplan: Beregningsplan;
 }
 
 export interface BeregningsresultatOffentligTransport {
+    reiseId: string;
+    adresse?: string;
+    fom: string;
+    tom: string;
+    beløp: number;
+    begrunnelse: string;
+    aktivitetId?: string;
+    fraTidligereVedtak: boolean;
+}
+export interface BeregningsresultatDrosje {
     reiseId: string;
     adresse?: string;
     fom: string;
