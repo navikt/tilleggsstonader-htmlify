@@ -40,7 +40,7 @@ interface BeregningsresultatForPeriode {
 
 export interface OppsummertBeregningForReise {
     reiseId: string;
-    reiseavstandEnVei: number;
+    totalReiseavstand: number;
     aktivitetsadresse?: string;
     perioder: OppsummertBeregningForPeriode[];
     fraTidligereVedtak: boolean;
