@@ -35,7 +35,7 @@ export const RammevedtakContent: React.FC<{ rammevedtak: RammevedtakPrivatBil | 
                         <thead>
                             <tr>
                                 <th>Reisedager per uke</th>
-                                <th>Reiseavstand én vei</th>
+                                <th>Total reiseavstand</th>
                                 <th>Kilometersats</th>
                                 <th>Bom én vei</th>
                                 <th>Ferge én vei</th>
@@ -47,7 +47,7 @@ export const RammevedtakContent: React.FC<{ rammevedtak: RammevedtakPrivatBil | 
                                 <tr key={reise.reiseId}>
                                     <td>{delperiode.reisedagerPerUke}</td>
                                     <td>
-                                        {reise.grunnlag.reiseavstandEnVei}
+                                        {reise.grunnlag.totalReiseavstand}
                                         {' km'}
                                     </td>
                                     <td>
