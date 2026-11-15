@@ -12,7 +12,7 @@ export const PrivatBilTabell: React.FC<{
             {reiser.map((reise) => (
                 <div key={reise.reiseId}>
                     <h4>
-                        {reise.aktivitetsadresse} - {reise.reiseavstandEnVei} km
+                        {reise.aktivitetsadresse} - Total reiseavstand: {reise.totalReiseavstand} km
                     </h4>
                     <p>ReiseID: {reise.reiseId}</p>
                     {reise.fraTidligereVedtak && <p>Fra tidligere vedtak</p>}

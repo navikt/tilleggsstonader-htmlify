@@ -42,7 +42,7 @@ export interface FaktaDagligReiseOffentligTransport extends ReiseVilkårFaktaBas
 
 export interface FaktaDagligReisePrivatBil extends ReiseVilkårFaktaBase {
     type: VilkårFaktaType.DAGLIG_REISE_PRIVAT_BIL;
-    reiseavstandEnVei: number;
+    totalReiseavstand: number;
     faktaDelperioder: FaktaDelperiodeDagligReisePrivatBil[];
     aktivitetId: string;
 }

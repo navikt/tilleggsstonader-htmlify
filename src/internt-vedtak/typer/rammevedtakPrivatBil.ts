@@ -14,7 +14,7 @@ export interface BeregningsgrunnlagForReiseMedPrivatBil {
     fom: string;
     tom: string;
     delperioder: Delperiode[];
-    reiseavstandEnVei: number;
+    totalReiseavstand: number;
     vedtaksperioder: Vedtaksperiode[];
 }
 
