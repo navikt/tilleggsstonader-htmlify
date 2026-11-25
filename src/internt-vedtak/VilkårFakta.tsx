@@ -80,7 +80,9 @@ const FaktaLøpendeUtgifterEnBoligOppsummering: React.FC<{
         </div>
         <div>
             Merutgift per måned:{' '}
-            {kronerMedTusenSkilleEllerStrek(fakta.utgiftAktivitetssted - fakta.utgiftHjemsted)}
+            {kronerMedTusenSkilleEllerStrek(
+                Math.max(0, fakta.utgiftAktivitetssted - fakta.utgiftHjemsted)
+            )}
         </div>
     </FaktaContainer>
 );
