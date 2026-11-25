@@ -21,7 +21,8 @@ export type VilkårFakta =
     | FaktaReiseTilSamlingDrosje
     | FaktaFlyttebyrå
     | FaktaFlyttingSelv
-    | FaktaFlyttingUbestemt;
+    | FaktaFlyttingUbestemt
+    | FaktaLøpendeUtgifterEnBolig;
 
 export interface VilkårFaktaBase {
     adresse?: string;
@@ -110,6 +111,12 @@ export interface FaktaFlyttingUbestemt extends VilkårFaktaBase {
     type: VilkårFaktaType.FLYTTING_UBESTEMT;
 }
 
+export interface FaktaLøpendeUtgifterEnBolig extends VilkårFaktaBase {
+    type: VilkårFaktaType.LØPENDE_UTGIFTER_EN_BOLIG;
+    utgiftHjemsted: number;
+    utgiftAktivitetssted: number;
+}
+
 export interface TilbudFlyttebyrå {
     navn: string | null;
     pris: number | null;
@@ -124,6 +131,7 @@ export enum VilkårFaktaType {
     FLYTTING_FLYTTEBYRÅ = 'FLYTTING_FLYTTEBYRÅ',
     FLYTTING_FLYTTE_SELV = 'FLYTTING_FLYTTE_SELV',
     FLYTTING_UBESTEMT = 'FLYTTING_UBESTEMT',
+    LØPENDE_UTGIFTER_EN_BOLIG = 'LØPENDE_UTGIFTER_EN_BOLIG',
 }
 
 export const vilkårFaktaTypeTilTeXt: Record<VilkårFaktaType, string> = {
@@ -135,6 +143,7 @@ export const vilkårFaktaTypeTilTeXt: Record<VilkårFaktaType, string> = {
     FLYTTING_FLYTTEBYRÅ: 'Flyttebyrå',
     FLYTTING_FLYTTE_SELV: 'Flytting selv',
     FLYTTING_UBESTEMT: 'Ubestemt flytting',
+    LØPENDE_UTGIFTER_EN_BOLIG: 'Løpende utgifter én bolig',
 };
 
 export interface DelvilkårInternt {
@@ -226,3 +235,7 @@ export const erFaktaFlyttingSelv = (fakta: VilkårFakta): fakta is FaktaFlytting
 
 export const erFaktaFlyttingUbestemt = (fakta: VilkårFakta): fakta is FaktaFlyttingUbestemt =>
     fakta.type === VilkårFaktaType.FLYTTING_UBESTEMT;
+
+export const erFaktaLøpendeUtgifterEnBolig = (
+    fakta: VilkårFakta
+): fakta is FaktaLøpendeUtgifterEnBolig => fakta.type === VilkårFaktaType.LØPENDE_UTGIFTER_EN_BOLIG;

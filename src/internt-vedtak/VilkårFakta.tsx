@@ -9,6 +9,8 @@ import {
     erFaktaFlyttebyrå,
     erFaktaFlyttingSelv,
     erFaktaFlyttingUbestemt,
+    erFaktaLøpendeUtgifterEnBolig,
+    FaktaLøpendeUtgifterEnBolig,
     FaktaDagligReiseOffentligTransport,
     FaktaDagligReisePrivatBil,
     FaktaReiseTilSamlingDrosje,
@@ -57,8 +59,31 @@ export const Fakta: React.FC<{ fakta: VilkårFakta }> = ({ fakta }) => {
         return <FaktaFlyttingUbestemtOppsummering fakta={fakta} />;
     }
 
+    if (erFaktaLøpendeUtgifterEnBolig(fakta)) {
+        return <FaktaLøpendeUtgifterEnBoligOppsummering fakta={fakta} />;
+    }
+
     return null;
 };
+
+const FaktaLøpendeUtgifterEnBoligOppsummering: React.FC<{
+    fakta: FaktaLøpendeUtgifterEnBolig;
+}> = ({ fakta }) => (
+    <FaktaContainer tittel="Løpende utgifter én bolig">
+        <div>
+            Utgift bolig på tidligere hjemsted per måned:{' '}
+            {kronerMedTusenSkilleEllerStrek(fakta.utgiftHjemsted)}
+        </div>
+        <div>
+            Utgift bolig på aktivitetssted per måned:{' '}
+            {kronerMedTusenSkilleEllerStrek(fakta.utgiftAktivitetssted)}
+        </div>
+        <div>
+            Merutgift per måned:{' '}
+            {kronerMedTusenSkilleEllerStrek(fakta.utgiftAktivitetssted - fakta.utgiftHjemsted)}
+        </div>
+    </FaktaContainer>
+);
 
 export const FaktaDagligReiseOffentligTransportOppsummering: React.FC<{
     fakta: FaktaDagligReiseOffentligTransport;
